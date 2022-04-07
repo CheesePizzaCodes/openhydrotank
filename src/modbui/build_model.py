@@ -7,13 +7,14 @@ from logics import *
 
 
 def main():
+
     lg.generate_layup
 
     lg.process_geometry
 
-    lg.assign_materials
+    lg.assign_material
 
-    lgplace_components
+    lg.assemble_components
 
     lg.define_solver
 
