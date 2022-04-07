@@ -3,25 +3,25 @@
 #global packages
 
 #my packages
-import logics as lg
+from logics import *
 
 
 def main():
     lg.generate_layup
 
-    lg.partitions
+    lg.process_geometry
 
-    process geometry
+    lg.assign_materials
 
-    assign materials
+    lgplace_components
 
-    place components
+    lg.define_solver
 
-    define solver
+    lg.define_interaction
 
-    define interaction
+    lg.define_load
 
-    define load
+    lg.define_mesh
 
     pass
 

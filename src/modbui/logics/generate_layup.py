@@ -13,4 +13,6 @@
 
 #run sketch routine
 
-run_script('layup')
+#run_script('layup')
+
+print('leolasl')
