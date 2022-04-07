@@ -11,7 +11,17 @@ def main():
 
     lg.partitions
 
+    process geometry
 
+    assign materials
+
+    place components
+
+    define solver
+
+    define interaction
+
+    define load
 
     pass
 

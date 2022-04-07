@@ -5,3 +5,5 @@ The ulil file contains abaqus miscelaneous helper functions
 each routine is responsible for modifying one single attribute of the model
 
 These scripts are only intended to run from the abaqus python interpreter , and as such, must run in python 2.7
+
+These scripts are only meant to be invoked by logics scripts
