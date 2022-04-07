@@ -1,5 +1,4 @@
-import os
 
 
-def run_script(script_name):
-    os.system(f'abaqus python {script_name}')
+
+print('this is a print statement inside the init file inside logics package')

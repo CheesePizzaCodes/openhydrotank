@@ -3,11 +3,15 @@
 #global packages
 
 #my packages
-from logics import *
+from logics import assign_material as am
 
 
 def main():
+    print('this is the build model running')
 
+    pass
+
+    '''
     lg.generate_layup
 
     lg.process_geometry
@@ -23,9 +27,11 @@ def main():
     lg.define_load
 
     lg.define_mesh
+    '''
 
-    pass
+
 
 
 if __name__ == '__main__':
     main()
+    am.main()

@@ -13,3 +13,5 @@ heavily reliant on routines for selecting geometry
 '''
 
 from .routines import util
+
+print(f'this is the {__name__} routine running in abaqus interpreter...')
