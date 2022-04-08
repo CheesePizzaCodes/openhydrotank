@@ -1,4 +1,7 @@
-'''defines the sets and surfaces to be used in the model with descriptive names
+'''
+
+ oNLY EXECUTES CREATION OF PREDEFINED SETS IN THE ABAQUS TOOLS
+ the sets and surfaces to be used in the model with descriptive names
 
 each layer must be a set
 
