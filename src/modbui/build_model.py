@@ -6,7 +6,7 @@
 from logics import assign_material as am
 
 
-
+#TODO shift routines to lowest level actions eg ger surface cut from list of curves or assign material to set
 
 class Model(): #data container. Incrementally stores useful information. only methods are getters and setters...
     #eg store layup, each layer, curves, materials, sets... do not re-do what abq already does, just try to centralize
