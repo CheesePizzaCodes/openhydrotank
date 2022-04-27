@@ -1,11 +1,15 @@
 """
 This routine cuts the layup
+
+DONE
 """
 
 # input: list of lines. Each line is a list of points. Each line defines a cut of the shape
 
 # output: model containing layup cross-section part file
 
+import sys, os
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 # import abaqus modules
 from abaqus import *
 from abaqusConstants import *
@@ -27,45 +31,60 @@ import xyPlot
 import displayGroupOdbToolset as dgo
 import connectorBehavior
 
+import time
+
 # import own modules
 import routine_util as ru
 import routine_constants as rc
+
+start_time = time.time()
+
 import stubs as stb
 
+print(time.time() - start_time)
+
+sys.path.append('.')
+
+
+
 # set work part
-p = mdb.models[rc.MODEL_NAME].parts[rc.PART_NAME]
+p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
 # initialize cutting sketch
 f, e, d1 = p.faces, p.edges, p.datums
-s1 = mdb.models[rc.MODEL_NAME].ConstrainedSketch(name='__profile__',
-                                                 sheetSize=4.47, gridSpacing=0.11)
+s1 = mdb.models[rc.MODEL].ConstrainedSketch(name='cutting_sketch',
+                                            sheetSize=1000)
 g, v, d, c = s1.geometry, s1.vertices, s1.dimensions, s1.constraints
 s1.setPrimaryObject(option=SUPERIMPOSE)
-p = mdb.models[rc.MODEL_NAME].parts[rc.PART_NAME]
+p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
 p.projectReferencesOntoSketch(sketch=s1, filter=COPLANAR_EDGES)
 
 # draw cutting sketch
-lines = stb.test_cutter
-ru.draw_lines(s1, lines)
+lines = stb.test_lines
+#ru.draw_lines(s1, lines)
 
-    # s1.Line(point1=(-0.667778, 0.11), point2=(-0.3025, 0.33))
-    # s1.Line(point1=(-0.3025, 0.33), point2=(0.1375, 0.4125))
-    # s1.Line(point1=(0.1375, 0.4125), point2=(0.777778000052586, 0.4125))
-    # debug stub TODO delete later
-    #
-    # s1.Line(point1=(-0.8525, -0.074722), point2=(-0.33, 0.165))
-    # s1.Line(point1=(-0.33, 0.165), point2=(0.165, 0.2475))
-    # s1.Line(point1=(0.165, 0.2475), point2=(0.537310928571969, 0.2475))
-    # s1.Line(point1=(0.537310928571969, 0.2475), point2=(0.777778000052586, 0.2475))
-    # s1.Line(point1=(-1.0725, -0.294722), point2=(-0.495, -0.055))
-    # s1.Line(point1=(-0.495, -0.055), point2=(0.165, 0.0825))
-    # s1.Line(point1=(0.165, 0.0825), point2=(0.605, 0.0825))
-    # s1.Line(point1=(0.605, 0.0825), point2=(0.777778000052586, 0.0825))
-
+for line in lines:
+    s1.Spline(points=(line), constrainPoints=False)
+    
+print(time.time() - start_time)    
+   
 # cut part according to sketch
-p = mdb.models[rc.MODEL_NAME].parts[rc.PART_NAME]
+p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
 f = p.faces
 pickedFaces = f.getSequenceFromMask(mask=('[#1 ]',), )  # TODO refactor selection method
 e1, d2 = p.edges, p.datums
 p.PartitionFaceBySketch(faces=pickedFaces, sketch=s1)
 s1.unsetPrimaryObject()
-del mdb.models[rc.MODEL_NAME].sketches['__profile__']
+
+
+#remove excess material
+f = p.faces
+p.RemoveFaces(faceList=(f.findAt(coordinates=(0.1, 0.1, 0.0)),),
+              deleteCells=False)
+              
+              
+end_time = time.time()
+
+total_time = end_time - start_time
+
+print(total_time)
+              

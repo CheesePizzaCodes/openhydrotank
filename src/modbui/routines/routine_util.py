@@ -1,6 +1,8 @@
-import routine_constants as rc
 
 
+
+
+##Drawing things
 def draw_line(sketch, points):
     """
     Draws a line in the sketch that connects the points inside the passed list of tuples
