@@ -66,46 +66,60 @@ f = p.faces
 #                       deleteCells=False)
 # print("flag")
 
-# create one set per layer
+# ---- create one set per layer
 part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
 faces = part.faces
 for index, face in enumerate(sorted(faces)):  # this required a workaround using findAt...
     location = face.pointOn  # extract face location
     face_array = part.faces.findAt(location)  # find face at location
-    name = rc.LAYER_SET + str(index + 1)  # TODO refactor to global constant
+    name = rc.LAYER_SET + str(index + 1)
     part.Set(faces=face_array, name=name)
 
-#  create set on layup for contact with liner
+# ---- create set on layup for contact with liner
 part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-tol = 0.1  # TODO refactor to reflect model geometric properties. maybe make global constant.
-offset = (0., tol, 0.)  # offset in the y-direction
-location = map(sum, zip(rc.ROOT_POINT, offset))  # TODO make this a routine utility function
+location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
 edge = part.edges.findAt(location)
 selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-part.Set(edges=selection, name=rc.LAYUP_INTERACTION_SET)  # TODO this naming may cause conflicts.
+part.Set(edges=selection, name=rc.LAYUP_INTERACTION_SET)
 
-#  create set on liner for contact with layup #TODO this must be done in the assembly, not in the part... :/
+# ---- create set on liner for contact with layup
 part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-tol = 0.1  # TODO refactor to reflect model geometric properties. maybe make global constant.
-offset = (0., tol, 0.)  # offset in the y-direction
-location = map(sum, zip(rc.ROOT_POINT, offset))  # TODO make this a routine utility function
+location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
 edge = part.edges.findAt(location)
 selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-part.Set(edges=selection, name=rc.LINER_INTERACTION_SET)  # TODO this naming may cause conflicts.
+part.Set(edges=selection, name=rc.LINER_INTERACTION_SET)
 
-# ----create set for symmetry BC #TODO this must be done in the assembly, not in the part... :/ DONE :D
+# ---- create set on liner for pressure loading
+
+part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+location = ru.offset_point(rc.LINER_ROOT_POINT, 90)  # find location of edge above point
+edge = part.edges.findAt(location)
+selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+part_vertices = part.vertices  # extract array of vertex objects
+for edge in selection:  # loop through all selected edge objects in the selection edgeArray object
+    edge_vert_indices = edge.getVertices()  # extract verts indices of the current edge
+
+    if (
+            part_vertices[edge_vert_indices[0]].pointOn[0][1] >= rc.PRESSURE_END_POINT
+            and
+            part_vertices[edge_vert_indices[1]].pointOn[0][1] >= rc.PRESSURE_END_POINT
+    ):
+        selection.remove(edge)  # remove said edge from selection
+        pass
+
+
+part.Set(edges=selection, name=rc.LOAD_SET)  # TODO removeedges above a certain location
+
+# ---- create set for symmetry BC
 a1 = mdb.models[rc.MODEL].rootAssembly
-tol = 0.1  # TODO refactor to reflect model geometric properties. maybe make global constant.
-
-offset1 = (tol, 0., 0.)  # offset in the y-direction
-location1 = map(sum, zip(rc.ROOT_POINT, offset1))  # TODO make this a routine utility function
-edge1 = a1.instances[rc.LAYUP_INSTANCE].edges.findAt(location1)
-selection1 = edge1.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+location = ru.offset_point(rc.ROOT_POINT, 0)  # to the right
+edge = a1.instances[rc.LAYUP_INSTANCE].edges.findAt(location)
+selection_1 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
 # TODO DANGER CSYST DEFINITION IS CONFUSING! EVALUATE WHEN IT HAS EFFECT! MODELLING / SELECTING GEOMETRY INSIDE ASSEMBLY
-offset2 = (-tol, 0., 0.)  # offset in the y-direction
-location2 = map(sum, zip(rc.ROOT_POINT, offset2))  # TODO make this a routine utility function
-edge2 = a1.instances[rc.LINER_INSTANCE].edges.findAt(location2)
-selection2 = edge2.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+# seemingly, the assembly modelling environment respects the part modelling csyst despite adding a different csyst...
 
-a1.Set(edges=selection1+selection2, name=rc.SYM_BC_SET)  # TODO this naming may cause conflicts.
+location = ru.offset_point(rc.ROOT_POINT, 180)
+edge = a1.instances[rc.LINER_INSTANCE].edges.findAt(location)
+selection_2 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
 
+a1.Set(edges=selection_1 + selection_2, name=rc.SYM_BC_SET)  # TODO this naming may cause conflicts.

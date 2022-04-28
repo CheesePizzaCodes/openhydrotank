@@ -31,7 +31,8 @@ LOAD_SET = bs + '_load'
 
 #  -- Position --
 ROOT_POINT = (156., 0., 0.)
-
+LINER_ROOT_POINT = (150., 0., 0.)  # TODO refactor these, interaction with xml
+PRESSURE_END_POINT = 472
 #  -- Length --
 TOL = 0.1
 
@@ -42,18 +43,18 @@ GET_EDGES_BY_ANGLE = 20
 #  -- Part --
 LAYUP_MATERIAL = LAYUP_PART + '_material'
 
-# LAYUP_MATERIAL_PROPS = (
-#     139260.0,  # E1
-#     5989.0,  # E2
-#     5989.0,  # E3
-#     0.26,  # Nu12
-#     0.26,  # Nu13
-#     0.4,  # Nu23
-#     2612.0,  # G12
-#     2612.0,  # G13
-#     2139.0)  #
+LAYUP_MATERIAL_PROPS = (
+    139260.0,  # E1
+    5989.0,  # E2
+    5989.0,  # E3
+    0.26,  # Nu12
+    0.26,  # Nu13
+    0.4,  # Nu23
+    2612.0,  # G12
+    2612.0,  # G13
+    2139.0)  #
 
-LAYUP_MATERIAL_PROPS = (139260.0, 5989.0, 5989.0, 0.26, 0.26, 0.4, 2612.0, 2612.0, 2139.0)
+# LAYUP_MATERIAL_PROPS = (139260.0, 5989.0, 5989.0, 0.26, 0.26, 0.4, 2612.0, 2612.0, 2139.0)
 
 LAYUP_SECTION = LAYUP_PART + '_section'
 
