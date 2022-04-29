@@ -34,19 +34,24 @@ import time
 import routine_util as ru
 import routine_constants as rc
 
-start_time = time.time()
+def main():
+    start_time = time.time()
 
-#  instantiate assembly
-a1 = mdb.models[rc.MODEL].rootAssembly
+    #  instantiate assembly
+    a1 = mdb.models[rc.MODEL].rootAssembly
 
-#  create coordinate system
-a1.DatumCsysByThreePoints(coordSysType=CYLINDRICAL,
-                          origin=(0.0, 0.0, 0.0),
-                          point1=(1.0, 0.0, 0.0),
-                          point2=(0.0, 0.0, -1.0)
-                          )
+    #  create coordinate system
+    a1.DatumCsysByThreePoints(coordSysType=CYLINDRICAL,
+                              origin=(0.0, 0.0, 0.0),
+                              point1=(1.0, 0.0, 0.0),
+                              point2=(0.0, 0.0, -1.0)
+                              )
 
-p1 = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-a1.Instance(name=rc.LAYUP_INSTANCE, part=p1, dependent=ON)
-p1 = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-a1.Instance(name=rc.LINER_INSTANCE, part=p1, dependent=ON)
+    p1 = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    a1.Instance(name=rc.LAYUP_INSTANCE, part=p1, dependent=ON)
+    p1 = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+    a1.Instance(name=rc.LINER_INSTANCE, part=p1, dependent=ON)
+
+if __name__ == '__main__':
+    main()
+

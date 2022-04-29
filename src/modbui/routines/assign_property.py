@@ -28,42 +28,46 @@ import time
 import routine_util as ru
 import routine_constants as rc
 
-start_time = time.time()
+def main():
+    start_time = time.time()
 
-# import stubs as stb
+    # import stubs as stb
 
-print(time.time() - start_time)
+    print(time.time() - start_time)
 
-# --- Create materials and assign sections
-# --Layup
-mdb.models[rc.MODEL].Material(name=rc.LAYUP_MATERIAL)
+    # --- Create materials and assign sections
+    # --Layup
+    mdb.models[rc.MODEL].Material(name=rc.LAYUP_MATERIAL)
 
-mdb.models[rc.MODEL].materials[rc.LAYUP_MATERIAL].Elastic(type=ENGINEERING_CONSTANTS,
-                                                          table=(rc.LAYUP_MATERIAL_PROPS,))
+    mdb.models[rc.MODEL].materials[rc.LAYUP_MATERIAL].Elastic(type=ENGINEERING_CONSTANTS,
+                                                              table=(rc.LAYUP_MATERIAL_PROPS,))
 
-mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LAYUP_SECTION,
-                                             material=rc.LAYUP_MATERIAL,
-                                             thickness=None)
+    mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LAYUP_SECTION,
+                                                 material=rc.LAYUP_MATERIAL,
+                                                 thickness=None)
 
-part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-region = part.sets[rc.LAYUP_SET]
-part.SectionAssignment(region=region, sectionName=rc.LAYUP_SECTION, offset=0.0,
-                       offsetType=MIDDLE_SURFACE, offsetField='',
-                       thicknessAssignment=FROM_SECTION)
+    part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    region = part.sets[rc.LAYUP_SET]
+    part.SectionAssignment(region=region, sectionName=rc.LAYUP_SECTION, offset=0.0,
+                           offsetType=MIDDLE_SURFACE, offsetField='',
+                           thicknessAssignment=FROM_SECTION)
 
-# --Liner
-mdb.models[rc.MODEL].Material(name=rc.LINER_MATERIAL) #bn
+    # --Liner
+    mdb.models[rc.MODEL].Material(name=rc.LINER_MATERIAL) #bn
 
-mdb.models[rc.MODEL].materials[rc.LINER_MATERIAL].Elastic(table=(rc.LINER_MATERIAL_PROPS,))
+    mdb.models[rc.MODEL].materials[rc.LINER_MATERIAL].Elastic(table=(rc.LINER_MATERIAL_PROPS,))
 
-mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LINER_SECTION,
-                                             material=rc.LINER_MATERIAL,
-                                             thickness=None)
+    mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LINER_SECTION,
+                                                 material=rc.LINER_MATERIAL,
+                                                 thickness=None)
 
-part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-region = part.sets[rc.LINER_SET]
-part.SectionAssignment(region=region, sectionName=rc.LINER_SECTION, offset=0.0,
-                       offsetType=MIDDLE_SURFACE, offsetField='',
-                       thicknessAssignment=FROM_SECTION)
+    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+    region = part.sets[rc.LINER_SET]
+    part.SectionAssignment(region=region, sectionName=rc.LINER_SECTION, offset=0.0,
+                           offsetType=MIDDLE_SURFACE, offsetField='',
+                           thicknessAssignment=FROM_SECTION)
 
-# --- end Create materials
+    # --- end Create materials
+
+if __name__ == '__main__':
+    main()

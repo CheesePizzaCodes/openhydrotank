@@ -38,57 +38,63 @@ import stubs as stb
 
 import time
 
-start_time = time.time()
 
-points = stb.test_shape  # stub. TODO replace by xml read
+def main():
+    start_time = time.time()
 
-# initialize model TODO separate to another routine
+    points = stb.test_shape  # stub. TODO replace by xml read
 
-model = mdb.Model(name=rc.MODEL, modelType=STANDARD_EXPLICIT)
+    # initialize model TODO separate to another routine
 
-#  --------- create Layup part
+    model = mdb.Model(name=rc.MODEL, modelType=STANDARD_EXPLICIT)
 
-# initialize sketch
-s = mdb.models[rc.MODEL].ConstrainedSketch(name='__profile__', sheetSize=10)
-g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
+    #  --------- create Layup part
 
-# draw symmetry line
-s.ConstructionLine(point1=(0.0, -100.0), point2=(0.0, 100.0))  # TODO remove for optimization
+    # initialize sketch
+    s = mdb.models[rc.MODEL].ConstrainedSketch(name='__profile__', sheetSize=10)
+    g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 
-# use passed list of curves to produce a closed section
-ru.draw_line(s, points)
+    # draw symmetry line
+    s.ConstructionLine(point1=(0.0, -100.0), point2=(0.0, 100.0))  # TODO remove for optimization
 
-# Create part
-p = mdb.models[rc.MODEL].Part(name=rc.LAYUP_PART, dimensionality=AXISYMMETRIC,
-                              type=DEFORMABLE_BODY, twist=ON)
-p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-p.BaseShell(sketch=s)
-s.unsetPrimaryObject()
-p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-del mdb.models[rc.MODEL].sketches['__profile__']
+    # use passed list of curves to produce a closed section
+    ru.draw_line(s, points)
 
-#  Create set containing all of the composite part
-part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-part.Set(faces=part.faces, name=rc.LAYUP_SET)  # TODO refactor names to global constants
+    # Create part
+    p = mdb.models[rc.MODEL].Part(name=rc.LAYUP_PART, dimensionality=AXISYMMETRIC,
+                                  type=DEFORMABLE_BODY, twist=ON)
+    p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    p.BaseShell(sketch=s)
+    s.unsetPrimaryObject()
+    p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    del mdb.models[rc.MODEL].sketches['__profile__']
 
-# time script for debugging
+    #  Create set containing all of the composite part
+    part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    part.Set(faces=part.faces, name=rc.LAYUP_SET)  # TODO refactor names to global constants
 
-end_time = time.time()
+    # time script for debugging
 
-total_time = end_time - start_time
+    end_time = time.time()
 
-print(total_time)
+    total_time = end_time - start_time
 
-#  --------- end create Layup part
+    print(total_time)
 
-#  --------- create liner part
-acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
-mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
-                                          combine=False, dimensionality=AXISYMMETRIC,
-                                          type=DEFORMABLE_BODY,
-                                          twist=ON)
+    #  --------- end create Layup part
 
-#  create set containing part
-part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-part.Set(faces=part.faces, name=rc.LINER_SET)
-#  --------- end create liner part
+    #  --------- create liner part
+    acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
+    mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
+                                              combine=False, dimensionality=AXISYMMETRIC,
+                                              type=DEFORMABLE_BODY,
+                                              twist=ON)
+
+    #  create set containing part
+    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+    part.Set(faces=part.faces, name=rc.LINER_SET)
+    #  --------- end create liner part
+
+
+if __name__ == '__main__':
+    main()
