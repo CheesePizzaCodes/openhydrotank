@@ -14,18 +14,27 @@ LAYUP_INSTANCE = LAYUP_PART + '_instance'  # instance
 LINER_PART = 'liner'
 LINER_INSTANCE = LINER_PART + '_instance'  # instance
 
-#  -- Sets --
-bs = 'set'  # base name for sets
-LAYER_SET = bs + '_layer_'
+STEP = 'Step-1'
+LOAD = 'Load-1'
+BC = 'BC-1'
 
-LAYUP_SET = bs + '_' + LAYUP_PART
-LINER_SET = bs + '_' + LINER_PART
-LAYUP_INTERACTION_SET = bs + '_contact_layup'
-LINER_INTERACTION_SET = bs + '_contact_liner'
+#  -- Sets and surfs --
+bset = 'set'  # base name for sets
+LAYER_SET = bset + '_layer_'
 
-SYM_BC_SET = bs + '_sym_bc'
+LAYUP_SET = bset + '_' + LAYUP_PART
+LINER_SET = bset + '_' + LINER_PART
 
-LOAD_SET = bs + '_load'
+SYM_BC_SET = bset + '_sym_bc'
+
+bsur = 'surf_'
+
+LAYUP_INTERACTION_SURF = bsur + 'contact_layup'
+LINER_INTERACTION_SURF = bsur + 'contact_liner'
+
+
+
+LOAD_SURF = bsur + 'load'
 
 #  ----- Geometry -----
 
@@ -67,3 +76,13 @@ LINER_MATERIAL_PROPS = (
 
 LINER_SECTION = LINER_PART + '_section'
 # TODO refactor this shit show
+
+#  ----- Step -----
+
+MAX_NUM_INC = 10000
+INITIAL_INC = 0.01
+MAX_INC = 0.1
+
+#  ----- Load -----
+
+LOAD_MAG = 75  # MPa

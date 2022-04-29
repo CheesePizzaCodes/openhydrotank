@@ -75,40 +75,40 @@ for index, face in enumerate(sorted(faces)):  # this required a workaround using
     name = rc.LAYER_SET + str(index + 1)
     part.Set(faces=face_array, name=name)
 
-# ---- create set on layup for contact with liner
+# ---- create surf on layup for contact with liner
 part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
 location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
 edge = part.edges.findAt(location)
 selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-part.Set(edges=selection, name=rc.LAYUP_INTERACTION_SET)
+part.Surface(side1Edges=selection, name=rc.LAYUP_INTERACTION_SURF)
 
-# ---- create set on liner for contact with layup
+# ---- create surf on liner for contact with layup
 part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
 location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
 edge = part.edges.findAt(location)
 selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-part.Set(edges=selection, name=rc.LINER_INTERACTION_SET)
+part.Surface(side1Edges=selection, name=rc.LINER_INTERACTION_SURF)
 
-# ---- create set on liner for pressure loading
+# ---- create surf on liner for pressure loading
 
 part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
 location = ru.offset_point(rc.LINER_ROOT_POINT, 90)  # find location of edge above point
 edge = part.edges.findAt(location)
 selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
 part_vertices = part.vertices  # extract array of vertex objects
-for edge in selection:  # loop through all selected edge objects in the selection edgeArray object
+
+for index, edge in enumerate(selection):  # loop through all selected edge objects in the selection edgeArray object
     edge_vert_indices = edge.getVertices()  # extract verts indices of the current edge
 
-    if (
+    if(
             part_vertices[edge_vert_indices[0]].pointOn[0][1] >= rc.PRESSURE_END_POINT
             and
             part_vertices[edge_vert_indices[1]].pointOn[0][1] >= rc.PRESSURE_END_POINT
     ):
-        selection.remove(edge)  # remove said edge from selection
         pass
 
 
-part.Set(edges=selection, name=rc.LOAD_SET)  # TODO removeedges above a certain location
+part.Surface(side1Edges=selection, name=rc.LOAD_SURF)  # TODO removeedges above a certain location
 
 # ---- create set for symmetry BC
 a1 = mdb.models[rc.MODEL].rootAssembly
