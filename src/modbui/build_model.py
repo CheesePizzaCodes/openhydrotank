@@ -3,56 +3,32 @@
 #global packages
 
 #my packages
-from logics import assign_material as am
 
+import sys, os
+
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
+
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
+
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
 #TODO shift routines to lowest level actions eg ger surface cut from list of curves or assign material to set
 
-class Model(): #data container. Incrementally stores useful information. only methods are getters and setters...
-    #eg store layup, each layer, curves, materials, sets... do not re-do what abq already does, just try to centralize
-    #an incremental storage of useful information
-    #eg stores elements and locations. gives easy handle to infrrmation from the abaqus world. each routine
-    # #returns some value that is then added to Model in the logic script
-
-    def __init__(self):
-        pass
-
-    def get_something(self):
-        pass
-
-
+from routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, trivial
 
 def main():
 
-    m = Model()
+    create_part.main()
 
-    print('this is the build model running')
+    cut_face.main()
 
-    pass
+    assemble_parts.main()
 
-    '''
-    lg.generate_layup
+    create_sets_surfs.main()
 
-    lg.process_geometry
+    assign_property.main()
 
-    lg.assign_material
-
-    lg.assemble_components
-
-    lg.define_solver
-
-    lg.define_interaction
-
-    lg.define_load
-
-    lg.define_mesh
-    
-    LG: ORIENT_ELEMENTS
-    '''
-
-
-
+    trivial.main()
 
 if __name__ == '__main__':
     main()
-    am.main()
