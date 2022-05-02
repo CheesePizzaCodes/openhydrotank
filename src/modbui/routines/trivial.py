@@ -41,7 +41,12 @@ def main():
     # ----- Load & BC -----
 
     asm = mdb.models[rc.MODEL].rootAssembly
-    region = asm.instances[rc.LINER_INSTANCE].surfaces[rc.LOAD_SURF]
+
+    if rc.LINER_TOGGLE == True:
+        region = asm.instances[rc.LINER_INSTANCE].surfaces[rc.LOAD_SURF]
+    elif rc.LINER_TOGGLE == False:
+        region = asm.instances[rc.LAYUP_INSTANCE].surfaces[rc.LAYUP_INTERACTION_SURF]
+
     mdb.models[rc.MODEL].Pressure(name=rc.LOAD, createStepName=rc.STEP,
                                  region=region, distributionType=UNIFORM, field='', magnitude=rc.LOAD_MAG,
                                  amplitude=UNSET)
@@ -53,22 +58,37 @@ def main():
 
     # ----- Interaction -----
 
-    mdb.models[rc.MODEL].ContactProperty('IntProp-1')
-    mdb.models[rc.MODEL].interactionProperties['IntProp-1'].TangentialBehavior(
-        formulation=FRICTIONLESS)
-    mdb.models[rc.MODEL].interactionProperties['IntProp-1'].NormalBehavior(
-        pressureOverclosure=HARD, allowSeparation=ON,
-        constraintEnforcementMethod=DEFAULT)
+    if rc.LINER_TOGGLE:
+        mdb.models[rc.MODEL].ContactProperty('IntProp-1')
+        mdb.models[rc.MODEL].interactionProperties['IntProp-1'].TangentialBehavior(
+            formulation=FRICTIONLESS)
+        mdb.models[rc.MODEL].interactionProperties['IntProp-1'].NormalBehavior(
+            pressureOverclosure=HARD, allowSeparation=ON,
+            constraintEnforcementMethod=DEFAULT)
+
+        a = mdb.models[rc.MODEL].rootAssembly
+        region1 = a.instances[rc.LAYUP_INSTANCE].surfaces[rc.LAYUP_INTERACTION_SURF]
+        a = mdb.models[rc.MODEL].rootAssembly
+        region2 = a.instances[rc.LINER_INSTANCE].surfaces[rc.LINER_INTERACTION_SURF]
+        mdb.models[rc.MODEL].SurfaceToSurfaceContactStd(name='Int-1',
+                                                        createStepName=rc.STEP, master=region1, slave=region2, sliding=SMALL,
+                                                        thickness=OFF, interactionProperty='IntProp-1',
+                                                        adjustMethod=OVERCLOSED, initialClearance=OMIT, datumAxis=None,
+                                                        clearanceRegion=None, tied=OFF)
+
+    # ----- Job -----
 
     a = mdb.models[rc.MODEL].rootAssembly
-    region1 = a.instances[rc.LAYUP_INSTANCE].surfaces[rc.LAYUP_INTERACTION_SURF]
-    a = mdb.models[rc.MODEL].rootAssembly
-    region2 = a.instances[rc.LINER_INSTANCE].surfaces[rc.LINER_INTERACTION_SURF]
-    mdb.models[rc.MODEL].SurfaceToSurfaceContactStd(name='Int-1',
-                                                    createStepName=rc.STEP, master=region1, slave=region2, sliding=SMALL,
-                                                    thickness=OFF, interactionProperty='IntProp-1',
-                                                    adjustMethod=OVERCLOSED, initialClearance=OMIT, datumAxis=None,
-                                                    clearanceRegion=None, tied=OFF)
+    a.regenerate()
+    mdb.Job(name='Job-1', model=rc.MODEL, description='', type=ANALYSIS,
+        atTime=None, waitMinutes=0, waitHours=0, queue=None, memory=90,
+        memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True,
+        explicitPrecision=SINGLE, nodalOutputPrecision=SINGLE, echoPrint=OFF,
+        modelPrint=OFF, contactPrint=OFF, historyPrint=OFF, userSubroutine='',
+        scratch='', resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=8,
+        numDomains=8, numGPUs=2)
+    mdb.jobs['Job-1'].writeInput(consistencyChecking=OFF)
+
 
 if __name__ == '__main__':
     main()

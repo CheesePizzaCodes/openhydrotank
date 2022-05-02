@@ -49,8 +49,9 @@ def main():
 
     p1 = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     a1.Instance(name=rc.LAYUP_INSTANCE, part=p1, dependent=ON)
-    p1 = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-    a1.Instance(name=rc.LINER_INSTANCE, part=p1, dependent=ON)
+    if rc.LINER_TOGGLE:
+        p1 = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+        a1.Instance(name=rc.LINER_INSTANCE, part=p1, dependent=ON)
 
 if __name__ == '__main__':
     main()

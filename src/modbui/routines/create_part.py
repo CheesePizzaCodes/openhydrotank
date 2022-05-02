@@ -83,17 +83,18 @@ def main():
 
     #  --------- end create Layup part
 
-    #  --------- create liner part
-    acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
-    mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
-                                              combine=False, dimensionality=AXISYMMETRIC,
-                                              type=DEFORMABLE_BODY,
-                                              twist=ON)
+    if rc.LINER_TOGGLE:
+        #  --------- create liner part
+        acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
+        mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
+                                                  combine=False, dimensionality=AXISYMMETRIC,
+                                                  type=DEFORMABLE_BODY,
+                                                  twist=ON)
 
-    #  create set containing part
-    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-    part.Set(faces=part.faces, name=rc.LINER_SET)
-    #  --------- end create liner part
+        #  create set containing part
+        part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+        part.Set(faces=part.faces, name=rc.LINER_SET)
+        #  --------- end create liner part
 
 
 if __name__ == '__main__':

@@ -18,6 +18,8 @@ STEP = 'Step-1'
 LOAD = 'Load-1'
 BC = 'BC-1'
 
+ORIENTATION = 'orientation'
+
 #  -- Sets and surfs --
 bset = 'set'  # base name for sets
 LAYER_SET = bset + '_layer_'
@@ -37,12 +39,13 @@ LINER_INTERACTION_SURF = bsur + 'contact_liner'
 LOAD_SURF = bsur + 'load'
 
 #  ----- Geometry -----
+LINER_TOGGLE = True
 
 #  -- Position --
 ROOT_POINT = (156., 0., 0.)
 LINER_ROOT_POINT = (150., 0., 0.)  # TODO refactor these, interaction with xml
 PRESSURE_END_POINT = 472
-#  -- Length --
+#  -- Lengths --
 TOL = 0.1
 
 #  -- Angle --
@@ -86,3 +89,9 @@ MAX_INC = 0.1
 #  ----- Load -----
 
 LOAD_MAG = 75  # MPa
+
+
+#  ----- Mesh -----
+
+LAYUP_MESH_SIZE = 1  # mm
+LINER_MESH_SIZE = 3  # mm

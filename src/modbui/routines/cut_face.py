@@ -62,7 +62,7 @@ def main():
     # ru.draw_lines(s1, lines)
 
     for line in lines:
-        s1.Spline(points=(line), constrainPoints=False)
+        s1.Spline(points=(line), constrainPoints=False) #  TODO refactor to square
 
     print(time.time() - start_time)
 

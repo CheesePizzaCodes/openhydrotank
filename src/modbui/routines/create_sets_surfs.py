@@ -85,32 +85,32 @@ def main():
     part.Surface(side1Edges=selection, name=rc.LAYUP_INTERACTION_SURF)
 
     # ---- create surf on liner for contact with layup
-    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-    location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
-    edge = part.edges.findAt(location)
-    selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-    part.Surface(side1Edges=selection, name=rc.LINER_INTERACTION_SURF)
+    if rc.LINER_TOGGLE:
+        part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+        location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
+        edge = part.edges.findAt(location)
+        selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+        part.Surface(side1Edges=selection, name=rc.LINER_INTERACTION_SURF)
 
     # ---- create surf on liner for pressure loading
 
-    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-    location = ru.offset_point(rc.LINER_ROOT_POINT, 90)  # find location of edge above point
-    edge = part.edges.findAt(location)
-    selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-    part_vertices = part.vertices  # extract array of vertex objects
+    if rc.LINER_TOGGLE:
+        part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+        location = ru.offset_point(rc.LINER_ROOT_POINT, 90)  # find location of edge above point
+        edge = part.edges.findAt(location)
+        selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+        part_vertices = part.vertices  # extract array of vertex objects
 
-    for index, edge in enumerate(selection):  # loop through all selected edge objects in the selection edgeArray object
-        edge_vert_indices = edge.getVertices()  # extract verts indices of the current edge
+        for index, edge in enumerate(selection):  # loop through all selected edge objects in the selection edgeArray object
+            edge_vert_indices = edge.getVertices()  # extract verts indices of the current edge
 
-        if(
-                part_vertices[edge_vert_indices[0]].pointOn[0][1] >= rc.PRESSURE_END_POINT
-                and
-                part_vertices[edge_vert_indices[1]].pointOn[0][1] >= rc.PRESSURE_END_POINT
-        ):
-            pass
-
-
-    part.Surface(side1Edges=selection, name=rc.LOAD_SURF)  # TODO removeedges above a certain location
+            if(
+                    part_vertices[edge_vert_indices[0]].pointOn[0][1] >= rc.PRESSURE_END_POINT
+                    and
+                    part_vertices[edge_vert_indices[1]].pointOn[0][1] >= rc.PRESSURE_END_POINT
+            ):
+                pass
+        part.Surface(side1Edges=selection, name=rc.LOAD_SURF)  # TODO removeedges above a certain location
 
     # ---- create set for symmetry BC
     a1 = mdb.models[rc.MODEL].rootAssembly
@@ -120,11 +120,13 @@ def main():
     # TODO DANGER CSYST DEFINITION IS CONFUSING! EVALUATE WHEN IT HAS EFFECT! MODELLING / SELECTING GEOMETRY INSIDE ASSEMBLY
     # seemingly, the assembly modelling environment respects the part modelling csyst despite adding a different csyst...
 
-    location = ru.offset_point(rc.ROOT_POINT, 180)
-    edge = a1.instances[rc.LINER_INSTANCE].edges.findAt(location)
-    selection_2 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-
-    a1.Set(edges=selection_1 + selection_2, name=rc.SYM_BC_SET)  # TODO this naming may cause conflicts.
+    if rc.LINER_TOGGLE:
+        location = ru.offset_point(rc.ROOT_POINT, 180)
+        edge = a1.instances[rc.LINER_INSTANCE].edges.findAt(location)
+        selection_2 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+        a1.Set(edges=selection_1 + selection_2, name=rc.SYM_BC_SET)  # TODO this naming may cause conflicts.
+    else:
+        a1.Set(edges=selection_1, name=rc.SYM_BC_SET)
 
 
 if __name__ == '__main__':

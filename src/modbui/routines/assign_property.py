@@ -52,20 +52,39 @@ def main():
                            offsetType=MIDDLE_SURFACE, offsetField='',
                            thicknessAssignment=FROM_SECTION)
 
-    # --Liner
-    mdb.models[rc.MODEL].Material(name=rc.LINER_MATERIAL) #bn
+    # --Orientations
+    mdb.models[rc.MODEL].DiscreteField(name=rc.ORIENTATION, description='',
+        location=ELEMENTS, fieldType=ORIENTATION, dataWidth=6, defaultValues=(
+        1.0, 0.0, 0.0, 0.0, 1.0, 0.0), data=(
+            ('', 6, (1, ), (1.0, 0.0, 0.0,
+        0.0, 1.0, 0.0)), ), orientationType=CARTESIAN,
+        partLevelOrientation=True)
+    prt = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
+    region = prt.sets[rc.LAYUP_SET]
+    orientation = None
+    mdb.models[rc.MODEL].parts[rc.LAYUP_PART].MaterialOrientation(region=region,
+        orientationType=FIELD, axis=AXIS_3, fieldName=rc.ORIENTATION,
+        localCsys=None, additionalRotationType=ROTATION_NONE, angle=0.0,
+        additionalRotationField='', stackDirection=STACK_3)
 
-    mdb.models[rc.MODEL].materials[rc.LINER_MATERIAL].Elastic(table=(rc.LINER_MATERIAL_PROPS,))
 
-    mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LINER_SECTION,
-                                                 material=rc.LINER_MATERIAL,
-                                                 thickness=None)
 
-    part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-    region = part.sets[rc.LINER_SET]
-    part.SectionAssignment(region=region, sectionName=rc.LINER_SECTION, offset=0.0,
-                           offsetType=MIDDLE_SURFACE, offsetField='',
-                           thicknessAssignment=FROM_SECTION)
+
+    if rc.LINER_TOGGLE:
+        # --Liner
+        mdb.models[rc.MODEL].Material(name=rc.LINER_MATERIAL) #bn
+
+        mdb.models[rc.MODEL].materials[rc.LINER_MATERIAL].Elastic(table=(rc.LINER_MATERIAL_PROPS,))
+
+        mdb.models[rc.MODEL].HomogeneousSolidSection(name=rc.LINER_SECTION,
+                                                     material=rc.LINER_MATERIAL,
+                                                     thickness=None)
+
+        part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+        region = part.sets[rc.LINER_SET]
+        part.SectionAssignment(region=region, sectionName=rc.LINER_SECTION, offset=0.0,
+                               offsetType=MIDDLE_SURFACE, offsetField='',
+                               thicknessAssignment=FROM_SECTION)
 
     # --- end Create materials
 
