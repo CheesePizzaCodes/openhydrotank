@@ -39,14 +39,14 @@ y_coord = liner[:, 1]
 gamma_array = np.arctan(np.gradient(liner[:, 0], y_coord))
 
 
-def get_gamma(position):
+def get_gamma(position):  # TODO this should depend on the bottom of each ply (or top?)
     idx = (np.abs(y_coord - position)).argmin()
     return gamma_array[idx]
 
 
-def get_alpha(position):
+def get_alpha(position):  # TODO this should depend on the layer number
     try:
-        alpha = np.arcsin(rc.R_0 / position)
+        alpha = np.arcsin(rc.R_0 / position)  # R * sin(alpha_0 / r)
     except FloatingPointError:
         alpha = 90 * pi / 180
     return alpha
