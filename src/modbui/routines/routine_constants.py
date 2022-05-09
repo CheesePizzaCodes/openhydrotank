@@ -39,7 +39,7 @@ LINER_INTERACTION_SURF = bsur + 'contact_liner'
 LOAD_SURF = bsur + 'load'
 
 #  ----- Geometry -----
-LINER_TOGGLE = True
+LINER_TOGGLE = False
 
 #  -- Position --
 ROOT_POINT = (156., 0., 0.)
@@ -47,6 +47,8 @@ LINER_ROOT_POINT = (150., 0., 0.)  # TODO refactor these, interaction with xml
 PRESSURE_END_POINT = 472
 #  -- Lengths --
 TOL = 0.1
+
+R_0 = 40  # Polar Opening Radius
 
 #  -- Angle --
 GET_EDGES_BY_ANGLE = 20

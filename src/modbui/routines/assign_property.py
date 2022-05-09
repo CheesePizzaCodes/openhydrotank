@@ -53,12 +53,7 @@ def main():
                            thicknessAssignment=FROM_SECTION)
 
     # --Orientations
-    mdb.models[rc.MODEL].DiscreteField(name=rc.ORIENTATION, description='',
-        location=ELEMENTS, fieldType=ORIENTATION, dataWidth=6, defaultValues=(
-        1.0, 0.0, 0.0, 0.0, 1.0, 0.0), data=(
-            ('', 6, (1, ), (1.0, 0.0, 0.0,
-        0.0, 1.0, 0.0)), ), orientationType=CARTESIAN,
-        partLevelOrientation=True)
+
     prt = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     region = prt.sets[rc.LAYUP_SET]
     orientation = None

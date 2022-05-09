@@ -84,18 +84,20 @@ def main():
     #  --------- end create Layup part
 
     if rc.LINER_TOGGLE:
-        #  --------- create liner part
-        acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
-        mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
-                                                  combine=False, dimensionality=AXISYMMETRIC,
-                                                  type=DEFORMABLE_BODY,
-                                                  twist=ON)
+        try:
+            #  --------- create liner part
+            acis = mdb.openAcis(rc.LINER_PATH, scaleFromFile=OFF)
+            mdb.models[rc.MODEL].PartFromGeometryFile(name=rc.LINER_PART, geometryFile=acis,
+                                                      combine=False, dimensionality=AXISYMMETRIC,
+                                                      type=DEFORMABLE_BODY,
+                                                      twist=ON)
 
-        #  create set containing part
-        part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
-        part.Set(faces=part.faces, name=rc.LINER_SET)
-        #  --------- end create liner part
-
+            #  create set containing part
+            part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
+            part.Set(faces=part.faces, name=rc.LINER_SET)
+            #  --------- end create liner part
+        except:
+            print('No CAD geometry found')
 
 if __name__ == '__main__':
     main()

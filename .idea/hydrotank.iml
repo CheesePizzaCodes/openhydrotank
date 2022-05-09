@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7">
+      <excludeFolder url="file://$MODULE_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7/lib" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (hydrotank)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
