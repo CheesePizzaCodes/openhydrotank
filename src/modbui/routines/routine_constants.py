@@ -2,7 +2,11 @@
 This file contains several constants used by the routines in the package
 '''
 
-#  ----- Paths -----
+#  ----- Design Variables -----
+
+
+
+
 LINER_PATH = 'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/caet_tester3/liner.sat'
 ROUTINES_PATH = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines'
 
@@ -43,7 +47,7 @@ LINER_TOGGLE = False
 
 #  -- Position --
 ROOT_POINT = (156., 0., 0.)
-LINER_ROOT_POINT = (150., 0., 0.)  # TODO refactor these, interaction with xml
+LINER_ROOT_POINT = (150., 0., 0.)  # TODO refactor these
 PRESSURE_END_POINT = 472
 #  -- Lengths --
 TOL = 0.1

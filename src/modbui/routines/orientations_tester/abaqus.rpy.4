@@ -1,0 +1,207 @@
+# -*- coding: mbcs -*-
+#
+# Abaqus/CAE Release 2020 replay file
+# Internal Version: 2019_09_13-19.49.31 163176
+# Run by User on Thu May  5 15:42:00 2022
+#
+
+# from driverUtils import executeOnCaeGraphicsStartup
+# executeOnCaeGraphicsStartup()
+#: Executing "onCaeGraphicsStartup()" in the site directory ...
+from abaqus import *
+from abaqusConstants import *
+session.Viewport(name='Viewport: 1', origin=(0.0, 0.0), width=152.395843505859, 
+    height=126.194450378418)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].maximize()
+import sys
+sys.path.append(r'e:\ABQ2020FILES\Plugins\2020\WoundSimAbaqusPlugin\translate')
+from caeModules import *
+from driverUtils import executeOnCaeStartup
+executeOnCaeStartup()
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+openMdb(
+    pathName='E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orientations_tester/cae.cae')
+#: The model database "E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester\cae.cae" has been opened.
+session.viewports['Viewport: 1'].setValues(displayedObject=None)
+p = mdb.models['Model-1'].parts['Part-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py', 
+    __main__.__dict__)
+#: [[[14.58333302 22.5       ]
+#:   [14.58333302 17.5       ]
+#:   [14.58333302 12.5       ]
+#:   [14.58333302  7.5       ]
+#:   [14.58333302  2.5       ]
+#:   [18.75       22.5       ]
+#:   [18.75       17.5       ]
+#:   [18.75       12.5       ]
+#:   [18.75        7.5       ]
+#:   [18.75        2.5       ]
+#:   [22.91666698 22.5       ]
+#:   [22.91666698 17.5       ]
+#:   [22.91666698 12.5       ]
+#:   [22.91666698  7.5       ]
+#:   [22.91666698  2.5       ]]
+#: 
+#:  [[10.41666651  2.5       ]
+#:   [10.41666651  7.5       ]
+#:   [10.41666651 12.5       ]
+#:   [10.41666651 17.5       ]
+#:   [10.41666651 22.5       ]
+#:   [ 6.24999976  2.5       ]
+#:   [ 6.24999976  7.5       ]
+#:   [ 6.24999976 12.5       ]
+#:   [ 6.24999976 17.5       ]
+#:   [ 6.24999976 22.5       ]
+#:   [ 2.08333325  2.5       ]
+#:   [ 2.08333325  7.5       ]
+#:   [ 2.08333325 12.5       ]
+#:   [ 2.08333325 17.5       ]
+#:   [ 2.08333325 22.5       ]]]
+session.viewports['Viewport: 1'].partDisplay.setValues(mesh=ON)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+cliCommand("""ans""")
+#: array([[[14.5833330154419, 22.5], [14.5833330154419, 17.5], [14.5833330154419, 12.5], [14.5833330154419, 7.5], [14.5833330154419, 2.5], [18.75, 22.5], [18.75, 17.5], [18.75, 12.5], [18.75, 7.5], [18.75, 2.5], [22.9166669845581, 22.5], [22.9166669845581, 17.5], [22.9166669845581, 12.5], [22.9166669845581, 7.5], [22.9166669845581, 2.5]], [[10.4166665077209, 2.5], [10.4166665077209, 7.5], [10.4166665077209, 12.5], [10.4166665077209, 17.5], [10.4166665077209, 22.5], [6.24999976158142, 2.5], [6.24999976158142, 7.5], [6.24999976158142, 12.5], [6.24999976158142, 17.5], [6.24999976158142, 22.5], [2.08333325386047, 2.5], [2.08333325386047, 7.5], [2.08333325386047, 12.5], [2.08333325386047, 17.5], [2.08333325386047, 22.5]]], 'd')
+cliCommand("""print(ans)""")
+#: [[[14.58333302 22.5       ]
+#:   [14.58333302 17.5       ]
+#:   [14.58333302 12.5       ]
+#:   [14.58333302  7.5       ]
+#:   [14.58333302  2.5       ]
+#:   [18.75       22.5       ]
+#:   [18.75       17.5       ]
+#:   [18.75       12.5       ]
+#:   [18.75        7.5       ]
+#:   [18.75        2.5       ]
+#:   [22.91666698 22.5       ]
+#:   [22.91666698 17.5       ]
+#:   [22.91666698 12.5       ]
+#:   [22.91666698  7.5       ]
+#:   [22.91666698  2.5       ]]
+#: 
+#:  [[10.41666651  2.5       ]
+#:   [10.41666651  7.5       ]
+#:   [10.41666651 12.5       ]
+#:   [10.41666651 17.5       ]
+#:   [10.41666651 22.5       ]
+#:   [ 6.24999976  2.5       ]
+#:   [ 6.24999976  7.5       ]
+#:   [ 6.24999976 12.5       ]
+#:   [ 6.24999976 17.5       ]
+#:   [ 6.24999976 22.5       ]
+#:   [ 2.08333325  2.5       ]
+#:   [ 2.08333325  7.5       ]
+#:   [ 2.08333325 12.5       ]
+#:   [ 2.08333325 17.5       ]
+#:   [ 2.08333325 22.5       ]]]
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py', 
+    __main__.__dict__)
+#* KeyError: model
+#* File "E:/Current 
+#* Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py", line 
+#* 42, in <module>
+#*     prt = mdb.models['model'].parts['layup']
+mdb.models.changeKey(fromName='Model-1', toName='model')
+p = mdb.models['model'].parts['Part-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+session.viewports['Viewport: 1'].partDisplay.setValues(mesh=OFF)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=OFF)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+mdb.models['model'].parts.changeKey(fromName='Part-1', toName='layup')
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py', 
+    __main__.__dict__)
+#: 0.00399994850159
+cliCommand("""ans""")
+#: array([[[14.5833330154419, 22.5], [14.5833330154419, 17.5], [14.5833330154419, 12.5], [14.5833330154419, 7.5], [14.5833330154419, 2.5], [18.75, 22.5], [18.75, 17.5], [18.75, 12.5], [18.75, 7.5], [18.75, 2.5], [22.9166669845581, 22.5], [22.9166669845581, 17.5], [22.9166669845581, 12.5], [22.9166669845581, 7.5], [22.9166669845581, 2.5]], [[10.4166665077209, 2.5], [10.4166665077209, 7.5], [10.4166665077209, 12.5], [10.4166665077209, 17.5], [10.4166665077209, 22.5], [6.24999976158142, 2.5], [6.24999976158142, 7.5], [6.24999976158142, 12.5], [6.24999976158142, 17.5], [6.24999976158142, 22.5], [2.08333325386047, 2.5], [2.08333325386047, 7.5], [2.08333325386047, 12.5], [2.08333325386047, 17.5], [2.08333325386047, 22.5]]]ÿÿÿ˜K«S¸, 'd')
+cliCommand("""print(ans)""")
+#: [[[14.58333302 22.5       ]
+#:   [14.58333302 17.5       ]
+#:   [14.58333302 12.5       ]
+#:   [14.58333302  7.5       ]
+#:   [14.58333302  2.5       ]
+#:   [18.75       22.5       ]
+#:   [18.75       17.5       ]
+#:   [18.75       12.5       ]
+#:   [18.75        7.5       ]
+#:   [18.75        2.5       ]
+#:   [22.91666698 22.5       ]
+#:   [22.91666698 17.5       ]
+#:   [22.91666698 12.5       ]
+#:   [22.91666698  7.5       ]
+#:   [22.91666698  2.5       ]]
+#: 
+#:  [[10.41666651  2.5       ]
+#:   [10.41666651  7.5       ]
+#:   [10.41666651 12.5       ]
+#:   [10.41666651 17.5       ]
+#:   [10.41666651 22.5       ]
+#:   [ 6.24999976  2.5       ]
+#:   [ 6.24999976  7.5       ]
+#:   [ 6.24999976 12.5       ]
+#:   [ 6.24999976 17.5       ]
+#:   [ 6.24999976 22.5       ]
+#:   [ 2.08333325  2.5       ]
+#:   [ 2.08333325  7.5       ]
+#:   [ 2.08333325 12.5       ]
+#:   [ 2.08333325 17.5       ]
+#:   [ 2.08333325 22.5       ]]]
+session.viewports['Viewport: 1'].partDisplay.setValues(mesh=ON)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+session.viewports['Viewport: 1'].partDisplay.setValues(mesh=OFF)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=OFF)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+cliCommand("""array[0]""")
+#* NameError: name 'array' is not defined
+cliCommand("""ans[0]""")
+#: array([[14.5833330154419, 22.5], [14.5833330154419, 17.5], [14.5833330154419, 12.5], [14.5833330154419, 7.5], [14.5833330154419, 2.5], [18.75, 22.5], [18.75, 17.5], [18.75, 12.5], [18.75, 7.5], [18.75, 2.5], [22.9166669845581, 22.5], [22.9166669845581, 17.5], [22.9166669845581, 12.5], [22.9166669845581, 7.5], [22.9166669845581, 2.5]], 'd')
+cliCommand("""ans[1]""")
+#: array([[10.4166665077209, 2.5], [10.4166665077209, 7.5], [10.4166665077209, 12.5], [10.4166665077209, 17.5], [10.4166665077209, 22.5], [6.24999976158142, 2.5], [6.24999976158142, 7.5], [6.24999976158142, 12.5], [6.24999976158142, 17.5], [6.24999976158142, 22.5], [2.08333325386047, 2.5], [2.08333325386047, 7.5], [2.08333325386047, 12.5], [2.08333325386047, 17.5], [2.08333325386047, 22.5]], 'd')
+cliCommand("""print(ans)""")
+#: [[[14.58333302 22.5       ]
+#:   [14.58333302 17.5       ]
+#:   [14.58333302 12.5       ]
+#:   [14.58333302  7.5       ]
+#:   [14.58333302  2.5       ]
+#:   [18.75       22.5       ]
+#:   [18.75       17.5       ]
+#:   [18.75       12.5       ]
+#:   [18.75        7.5       ]
+#:   [18.75        2.5       ]
+#:   [22.91666698 22.5       ]
+#:   [22.91666698 17.5       ]
+#:   [22.91666698 12.5       ]
+#:   [22.91666698  7.5       ]
+#:   [22.91666698  2.5       ]]
+#: 
+#:  [[10.41666651  2.5       ]
+#:   [10.41666651  7.5       ]
+#:   [10.41666651 12.5       ]
+#:   [10.41666651 17.5       ]
+#:   [10.41666651 22.5       ]
+#:   [ 6.24999976  2.5       ]
+#:   [ 6.24999976  7.5       ]
+#:   [ 6.24999976 12.5       ]
+#:   [ 6.24999976 17.5       ]
+#:   [ 6.24999976 22.5       ]
+#:   [ 2.08333325  2.5       ]
+#:   [ 2.08333325  7.5       ]
+#:   [ 2.08333325 12.5       ]
+#:   [ 2.08333325 17.5       ]
+#:   [ 2.08333325 22.5       ]]]
+mdb.save()
+#: The model database has been saved to "E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester\cae.cae".

@@ -1,0 +1,29 @@
+# abaqus_pde.deps
+# Used by Abaqus/PDE to save File Menu data
+#
+::Recent Traced Files
+::Recent Main Files
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py
+::Recent Files
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py
+::orient_elements.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/orient_elements.py (33,49,)
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/site-packages/numpy/core/_methods.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/site-packages/numpy/core/numeric.py
+::build_model.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py (32,)
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/__init__.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/assemble_parts.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/create_part.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/cut_face.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/routine_constants.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/routine_util.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/stubs.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/re.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/sre_compile.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/sre_parse.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/xml/etree/ElementPath.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/xml/etree/ElementTree.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/xml/etree/__init__.py

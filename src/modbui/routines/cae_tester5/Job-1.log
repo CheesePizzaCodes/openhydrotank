@@ -1,0 +1,66 @@
+Analysis initiated from SIMULIA established products
+Abaqus JOB Job-1
+Abaqus 2020
+Abaqus License Manager checked out the following licenses:
+Abaqus/Standard checked out 13 tokens from Flexnet server DESKTOP-6IANUNU.
+<1011 out of 1024 licenses remain available>.
+Begin Analysis Input File Processor
+2022-05-02 1:25:56 PM
+Run pre.exe
+*** Error: could not write file '<rank=0,arg_name=tmpdir>Job-1.cps': check the disk space on your system
+forrtl: There is not enough space on the disk.
+forrtl: severe (30): open failure, unit 7, file C:\Users\User\AppData\Local\Temp\User_Job-1_21816\fort.7
+Image              PC                Routine            Line        Source             
+libifcoremd.dll    00007FFCF97CA335  Unknown               Unknown  Unknown
+libifcoremd.dll    00007FFCF985C637  Unknown               Unknown  Unknown
+ABQSMABasAlloc.dl  00007FFD0D1910B8  Unknown               Unknown  Unknown
+ABQSMABasShared.d  00007FFCC8E9A72D  Unknown               Unknown  Unknown
+ucrtbase.dll       00007FFD815E1881  Unknown               Unknown  Unknown
+ucrtbase.dll       00007FFD815E2851  Unknown               Unknown  Unknown
+ABQSMABasAlloc.dl  00007FFD0D1A0852  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01890AE  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01EA414  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01D7EB5  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01D981A  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01A7296  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA021AEBE  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA021B05F  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA022B6BB  Unknown               Unknown  Unknown
+ntdll.dll          00007FFD83629A1D  Unknown               Unknown  Unknown
+ntdll.dll          00007FFD8366DB91  Unknown               Unknown  Unknown
+ntdll.dll          00007FFD8366DA2D  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFD8352E0AB  Unknown               Unknown  Unknown
+ucrtbase.dll       00007FFD815905BC  Unknown               Unknown  Unknown
+ucrtbase.dll       00007FFD8159045F  Unknown               Unknown  Unknown
+ABQSMAAbuBasicUti  00007FFCCA0D6AC6  Unknown               Unknown  Unknown
+ABQSMAAspSupport.  00007FFCBE6A6197  Unknown               Unknown  Unknown
+ABQSMAAspSupport.  00007FFCBE682EA0  Unknown               Unknown  Unknown
+ABQSMAAspSupport.  00007FFCBE834B02  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91ED75A  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91ED544  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91EDAF3  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91E484B  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91EEAF5  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91FB370  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91E8548  Unknown               Unknown  Unknown
+ABQSMAIomCore.dll  00007FFCA91EA530  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01C95C6  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01EC3F0  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01EA48F  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA01D8402  Unknown               Unknown  Unknown
+ABQSMAAncAdbModul  00007FFCA0216087  Unknown               Unknown  Unknown
+ABQSMAPreCore.dll  00007FFCA21A1315  Unknown               Unknown  Unknown
+ABQSMAPreCore.dll  00007FFCA2D7FC85  Unknown               Unknown  Unknown
+pre.exe            00007FF7A9582BC4  Unknown               Unknown  Unknown
+pre.exe            00007FF7A957E158  Unknown               Unknown  Unknown
+pre.exe            00007FF7A959A768  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFD83527034  Unknown               Unknown  Unknown
+ntdll.dll          00007FFD83662651  Unknown               Unknown  Unknown
+2022-05-02 1:26:15 PM
+Abaqus Error: Analysis Input File Processor exited with an error.
+Begin SIM Wrap-up
+2022-05-02 1:26:17 PM
+Run SMASimUtility.exe
+2022-05-02 1:26:17 PM
+End SIM Wrap-up
+Abaqus/Analysis exited with errors

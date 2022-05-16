@@ -1,0 +1,48 @@
+<Description>
+   ***  ABAQUS/ABQcaeK rank 0 received the SIGABRT signal
+</Description>
+
+<Context>
+   UNKNOWN
+</Context>
+
+<Callstack>
+  1)  ucrtbase.dll                abort                                   
+  2)  ABQSMABasShared.dll         cow_List<cow_List<float> >::RaiseOutOfRange
+  3)  ABQSMACgiCaeModuleGeom.dll  mdl_IDRepository<cow_String,gml_SketchWrapper>::GetKey
+  4)  ABQSMACgaCaeModKerGeomLow.dll  skcK_SketchIntObj::SketchName           
+  5)  ABQSMACgaCaeModKerGeomLow.dll  skcK_SketchIntObj::SetPrimaryObject     
+  6)  ABQSMAPybPyoModule.dll      pyo_Method::Makecall                    
+  7)  python27.dll                PyObject_Call                           
+  8)  python27.dll                setPyEvalInterruptCheckABQ              
+  9)  python27.dll                setPyEvalInterruptCheckABQ              
+ 10)  python27.dll                PyEval_EvalFrameEx                      
+ 11)  python27.dll                PyEval_EvalCodeEx                       
+ 12)  python27.dll                PyEval_EvalCode                         
+ 13)  python27.dll                setPyEvalInterruptCheckABQ              
+ 14)  python27.dll                PyEval_EvalFrameEx                      
+ 15)  python27.dll                PyEval_EvalCodeEx                       
+ 16)  python27.dll                setPyEvalInterruptCheckABQ              
+ 17)  python27.dll                PyEval_EvalFrameEx                      
+ 18)  python27.dll                PyEval_EvalCodeEx                       
+ 19)  python27.dll                PyEval_EvalCode                         
+ 20)  python27.dll                PyRun_StringFlags                       
+</Callstack>
+
+<Memory>
+   <Current>             243 MB </Current>
+   <Resident>            278 MB </Resident>
+   <Physical>          16323 MB </Physical>
+   <Limit>                 0 MB </Limit>
+   <Accessible>        16323 MB </Accessible>
+   <Allocator>            DL    </Allocator>
+</Memory>
+
+<Directories>
+  <current> E:\Current Workspace\Codebase\hydrotank\src\modbui\routines </current> 
+     <temp> C:\Users\User\AppData\Local\Temp </temp>
+</Directories>
+
+<Installation>
+</Installation>
+

@@ -1,0 +1,31 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['model'].parts['part'].features['Partition face-1'].suppress()
+mdb.models['model'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['model'].parts['part'].features['Shell planar-1'].sketch)
+mdb.models['model'].parts['part'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['model'].sketches['__edit__'], 
+    upToFeature=mdb.models['model'].parts['part'].features['Shell planar-1'])
+del mdb.models['model'].sketches['__edit__']
+mdb.models['model'].parts['part'].regenerate()
+mdb.models['model'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CYLINDRICAL, origin=(0.0, 0.0, 0.0), point1=(1.0, 0.0, 0.0), point2=(0.0, 
+    0.0, -1.0))
+mdb.models['model'].rootAssembly.Instance(dependent=ON, name='part-1', part=
+    mdb.models['model'].parts['part'])
+mdb.models['model'].parts['part'].features['Remove faces-1'].suppress()
+mdb.models['model'].parts['part'].resumeFeatures(('Remove faces-1', 
+    'Partition face-1'))
+mdb.models['model'].parts['part'].setValues(geometryRefinement=FINE)
