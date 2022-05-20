@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="layup generation algorithm works now for the most part...&#10;still some problems">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="smart interpolation">
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,9 +167,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="E:\Current Workspace\Codebase\hydrotank\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/thickness.py" />
@@ -291,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653057807499</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="smart interpolation">
+      <created>1653075899718</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653075899718</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -318,7 +325,8 @@
     <MESSAGE value="started implementing thickness.py" />
     <MESSAGE value="wtf" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="layup generation algorithm works now for the most part...&#10;still some problems" />
+    <MESSAGE value="smart interpolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="smart interpolation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
