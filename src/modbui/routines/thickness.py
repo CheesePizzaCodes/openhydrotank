@@ -8,7 +8,7 @@ from scipy.interpolate import make_interp_spline
 from design_variables import *
 
 # TODO move to global definition
-filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
+filename = 'liner.csv'
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
