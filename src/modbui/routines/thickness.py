@@ -3,6 +3,7 @@ import scipy as sp
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import plot
 from scipy.integrate import quad
+from scipy.interpolate import make_interp_spline
 
 from design_variables import *
 
@@ -13,7 +14,6 @@ liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
 r_array = liner[:, 0]
 g_array = liner[:, 1]
-
 
 
 # for i, position in enumerate(r):
@@ -35,20 +35,13 @@ def globs(angle):
 
     global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0
     alpha_0 = np.radians(angle)
-    r_0 = R * np.sin(angle)  # Polar opening radius
-    m_R = 2 * pi * R * np.cos(angle) / b
-    m_0 = 2 * pi * r_0 * np.cos(angle) / b
+    r_0 = R * np.sin(alpha_0)  # Polar opening radius
+    m_R = 2 * pi * R * np.cos(alpha_0) / b
+    m_0 = 2 * pi * r_0 * np.cos(alpha_0) / b
     r_b = r_0 + b
     r_2b = r_0 + 2 * b
     n_R = t_R / (2 * t_P)
 
-
-# Define all grobal parameters
-#globs(alpha_0)
-
-# TODO massive refactor, check that everything makes sense...
-r = np.linspace(0, R, num=501)  # TODO change to r_0, R. Layer dependent.
-g = np.interp(r, r_array, g_array)
 
 def pd(degree):
     """
@@ -93,10 +86,11 @@ def a_vec(angle):
 # Segments of the piecewise curve:
 # Segment 1
 # polynomial object. Already callable and vectorized.
-#
 
+def thickness_1():
+    t = np.poly1d(np.flip(a_vec(alpha_0)))
+    return t
 
-thickness_1 = np.poly1d(np.flip(a_vec(alpha_0)))
 
 # Segment 2
 def thickness_2(r):  # Callable and vectorized
@@ -108,13 +102,28 @@ def thickness_2(r):  # Callable and vectorized
 
 # Joining two sections:
 def thickness(r):
+    """
+    aggregates the thickness distribution of a layer
+    :param r:
+    :return:
+    """
     r = np.asarray(r)
     t = np.zeros(r.shape)
+
     # First case
-    t += thickness_1(r) * ((r_0 < r) & (r <= r_2b))
+    # extract polynomial for given globs
+    polynomial = thickness_1()
+    # find lower bound as the first real root of polynomial
+    lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
+    # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
+    t += polynomial(r) * ((lower_bound <= r) & (r <= r_2b))
     # Second case
-    t += thickness_2(r) * ((r_2b < r) & (r <= R))
-    return t
+    t += thickness_2(r) * (r_2b < r)
+
+    # find first occurrence of nonzero value
+    idx = np.nonzero(t)[0][0]  # index: * = dimension (ndarrays), * = position
+
+    return t, idx
 
 
 def draw_layer(r, g):
@@ -124,7 +133,8 @@ def draw_layer(r, g):
     :param g: z coordinates of the liner bzw. previous topmost
     :return: Tuple of points belonging to the new layer
     """
-    t = thickness(r)
+    t, idx = thickness(r)
+
     dg = np.gradient(g, r)
     den = np.sqrt(1 + dg ** 2)
 
@@ -132,23 +142,60 @@ def draw_layer(r, g):
 
     y = g + t / den
 
-    return x, y
+    layer_points = (x[idx-1:], y[idx-1:])
+
+    topmost_points = (x, y)  # used to calculate next layer. do not store.
+
+    return layer_points, topmost_points
 
 
-angles = (15, 20, 40, 50, 89,)
+angles = [15, 20, 30, 45, 50, 80]
+
+result = []
+
+for _ in range(5):
+    result += angles
+
+angles = result
 
 
+# initial values are those of the liner
+
+# TODO massive refactor, check that everything makes sense...
+globs(angles[0])
+# r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
+# g = np.interp(r, r_array, g_array)
+
+zone_1 = np.diff(r_array, prepend=0) != 0
+r = r_array[zone_1]
+g = g_array[zone_1]
 
 
-x = r
-y = g
-plot(x, y)
-for ang in angles:
-    # set value for global variables
-    globs(ang)
-    x, y = draw_layer(r, y)
+# Initialize topmost as shape of the liner
+topmost_points = (r, g)
+# plot(x, y, "-o")
+
+f1 = plt.figure(1)
+plot(r, g)
+
+
+# draw layup routine
+for angle in angles:
+    # overwrite globals
+    globs(angle)
+    # calculate outer contour of new layer
+    # x = linespace used, y = topmost wrt whom to calculate
+    layer_points, topmost_points = draw_layer(*topmost_points)
+
+    x = layer_points[0]
+    y = layer_points[1]
+
+    disp = "-o"
+
+    f1 = plt.figure(1)
+    # plot(*layer_points, disp)
     plot(x, y)
-    g = y  # update value of topmost as last layer
 
-
+    f2 = plt.figure(2)
+    plot(layer_points[0], thickness(layer_points[0])[0])
 

@@ -6,7 +6,7 @@ import numpy as np
 
 
 # Independent
-R = 150.  # mm - Cylindrical zone radius
+R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
 
 b = 8.  # mm - Roving bandwidth
 #alpha_0 = np.radians(40.)  # rad - Cylindrical zone angle TODO must vary with each ply
