@@ -1,0 +1,290 @@
+# -*- coding: mbcs -*-
+#
+# Abaqus/CAE Release 2020 replay file
+# Internal Version: 2019_09_13-19.49.31 163176
+# Run by User on Wed Apr 27 19:02:07 2022
+#
+
+# from driverUtils import executeOnCaeGraphicsStartup
+# executeOnCaeGraphicsStartup()
+#: Executing "onCaeGraphicsStartup()" in the site directory ...
+from abaqus import *
+from abaqusConstants import *
+session.Viewport(name='Viewport: 1', origin=(0.0, 0.0), width=129.239593505859, 
+    height=133.58332824707)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].maximize()
+import sys
+sys.path.append(r'e:\ABQ2020FILES\Plugins\2020\WoundSimAbaqusPlugin\translate')
+from caeModules import *
+from driverUtils import executeOnCaeStartup
+executeOnCaeStartup()
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/create_part.py', 
+    __main__.__dict__)
+#: The model "model" has been created.
+#: 0.0279998779297
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/cut_face.py', 
+    __main__.__dict__)
+#: 0.0
+#: 9.15000009537
+#: 11.4379999638
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/assembly.py', 
+    __main__.__dict__)
+execfile('E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/sets.py', 
+    __main__.__dict__)
+#: 0.0
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=ON, 
+    engineeringFeatures=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+p1 = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+cliCommand("""mdb.models['model'].materials""")
+#: mdb.models['model'].materials
+cliCommand("""mat = mdb.models['model'].materials""")
+cliCommand("""print(mat)""")
+#: {'layup_material': 'Material object', 'liner_material': 'Material object'}
+cliCommand("""mat[0]""")
+#* TypeError: String Expected as dictionary Key
+cliCommand("""for m in mat: print(m)
+""")
+#* TypeError: 'Repository' object is not iterable
+cliCommand("""mat""")
+#: mdb.models['model'].materials
+cliCommand("""type(mat)""")
+#: <type 'Repository'>
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59772)
+#: 0.770999908447
+del mdb.models['model'].materials['layup_material']
+del mdb.models['model'].materials['liner_material']
+mdb.models['model'].Material(name='Material-1')
+mdb.models['model'].materials['Material-1'].Elastic(type=ENGINEERING_CONSTANTS, 
+    table=((1.0, 11.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0), ))
+mdb.models['model'].Material(name='Material-2')
+mdb.models['model'].materials['Material-2'].Elastic(table=((1.0, 2.0), ))
+exec 'import reloadModulesABQ' in __main__.__dict__
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59772)
+#: 0.0110001564026
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del mdb.models['model'].materials['Material-1']
+del mdb.models['model'].materials['Material-2']
+del mdb.models['model'].materials['layup_material']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].parts['layup'].sectionAssignments[1]
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].sections['liner_section']
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0
+exec 'import reloadModulesABQ' in __main__.__dict__
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 0.0160000324249
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 0.0129997730255
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].sections['liner_section']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].materials['layup_material']
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 0.53400015831
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 3.29200005531
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1062.56, 
+    farPlane=1458.73, width=1279.84, height=533.683, viewOffsetX=6.30423, 
+    viewOffsetY=-1.18711)
+cliCommand("""mdb.models[rc.MODEL].Material(name='a')""")
+#: mdb.models['model'].materials['a']
+cliCommand("""mdb.models[rc.MODEL].Material(name='b')""")
+#: mdb.models['model'].materials['b']
+del mdb.models['model'].materials['a']
+del mdb.models['model'].materials['b']
+del mdb.models['model'].materials['layup_material']
+del mdb.models['model'].materials['liner_material']
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 0.0130000114441
+import atxPdb;atxPdb.debugFile(
+    fileName='e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    serverPort=59836)
+#: 0.0130000114441
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].sections['liner_section']
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].materials['layup_material']
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0119998455048
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+exec 'import reloadModulesABQ' in __main__.__dict__
+del mdb.models['model'].materials['layup_material']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].parts['liner'].sectionAssignments[6]
+del mdb.models['model'].parts['liner'].sectionAssignments[5]
+del mdb.models['model'].parts['liner'].sectionAssignments[4]
+del mdb.models['model'].parts['liner'].sectionAssignments[3]
+del mdb.models['model'].parts['liner'].sectionAssignments[2]
+del mdb.models['model'].parts['liner'].sectionAssignments[1]
+del mdb.models['model'].parts['liner'].sectionAssignments[0]
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].sections['liner_section']
+exec 'import reloadModulesABQ' in __main__.__dict__
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del mdb.models['model'].parts['layup'].sectionAssignments[1]
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+del mdb.models['model'].materials['layup_material']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].sections['liner_section']
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del mdb.models['model'].parts['liner'].sectionAssignments[1]
+del mdb.models['model'].parts['liner'].sectionAssignments[0]
+del mdb.models['model'].sections['layup_section']
+del mdb.models['model'].sections['liner_section']
+del mdb.models['model'].materials['liner_material']
+del mdb.models['model'].materials['layup_material']
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del mdb.models['model'].parts['layup'].sectionAssignments[0]
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+execfile(
+    'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/property.py', 
+    __main__.__dict__)
+#: 0.0
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+a = mdb.models['model'].rootAssembly
+a.regenerate()
+a = mdb.models['model'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(
+    optimizationTasks=OFF, geometricRestrictions=OFF, stopConditions=OFF)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1330.17, 
+    farPlane=1409.97, width=303.544, height=126.575, viewOffsetX=53.4805, 
+    viewOffsetY=147.978)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(mesh=ON)
+session.viewports['Viewport: 1'].assemblyDisplay.meshOptions.setValues(
+    meshTechnique=ON)
+p = mdb.models['model'].parts['liner']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=OFF, 
+    engineeringFeatures=OFF, mesh=ON)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=ON)
+p = mdb.models['model'].parts['liner']
+p.seedPart(size=1.0, deviationFactor=0.1, minSizeFactor=0.1)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['model'].parts['layup']
+p.seedPart(size=1.0, deviationFactor=0.1, minSizeFactor=0.1)
+p = mdb.models['model'].parts['layup']
+p.generateMesh()
+session.viewports['Viewport: 1'].view.rotate(xAngle=0, yAngle=0, zAngle=90, 
+    mode=MODEL)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1201.98, 
+    farPlane=1319.32, width=445.665, height=186.318, viewOffsetX=-51.8218, 
+    viewOffsetY=9.03559)
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap=session.viewports['Viewport: 1'].colorMappings['Set']
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1220.51, 
+    farPlane=1300.78, width=343.344, height=143.541, viewOffsetX=-92.7517, 
+    viewOffsetY=14.5453)
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap = session.viewports['Viewport: 1'].colorMappings['Set']
+cmap.updateOverrides(overrides={'set_layup':(False, )})
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()

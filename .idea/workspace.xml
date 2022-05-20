@@ -1,10 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="328e407a-35b6-44bc-8960-571b52908b86" name="Changes" comment="working on design" />
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="started implementing thickness.py">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/ABQcaeG.11544.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/aaa.cae" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/aaa.jnl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.6" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqusMacros.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/cae.cae" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/cae.jnl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/fort.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/liner.sat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.odb_f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqus.rpy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqusMacros.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeG.9640.00.exception" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.10080.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.3504.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.3632.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.7324.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus1.rec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus_acis.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/fort.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeG.11016.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeG.16092.00.exception" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeK.10796.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeK.20640.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/Job-1.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy.8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/foo.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/fort.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.10332.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.13812.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.14696.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.18336.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.20836.00.exception" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.28204.00.exception" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeK.17004.00.dmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeK.18300.00.exception" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus.rpy.8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus.rpy.9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqusMacros.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/baseline_stub.cae" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/baseline_stub.jnl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/fort.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/geometry_cut_compare.cae" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/geometry_cut_compare.jnl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.cae" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.jnl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.rec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/model-Copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/model.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/test.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/liner.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/Job-1.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/Model-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus.rpy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus.rpy.1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus_pde.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/ori2/fort.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.com" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.ipm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.msg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.odb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.prt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.sim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.sta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.10" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.11" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.12" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +181,13 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProjectId" id="27TM6lC6TfDxkdfayv4itFxxFDU" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="27YunOuvezXhwKkUVJDs5zaNsMu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -37,24 +196,34 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sustaiNX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
-  <component name="RunManager">
-    <configuration name="build_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.thickness">
+    <configuration name="dos" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/build_model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dos.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -63,50 +232,209 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="orient_elements" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="E:\Current Workspace\Codebase\hydrotank\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="routine_constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="routine_util" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/routine_util.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="stubs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/stubs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="thickness" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/thickness.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.dos" />
+      <item itemvalue="Python.orient_elements" />
+      <item itemvalue="Python.routine_constants" />
+      <item itemvalue="Python.routine_util" />
+      <item itemvalue="Python.stubs" />
+      <item itemvalue="Python.thickness" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.build_model" />
+        <item itemvalue="Python.thickness" />
+        <item itemvalue="Python.orient_elements" />
+        <item itemvalue="Python.routine_util" />
+        <item itemvalue="Python.routine_constants" />
+        <item itemvalue="Python.stubs" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="328e407a-35b6-44bc-8960-571b52908b86" name="Changes" comment="" />
-      <created>1649339450438</created>
+      <changelist id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="" />
+      <created>1649509509711</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1649339450438</updated>
+      <updated>1649509509711</updated>
     </task>
-    <task id="LOCAL-00001" summary="bueno se va a eksplotar todo">
-      <created>1649339550541</created>
+    <task id="LOCAL-00001" summary="implemented some functions">
+      <created>1649692570371</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1649339550541</updated>
+      <updated>1649692570371</updated>
     </task>
-    <task id="LOCAL-00002" summary="bueno se va a eksplotar todo">
-      <created>1649340057492</created>
+    <task id="LOCAL-00002" summary="cut_face.py and create_part.py working with simple stub geometry">
+      <created>1649697382099</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1649340057492</updated>
+      <updated>1649697382099</updated>
     </task>
-    <task id="LOCAL-00003" summary="bueno se va a eksplotar todo">
-      <created>1649343235695</created>
+    <task id="LOCAL-00003" summary="refactored create_part.py to create sets on each part&#10;finished assembly.py&#10;advanced in sets.py&#10;refactored naming convention in routine_constants.py&#10;finished property.py">
+      <created>1651081880673</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1649343235695</updated>
+      <updated>1651081880673</updated>
     </task>
-    <task id="LOCAL-00004" summary="working on design">
-      <created>1649434036326</created>
+    <task id="LOCAL-00004" summary="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point">
+      <created>1651136620423</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1649434036326</updated>
+      <updated>1651136620423</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="moved trivial steps to trivial.py&#10;changed names of modules to avoid compatibility issues with abaqus native modules&#10;finished sets and surfaces (TODO remove top part on load surf)&#10;finished step&#10;finished load-bc&#10;finished interaction">
+      <created>1651264305010</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651264305010</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactored all files to name==main idiom&#10;&#10;created routine_main.py file">
+      <created>1651264982572</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651264982572</updated>
+    </task>
+    <task id="LOCAL-00007" summary="mashed all in one file">
+      <created>1651265821966</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651265821966</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implemented toggleable liner&#10;implemented ofientations via discrete field&#10;added timestamps to main loop&#10;implemented mesher.py&#10;&#10;added new constants&#10;&#10;implemented job generation in trivial.py&#10;&#10;end">
+      <created>1651509845704</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1651509845704</updated>
+    </task>
+    <task id="LOCAL-00009" summary="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer">
+      <created>1652102275724</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652102275724</updated>
+    </task>
+    <task id="LOCAL-00010" summary="started implementing thickness.py">
+      <created>1652112818547</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652112818547</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,11 +447,18 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bueno se va a eksplotar todo" />
-    <MESSAGE value="working on design" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on design" />
+    <MESSAGE value="implemented some functions" />
+    <MESSAGE value="cut_face.py and create_part.py working with simple stub geometry" />
+    <MESSAGE value="refactored create_part.py to create sets on each part&#10;finished assembly.py&#10;advanced in sets.py&#10;refactored naming convention in routine_constants.py&#10;finished property.py" />
+    <MESSAGE value="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point" />
+    <MESSAGE value="moved trivial steps to trivial.py&#10;changed names of modules to avoid compatibility issues with abaqus native modules&#10;finished sets and surfaces (TODO remove top part on load surf)&#10;finished step&#10;finished load-bc&#10;finished interaction" />
+    <MESSAGE value="refactored all files to name==main idiom&#10;&#10;created routine_main.py file" />
+    <MESSAGE value="mashed all in one file" />
+    <MESSAGE value="Implemented toggleable liner&#10;implemented ofientations via discrete field&#10;added timestamps to main loop&#10;implemented mesher.py&#10;&#10;added new constants&#10;&#10;implemented job generation in trivial.py&#10;&#10;end" />
+    <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
+    <MESSAGE value="started implementing thickness.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="started implementing thickness.py" />
   </component>
 </project>

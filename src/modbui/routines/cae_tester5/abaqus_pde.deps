@@ -1,0 +1,28 @@
+# abaqus_pde.deps
+# Used by Abaqus/PDE to save File Menu data
+#
+::Recent Traced Files
+::Recent Main Files
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/mesher.py
+::Recent Files
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/mesher.py
+::build_model.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/build_model.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/assemble_parts.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/assign_property.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/create_part.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/create_sets_surfs.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/cut_face.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/mesher.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/routine_util.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/trivial.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/genericpath.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/ntpath.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/re.py
+e:/Program Files/ABAQUS2020/win_b64/tools/SMApy/python2.7/Lib/stat.py
+::mesher.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/mesher.py (36,)
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/routine_constants.py
+e:/Current Workspace/Codebase/hydrotank/src/modbui/routines/routine_util.py

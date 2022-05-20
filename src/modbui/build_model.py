@@ -3,56 +3,46 @@
 #global packages
 
 #my packages
-from logics import assign_material as am
 
+import sys, os, time
 
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
 
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
 
-class Model(): #data container. Incrementally stores useful information. only methods are getters and setters...
-    #eg store layup, each layer, curves, materials, sets... do not re-do what abq already does, just try to centralize
-    #an incremental storage of useful information
-    #eg stores elements and locations. gives easy handle to infrrmation from the abaqus world. each routine
-    # #returns some value that is then added to Model in the logic script
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
-    def __init__(self):
-        pass
+#TODO shift routines to lowest level actions eg ger surface cut from list of curves or assign material to set
 
-    def get_something(self):
-        pass
-
-
+from routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, orient_elements, trivial, mesher
 
 def main():
 
-    m = Model()
+    start_time = time.time()
 
-    print('this is the build model running')
+    create_part.main()
+    print(time.time()-start_time, ' --- Created')
 
-    pass
+    cut_face.main()
+    print(time.time() - start_time, ' --- Cut')
 
-    '''
-    lg.generate_layup
+    assemble_parts.main()
+    print(time.time() - start_time, ' --- Assembled')
 
-    lg.process_geometry
+    create_sets_surfs.main()
+    print(time.time() - start_time, ' --- Sets and Surfaces')
 
-    lg.assign_material
+    mesher.main()
+    print(time.time() - start_time, ' --- Mesh')
 
-    lg.assemble_components
+    orient_elements.main()
+    print(time.time() - start_time, ' --- Orientation Field')
 
-    lg.define_solver
+    assign_property.main()
+    print(time.time() - start_time, ' --- Properties')
 
-    lg.define_interaction
-
-    lg.define_load
-
-    lg.define_mesh
-    
-    LG: ORIENT_ELEMENTS
-    '''
-
-
-
+    trivial.main()
+    print(time.time() - start_time, ' --- Step, Load, Interaction')
 
 if __name__ == '__main__':
     main()
-    am.main()

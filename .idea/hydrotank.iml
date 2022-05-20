@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester2" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester6" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester_4" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/fuck" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/showcase" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester3" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester5" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester7" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester8" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/cae_tester_junkyard" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/ori2" />
+      <excludeFolder url="file://$MODULE_DIR$/src/modbui/routines/orientations_tester" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7">
+      <excludeFolder url="file://$MODULE_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.10 (hydrotank)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
