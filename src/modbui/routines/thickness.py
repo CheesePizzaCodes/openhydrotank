@@ -142,7 +142,11 @@ def draw_layer(r, g):
 
     y = g + t / den
 
-    layer_points = (x[idx-1:], y[idx-1:])
+    slicer = np.nonzero(t)
+
+    x_layer, y_layer = np.append(x[slicer], x[slicer][-1]), np.append(y[slicer], 0)
+
+    layer_points = (x_layer, y_layer)
 
     topmost_points = (x, y)  # used to calculate next layer. do not store.
 
