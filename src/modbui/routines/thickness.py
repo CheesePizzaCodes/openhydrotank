@@ -171,6 +171,19 @@ r = r_array[zone_1]
 g = g_array[zone_1]
 
 
+ls = r
+
+for i in range(2):
+
+    mp = (ls[1:] + ls[:-1]) / 2
+
+    ls = np.sort(np.append(ls, mp))
+
+
+g = np.interp(ls, r, g)
+
+r = ls
+
 # Initialize topmost as shape of the liner
 topmost_points = (r, g)
 # plot(x, y, "-o")
