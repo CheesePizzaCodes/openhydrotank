@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="override all">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="everything seems to be working now.&#10;next step smoothing algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653076080582</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="everything seems to be working now.&#10;next step smoothing algorithm">
+      <created>1653077264728</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653077264728</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,30 +342,16 @@
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
     <MESSAGE value="smart interpolation" />
     <MESSAGE value="override all" />
-    <option name="LAST_COMMIT_MESSAGE" value="override all" />
+    <MESSAGE value="everything seems to be working now.&#10;next step smoothing algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="everything seems to be working now.&#10;next step smoothing algorithm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>120</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>199</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>109</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>144</line>
-          <option name="timeStamp" value="7" />
+          <line>159</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

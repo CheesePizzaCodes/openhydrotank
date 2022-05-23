@@ -12,18 +12,18 @@ filename = 'liner.csv'
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
-r_array = liner[:, 0]
-g_array = liner[:, 1]
+liner_r = liner[:, 0]
+liner_y = liner[:, 1]
 
 
 # for i, position in enumerate(r):
 #     # find index of value closest to the position
-#     idx = (np.abs(g_array - position)).argmin()
+#     idx = (np.abs(liner_y - position)).argmin()
 #     # set new g to correct value
-#     g[i] = g_array[idx]
+#     g[i] = liner_y[idx]
 #
-# idx = (np.abs(g_array - r)).argmin()
-# g_array[idx]
+# idx = (np.abs(liner_y - r)).argmin()
+# liner_y[idx]
 
 
 def globs(angle):
@@ -120,69 +120,95 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    # find first occurrence of nonzero value
-    idx = np.nonzero(t)[0][0]  # index: * = dimension (ndarrays), * = position
 
-    return t, idx
+    return t
 
 
-def draw_layer(r, g):
+def smoothing(current, previous):
+    """
+
+    :param current: points of the current layer in the form (x, y)
+    :param previous: points of the previous layer (x, y)
+    :return:
+    """
+    x, y = current
+
+    x_p, y_p = previous
+
+    # # get max. From this position to the left, values will be overriden by smoothing.
+    # idx = y.argmax()
+    # # delete left of max
+    # y[idx:] = 10
+    # return x, y
+
+
+
+
+
+def draw_layer(r, g, make_smooth=False):
     """
 
     :param r: r coordinates of the liner (or previous topmost) points
     :param g: z coordinates of the liner bzw. previous topmost
     :return: Tuple of points belonging to the new layer
     """
-    t, idx = thickness(r)
-
+    # calculate thickness distribution
+    t = thickness(r)
     dg = np.gradient(g, r)
     den = np.sqrt(1 + dg ** 2)
-
     x = r - t * dg / den
-
     y = g + t / den
+    layer_mask = t > 0  # Logical Mask indicating the layer region
+    # --- smoothing ---
+    make_smooth = True
+    if make_smooth:
+        # find index where layer peaks height
+        idx = (y * layer_mask).argmax()  #
 
-    slicer = np.nonzero(t)
+        # build mask: True below layer max value AND below flag idx
+        aux_mask = np.zeros(y.shape)
+        aux_mask[:idx] = True
+        aux_mask = np.logical_and(aux_mask, y < y[idx])
 
-    x_layer, y_layer = np.append(x[slicer], x[slicer][-1]), np.append(y[slicer], 0)
+        y[aux_mask] = y[idx]
 
+    # finally evaluate returns. distinction between zero thickness considered vs deleted
+
+    layer_mask = y != g
+    x_layer, y_layer = x[layer_mask], y[layer_mask]
     layer_points = (x_layer, y_layer)
-
     topmost_points = (x, y)  # used to calculate next layer. do not store.
-
     return layer_points, topmost_points
 
 
-angles = [15, 20, 30, 45, 50, 80]
+angles = [15, 20, 30, 40, 80]
 
 result = []
 
-for _ in range(5):
+for _ in range(3):
     result += angles
 
 angles = result
-
 
 # initial values are those of the liner
 
 # TODO massive refactor, check that everything makes sense...
 globs(angles[0])
 # r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
-# g = np.interp(r, r_array, g_array)
+# g = np.interp(r, liner_r, liner_y)
 
-zone_1 = np.diff(r_array, prepend=0) != 0
-r = r_array[zone_1]
-g = g_array[zone_1]
+zone_1 = np.diff(liner_r, prepend=0) != 0
 
+# initialize parametric curve to shape of liner
+r = liner_r[zone_1]
+g = liner_y[zone_1]
 
+# adaptive interpolate
 ls = r
 
-for i in range(2):
-
+for i in range(3):
     mp = (ls[1:] + ls[:-1]) / 2
-
     ls = np.sort(np.append(ls, mp))
-
 
 g = np.interp(ls, r, g)
 
@@ -193,16 +219,17 @@ topmost_points = (r, g)
 # plot(x, y, "-o")
 
 f1 = plt.figure(1)
-plot(r, g)
+plot(r, g, "-o")
 
-
-# draw layup routine
+# draw layup routine TODO make method
 for angle in angles:
     # overwrite globals
     globs(angle)
     # calculate outer contour of new layer
     # x = linespace used, y = topmost wrt whom to calculate
     layer_points, topmost_points = draw_layer(*topmost_points)
+
+
 
     x = layer_points[0]
     y = layer_points[1]
@@ -211,8 +238,7 @@ for angle in angles:
 
     f1 = plt.figure(1)
     # plot(*layer_points, disp)
-    plot(x, y)
+    plot(x, y, disp)
 
     f2 = plt.figure(2)
-    plot(layer_points[0], thickness(layer_points[0])[0])
-
+    plot(x, thickness(x))

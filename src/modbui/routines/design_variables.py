@@ -10,7 +10,7 @@ R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
 
 b = 8.  # mm - Roving bandwidth
 #alpha_0 = np.radians(40.)  # rad - Cylindrical zone angle TODO must vary with each ply
-t_R = 0.15  # mm - Roving thickness
+t_R = 0.25  # mm - Roving thickness
 t_P = 0.65  # mm - Ply thickness TODO must depend on hoop / helical
 
 pi = np.pi
