@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="everything seems to be working now.&#10;next step smoothing algorithm">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="precarious version of the smoothing algorithm working properly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -313,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653077264728</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="precarious version of the smoothing algorithm working properly">
+      <created>1653321288935</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1653321288935</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,15 +349,16 @@
     <MESSAGE value="smart interpolation" />
     <MESSAGE value="override all" />
     <MESSAGE value="everything seems to be working now.&#10;next step smoothing algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="everything seems to be working now.&#10;next step smoothing algorithm" />
+    <MESSAGE value="precarious version of the smoothing algorithm working properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="precarious version of the smoothing algorithm working properly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>159</line>
-          <option name="timeStamp" value="11" />
+          <line>170</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

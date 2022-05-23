@@ -170,11 +170,16 @@ def draw_layer(r, g, make_smooth=False):
         aux_mask[:idx] = True
         aux_mask = np.logical_and(aux_mask, y < y[idx])
 
-        y[aux_mask] = y[idx]
+        x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
 
     # finally evaluate returns. distinction between zero thickness considered vs deleted
 
+
     layer_mask = y != g
+    first_true =np.where(layer_mask == True)[0][0]
+    layer_mask[first_true-1] = True
+
+
     x_layer, y_layer = x[layer_mask], y[layer_mask]
     layer_points = (x_layer, y_layer)
     topmost_points = (x, y)  # used to calculate next layer. do not store.
@@ -219,7 +224,7 @@ topmost_points = (r, g)
 # plot(x, y, "-o")
 
 f1 = plt.figure(1)
-plot(r, g, "-o")
+plot(r, g)
 
 # draw layup routine TODO make method
 for angle in angles:
@@ -238,7 +243,7 @@ for angle in angles:
 
     f1 = plt.figure(1)
     # plot(*layer_points, disp)
-    plot(x, y, disp)
+    plot(x, y)
 
     f2 = plt.figure(2)
     plot(x, thickness(x))
