@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="precarious version of the smoothing algorithm working properly">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="smoothing working now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -319,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653321288935</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="smoothing working now">
+      <created>1653322773954</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1653322773954</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -350,18 +358,10 @@
     <MESSAGE value="override all" />
     <MESSAGE value="everything seems to be working now.&#10;next step smoothing algorithm" />
     <MESSAGE value="precarious version of the smoothing algorithm working properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="precarious version of the smoothing algorithm working properly" />
+    <MESSAGE value="smoothing working now" />
+    <option name="LAST_COMMIT_MESSAGE" value="smoothing working now" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>170</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="y.shape" language="Python" />

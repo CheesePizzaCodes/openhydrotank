@@ -1,3 +1,10 @@
+import sys, os, time
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
+
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
+
+sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
+
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -8,7 +15,7 @@ from scipy.interpolate import make_interp_spline
 from design_variables import *
 
 # TODO move to global definition
-filename = 'liner.csv'
+filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
@@ -116,11 +123,9 @@ def thickness(r):
     # find lower bound as the first real root of polynomial
     lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
     # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
-    t += polynomial(r) * ((lower_bound <= r) & (r <= r_2b))
+    t += polynomial(r) * ((lower_bound < r) & (r <= r_2b))
     # Second case
     t += thickness_2(r) * (r_2b < r)
-
-
     return t
 
 
@@ -140,12 +145,10 @@ def smoothing(current, previous):
     # # delete left of max
     # y[idx:] = 10
     # return x, y
+    pass
 
 
-
-
-
-def draw_layer(r, g, make_smooth=False):
+def draw_layer(r, g, make_smooth):
     """
 
     :param r: r coordinates of the liner (or previous topmost) points
@@ -160,7 +163,7 @@ def draw_layer(r, g, make_smooth=False):
     y = g + t / den
     layer_mask = t > 0  # Logical Mask indicating the layer region
     # --- smoothing ---
-    make_smooth = True
+
     if make_smooth:
         # find index where layer peaks height
         idx = (y * layer_mask).argmax()  #
@@ -174,11 +177,9 @@ def draw_layer(r, g, make_smooth=False):
 
     # finally evaluate returns. distinction between zero thickness considered vs deleted
 
-
     layer_mask = y != g
-    first_true =np.where(layer_mask == True)[0][0]
-    layer_mask[first_true-1] = True
-
+    first_true = np.where(layer_mask == True)[0][0]
+    layer_mask[first_true-2] = True
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
     layer_points = (x_layer, y_layer)
@@ -202,7 +203,8 @@ globs(angles[0])
 # r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
 # g = np.interp(r, liner_r, liner_y)
 
-zone_1 = np.diff(liner_r, prepend=0) != 0
+zone_1 = np.diff(liner_r) != 0
+zone_1.append(0)
 
 # initialize parametric curve to shape of liner
 r = liner_r[zone_1]
@@ -223,8 +225,8 @@ r = ls
 topmost_points = (r, g)
 # plot(x, y, "-o")
 
-f1 = plt.figure(1)
-plot(r, g)
+# f1 = plt.figure(1)
+# plot(r, g)
 
 # draw layup routine TODO make method
 for angle in angles:
@@ -232,18 +234,20 @@ for angle in angles:
     globs(angle)
     # calculate outer contour of new layer
     # x = linespace used, y = topmost wrt whom to calculate
-    layer_points, topmost_points = draw_layer(*topmost_points)
-
-
+    if angle <= 20:
+        make_smooth = True
+    else:
+        make_smooth = False
+    layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
 
     x = layer_points[0]
     y = layer_points[1]
 
-    disp = "-o"
-
-    f1 = plt.figure(1)
-    # plot(*layer_points, disp)
-    plot(x, y)
-
-    f2 = plt.figure(2)
-    plot(x, thickness(x))
+    # disp = "-o"
+    #
+    # f1 = plt.figure(1)
+    # # plot(*layer_points, disp)
+    # plot(x, y)
+    #
+    # f2 = plt.figure(2)
+    # plot(x, thickness(x), disp)
