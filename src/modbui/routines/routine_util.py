@@ -51,4 +51,4 @@ def offset_point(point, direction):
     direction = math.radians(direction)  # offset direction in radians
     offset = (tol * math.cos(direction), tol * math.sin(direction), 0.)
     location = tuple(map(sum, zip(point, offset)))  # calculate new position by adding vectors
-    return location
+    return location + (0.,)  # add zero in the end to represent out-of-plane direction

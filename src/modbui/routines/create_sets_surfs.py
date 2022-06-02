@@ -74,9 +74,9 @@ def main(landmarks):
 
     for index, landmark in enumerate(landmarks):  # this required a workaround using findAt...
         location = ru.offset_point(landmark, 45)
-        face_array = part.faces.findAt(location)  # find face at location
+        face_array = part.faces.findAt((location, (0., 0., 1.)))  # find face at location
         name = rc.LAYER_SET + str(index + 1)
-        part.Set(faces=face_array, name=name)
+        part.Set(faces=(face_array,), name=name)
 
     # ---- create surf on layup for contact with liner
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
@@ -116,7 +116,7 @@ def main(landmarks):
 
     # ---- create set for symmetry BC
     a1 = mdb.models[rc.MODEL].rootAssembly
-    landmark = landmarks[-1]
+    landmark = landmarks[0]
     location = ru.offset_point(landmark, 0)  # to the right
     edge = a1.instances[rc.LAYUP_INSTANCE].edges.findAt(location)
     selection_1 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)

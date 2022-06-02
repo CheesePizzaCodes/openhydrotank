@@ -213,11 +213,11 @@ def draw_layer(r, g, make_smooth):
     return layer_points, topmost_points
 
 
-angles = [15, 20, 30, 40]
+angles = [15, 20, 30, 40, 50, 80]
 
 result = []
 
-for _ in range(2):
+for _ in range(3):
     result += angles
 
 angles = result
@@ -238,7 +238,7 @@ r = liner_r[zone_1]
 g = liner_y[zone_1]
 
 
-ls = np.linspace(r.min(), r.max(), 1000)
+ls = np.linspace(r.min(), r.max(), 500)
 
 interp = interp1d(r, g, kind="cubic")
 
@@ -250,8 +250,8 @@ g = interp(r)
 topmost_points = (r, g)
 # plot(x, y, "-o")
 
-# f1 = plt.figure(1)
-# plot(r, g)
+f1 = plt.figure(1)
+plot(r, g)
 
 # draw layup routine TODO make method
 
@@ -265,9 +265,9 @@ for angle in angles:
     # calculate outer contour of new layer
     # x = linespace used, y = topmost wrt whom to calculate
     if angle <= 20:
-        make_smooth = True
+        make_smooth = False
     else:
-        make_smooth = True  # TODO this breaks the code
+        make_smooth = False  # TODO this breaks the code
     layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
 
     # extract points (redundant, readability)
@@ -284,7 +284,7 @@ for angle in angles:
 
     disp = "-o"
 
-    if False:
+    if True:
         f1 = plt.figure(1)
         # plot(*layer_points, disp)
         plot(x, y, disp)
