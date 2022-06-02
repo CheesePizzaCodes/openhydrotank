@@ -48,7 +48,7 @@ import routine_util as ru
 import routine_constants as rc
 
 
-def main():
+def main(landmarks):
     start_time = time.time()
 
     # import stubs as stb
@@ -71,20 +71,22 @@ def main():
     # ---- create one set per layer
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     faces = part.faces
-    for index, face in enumerate(sorted(faces)):  # this required a workaround using findAt...
-        location = face.pointOn  # extract face location
+
+    for index, landmark in enumerate(landmarks):  # this required a workaround using findAt...
+        location = ru.offset_point(landmark, 45)
         face_array = part.faces.findAt(location)  # find face at location
         name = rc.LAYER_SET + str(index + 1)
         part.Set(faces=face_array, name=name)
 
     # ---- create surf on layup for contact with liner
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-    location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
+    landmark = landmarks[0]
+    location = ru.offset_point(landmark, 90)  # find location of edge above point
     edge = part.edges.findAt(location)
     selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
     part.Surface(side1Edges=selection, name=rc.LAYUP_INTERACTION_SURF)
 
-    # ---- create surf on liner for contact with layup
+    # ---- create surf on liner for contact with layup TODO remove, obsolete
     if rc.LINER_TOGGLE:
         part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
         location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
@@ -114,7 +116,8 @@ def main():
 
     # ---- create set for symmetry BC
     a1 = mdb.models[rc.MODEL].rootAssembly
-    location = ru.offset_point(rc.ROOT_POINT, 0)  # to the right
+    landmark = landmarks[-1]
+    location = ru.offset_point(landmark, 0)  # to the right
     edge = a1.instances[rc.LAYUP_INSTANCE].edges.findAt(location)
     selection_1 = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
     # TODO DANGER CSYST DEFINITION IS CONFUSING! EVALUATE WHEN IT HAS EFFECT! MODELLING / SELECTING GEOMETRY INSIDE ASSEMBLY

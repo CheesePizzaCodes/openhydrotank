@@ -32,7 +32,7 @@ def main():
     assemble_parts.main()
     print(time.time() - start_time, ' --- Assembled')
 
-    create_sets_surfs.main()
+    create_sets_surfs.main(landmarks)
     print(time.time() - start_time, ' --- Sets and Surfaces')
 
     mesher.main()
