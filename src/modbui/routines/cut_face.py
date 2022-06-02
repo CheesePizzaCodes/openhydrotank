@@ -63,7 +63,9 @@ def main(lines):
     # ru.draw_lines(s1, lines)
 
     for line in lines:
-        s1.Spline(points=(line), constrainPoints=False)  # TODO refactor to square
+        s1.Spline(points=(line[:-1]),
+                  constrainPoints=False)  # use points up to second-to-last-point to draw a spline
+        ru.draw_line(s1, line[-2:])  # use last two points to go straight below
 
     print(time.time() - start_time)
 
