@@ -43,7 +43,7 @@ start_time = time.time()
 import stubs as stb
 
 
-def main():
+def main(lines):
     print(time.time() - start_time)
 
     # set work part
@@ -58,11 +58,12 @@ def main():
     p.projectReferencesOntoSketch(sketch=s1, filter=COPLANAR_EDGES)
 
     # draw cutting sketch
-    lines = stb.test_lines
+    # lines = stb.test_lines
+    # lines = thickness.lines
     # ru.draw_lines(s1, lines)
 
     for line in lines:
-        s1.Spline(points=(line), constrainPoints=False) #  TODO refactor to square
+        s1.Spline(points=(line), constrainPoints=False)  # TODO refactor to square
 
     print(time.time() - start_time)
 

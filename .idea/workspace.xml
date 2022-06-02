@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="smoothing working now">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="some progress, so much left tho...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/build_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/build_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/create_part.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/create_part.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cut_face.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/cut_face.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/stubs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/stubs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,6 +171,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="E:\Current Workspace\Codebase\hydrotank\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -175,7 +181,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/thickness.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -327,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653322773954</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="some progress, so much left tho...">
+      <created>1653325051741</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1653325051741</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -359,7 +372,8 @@
     <MESSAGE value="everything seems to be working now.&#10;next step smoothing algorithm" />
     <MESSAGE value="precarious version of the smoothing algorithm working properly" />
     <MESSAGE value="smoothing working now" />
-    <option name="LAST_COMMIT_MESSAGE" value="smoothing working now" />
+    <MESSAGE value="some progress, so much left tho..." />
+    <option name="LAST_COMMIT_MESSAGE" value="some progress, so much left tho..." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

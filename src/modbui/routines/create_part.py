@@ -42,9 +42,9 @@ import time
 def main():
     start_time = time.time()
 
-    points = stb.test_shape  # stub. TODO replace by xml read
+    points = stb.test_shape  # stub.
 
-    # initialize model TODO separate to another routine
+    # initialize model
 
     model = mdb.Model(name=rc.MODEL, modelType=STANDARD_EXPLICIT)
 

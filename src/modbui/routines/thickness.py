@@ -10,6 +10,7 @@ import scipy as sp
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import plot
 from scipy.integrate import quad
+from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 
 from design_variables import *
@@ -102,7 +103,15 @@ def thickness_1():
 # Segment 2
 def thickness_2(r):  # Callable and vectorized
     r = np.asarray(r)
-    t = (m_R * n_R / pi) * (np.arccos(r_0 / r) - np.arccos(r_b / r)) * t_P
+
+    # remove numerical errors
+    arg_1 = r_0 / r
+    arg_1[arg_1 > 1] = 1
+    
+    arg_2 = r_b / r
+    arg_2[arg_2 > 1] = 1
+    
+    t = (m_R * n_R / pi) * (np.arccos(arg_1) - np.arccos(arg_2)) * t_P
     t = np.nan_to_num(t)
     return t
 
@@ -123,9 +132,13 @@ def thickness(r):
     # find lower bound as the first real root of polynomial
     lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
     # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
-    t += polynomial(r) * ((lower_bound < r) & (r <= r_2b))
+    t += polynomial(r) * ((polynomial(r) >= 0) & (r <= r_2b))
     # Second case
     t += thickness_2(r) * (r_2b < r)
+
+    tol = 0.01
+    t[t < tol] = 0
+
     return t
 
 
@@ -161,37 +174,50 @@ def draw_layer(r, g, make_smooth):
     den = np.sqrt(1 + dg ** 2)
     x = r - t * dg / den
     y = g + t / den
-    layer_mask = t > 0  # Logical Mask indicating the layer region
+    layer_mask = t > 0  # Logical Mask indicating the layer region preliminarily
     # --- smoothing ---
 
     if make_smooth:
         # find index where layer peaks height
         idx = (y * layer_mask).argmax()  #
 
-        # build mask: True below layer max value AND below flag idx
+        # build mask: True below layer maximum point value AND below flag idx
+
+        # left of flag index
         aux_mask = np.zeros(y.shape)
         aux_mask[:idx] = True
+
+        # and below maximum y point
         aux_mask = np.logical_and(aux_mask, y < y[idx])
 
+        # delete all points from all vectors that fulfill the condition
         x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
 
-    # finally evaluate returns. distinction between zero thickness considered vs deleted
+    # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
+    # redefine layer region: where previous top (g) deviates from new top (y)
     layer_mask = y != g
-    first_true = np.where(layer_mask == True)[0][0]
-    layer_mask[first_true-2] = True
+    first_true = np.where(layer_mask)[0][0]
+    layer_mask[first_true - 1] = True
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
+
+    x_layer = np.append(x_layer, x_layer[-1])
+    y_layer = np.append(y_layer, 0)
+
+    # x_layer[0] = r[first_true-1]
+    # y_layer[0] = g[first_true-1]
+
     layer_points = (x_layer, y_layer)
     topmost_points = (x, y)  # used to calculate next layer. do not store.
     return layer_points, topmost_points
 
 
-angles = [15, 20, 30, 40, 80]
+angles = [15, 20, 30, 40]
 
 result = []
 
-for _ in range(3):
+for _ in range(2):
     result += angles
 
 angles = result
@@ -204,22 +230,21 @@ globs(angles[0])
 # g = np.interp(r, liner_r, liner_y)
 
 zone_1 = np.diff(liner_r) != 0
-zone_1.append(0)
+
+zone_1 = np.append(zone_1, False)
 
 # initialize parametric curve to shape of liner
 r = liner_r[zone_1]
 g = liner_y[zone_1]
 
-# adaptive interpolate
-ls = r
 
-for i in range(3):
-    mp = (ls[1:] + ls[:-1]) / 2
-    ls = np.sort(np.append(ls, mp))
+ls = np.linspace(r.min(), r.max(), 1000)
 
-g = np.interp(ls, r, g)
+interp = interp1d(r, g, kind="cubic")
 
 r = ls
+g = interp(r)
+
 
 # Initialize topmost as shape of the liner
 topmost_points = (r, g)
@@ -229,7 +254,12 @@ topmost_points = (r, g)
 # plot(r, g)
 
 # draw layup routine TODO make method
+
+lines = ()  # accum. for the splines that represent the layers
+landmarks = ()  # accum. for important landmarks
+
 for angle in angles:
+
     # overwrite globals
     globs(angle)
     # calculate outer contour of new layer
@@ -237,17 +267,34 @@ for angle in angles:
     if angle <= 20:
         make_smooth = True
     else:
-        make_smooth = False
+        make_smooth = True  # TODO this breaks the code
     layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
+
+    # extract points (redundant, readability)
+
 
     x = layer_points[0]
     y = layer_points[1]
 
-    # disp = "-o"
-    #
-    # f1 = plt.figure(1)
-    # # plot(*layer_points, disp)
-    # plot(x, y)
-    #
-    # f2 = plt.figure(2)
-    # plot(x, thickness(x), disp)
+    line = tuple(zip(x, y))
+    landmark = line[-1]
+
+    lines += (line,)
+    landmarks += (landmark, )
+
+    disp = "-o"
+
+    if False:
+        f1 = plt.figure(1)
+        # plot(*layer_points, disp)
+        plot(x, y, disp)
+
+        f2 = plt.figure(2)
+        plot(x, thickness(x), disp)
+
+print("done")
+
+
+def main():
+    return lines, landmarks
+
