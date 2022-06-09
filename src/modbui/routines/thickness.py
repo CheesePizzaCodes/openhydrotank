@@ -24,16 +24,6 @@ liner_r = liner[:, 0]
 liner_y = liner[:, 1]
 
 
-# for i, position in enumerate(r):
-#     # find index of value closest to the position
-#     idx = (np.abs(liner_y - position)).argmin()
-#     # set new g to correct value
-#     g[i] = liner_y[idx]
-#
-# idx = (np.abs(liner_y - r)).argmin()
-# liner_y[idx]
-
-
 def globs(angle):
     """
     Calculates the global geometric parameters for this routine. Function of alpha_0 and thus layer-dependent.
@@ -136,7 +126,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.08
+    tol = 0.05
     t[t < tol] = 0
 
     return t
@@ -184,14 +174,17 @@ def draw_layer(r, g, make_smooth):
         # build mask: True below layer maximum point value AND below flag idx
 
         # left of flag index
-        aux_mask = np.zeros(y.shape)
+        aux_mask = np.zeros(y.shape, dtype="bool")
         aux_mask[:idx] = True
 
         # and below maximum y point
         aux_mask = np.logical_and(aux_mask, y < y[idx])
 
         # delete all points from all vectors that fulfill the condition
-        x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
+        # x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
+
+        y[aux_mask] = y[idx]
+
 
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
@@ -212,12 +205,13 @@ def draw_layer(r, g, make_smooth):
     topmost_points = (x, y)  # used to calculate next layer. do not store.
     return layer_points, topmost_points
 
+
 def main():
-    angles = [15, 20, 30, 40, 50, 80]
+    angles = [15, 20, 30, 40, 50, 60, 70]
 
     result = []
 
-    for _ in range(8):
+    for _ in range(2):
         result += angles
 
     angles = result
@@ -237,8 +231,7 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-
-    ls = np.linspace(r.min(), r.max(), 40)
+    ls = np.linspace(r.min(), r.max(), 100)
 
     interp = interp1d(r, g, kind="cubic")
 
@@ -246,12 +239,11 @@ def main():
     g = interp(r)
 
 
-    # Initialize topmost as shape of the liner
+    # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
-    # plot(x, y, "-o")
 
-    f1 = plt.figure(1)
-    # plot(r, g)
+    f1 = plt.figure(1)  #TODO plot
+    plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -269,7 +261,7 @@ def main():
         # calculate outer contour of new layer
         # x = linespace used, y = topmost wrt whom to calculate
         if angle <= 20:
-            make_smooth = False
+            make_smooth = True
         else:
             make_smooth = False  # TODO this breaks the code
         layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
@@ -287,13 +279,13 @@ def main():
         landmarks += (landmark, )
 
         disp = "-o"
-    if 1:
-        f1 = plt.figure(1)
-        # plot(*layer_points, disp)
-        plot(x, y, disp)
+        if True:
+            f1 = plt.figure(1)
+            # plot(*layer_points, disp)
+            plot(x, y, disp)
 
-        f2 = plt.figure(2)
-        plot(x, thickness(x), disp)
+            f2 = plt.figure(2)
+            plot(x, thickness(x), disp)
 
     return lines, landmarks
 

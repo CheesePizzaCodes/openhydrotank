@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="major changes&#10;&#10;debugged FaceArray bullshit&#10;debugged landmarks indexing in some locations (correctly select load set)&#10;added automatic z-coordinate in offset_point()&#10;&#10;&#10;Notes:&#10;-smoothing is ignored by abaqus&#10;-abaqus spline drawing is powerful enough">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="wtf">
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
@@ -46,8 +48,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Program Files/ABAQUS2020/win_b64/code/python2.7" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python39" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -167,15 +169,15 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="E:\Current Workspace\Codebase\hydrotank\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/thickness.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -360,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654191423355</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="wtf">
+      <created>1654756649903</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1654756649903</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +394,6 @@
     <MESSAGE value="Implemented toggleable liner&#10;implemented ofientations via discrete field&#10;added timestamps to main loop&#10;implemented mesher.py&#10;&#10;added new constants&#10;&#10;implemented job generation in trivial.py&#10;&#10;end" />
     <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
     <MESSAGE value="started implementing thickness.py" />
-    <MESSAGE value="wtf" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
     <MESSAGE value="smart interpolation" />
     <MESSAGE value="override all" />
@@ -397,20 +405,31 @@
     <MESSAGE value="implemented location tracking for sets by using landmarks" />
     <MESSAGE value="made end part a straight line instead of a spline" />
     <MESSAGE value="major changes&#10;&#10;debugged FaceArray bullshit&#10;debugged landmarks indexing in some locations (correctly select load set)&#10;added automatic z-coordinate in offset_point()&#10;&#10;&#10;Notes:&#10;-smoothing is ignored by abaqus&#10;-abaqus spline drawing is powerful enough" />
-    <option name="LAST_COMMIT_MESSAGE" value="major changes&#10;&#10;debugged FaceArray bullshit&#10;debugged landmarks indexing in some locations (correctly select load set)&#10;added automatic z-coordinate in offset_point()&#10;&#10;&#10;Notes:&#10;-smoothing is ignored by abaqus&#10;-abaqus spline drawing is powerful enough" />
+    <MESSAGE value="wtf" />
+    <option name="LAST_COMMIT_MESSAGE" value="wtf" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>289</line>
+          <line>281</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>257</line>
+          <line>249</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>289</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>231</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
