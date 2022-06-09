@@ -1,4 +1,5 @@
 import sys, os, time
+
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
@@ -7,8 +8,8 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routin
 
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import plot
+# import matplotlib.pyplot as plt
+# from matplotlib.pyplot import plot
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
@@ -97,10 +98,10 @@ def thickness_2(r):  # Callable and vectorized
     # remove numerical errors
     arg_1 = r_0 / r
     arg_1[arg_1 > 1] = 1
-    
+
     arg_2 = r_b / r
     arg_2[arg_2 > 1] = 1
-    
+
     t = (m_R * n_R / pi) * (np.arccos(arg_1) - np.arccos(arg_2)) * t_P
     t = np.nan_to_num(t)
     return t
@@ -126,7 +127,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.05
+    tol = 0.08
     t[t < tol] = 0
 
     return t
@@ -185,7 +186,6 @@ def draw_layer(r, g, make_smooth):
 
         y[aux_mask] = y[idx]
 
-
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
     # redefine layer region: where previous top (g) deviates from new top (y)
@@ -207,14 +207,22 @@ def draw_layer(r, g, make_smooth):
 
 
 def main():
-    angles = [15, 20, 30, 40, 50, 60, 70]
-
+    # angles = [15, 20, 30, 40, 50, 60, 70]
+    angles = [90, 90, 90, 90,
+              15, 15, 15, 15, 15, 15, 15, 15,
+              30, 30, 30, 30,
+              40, 40, 40, 40,
+              50, 50, 50, 50,
+              54, 54, 54, 54,
+              90, 90, 90, 90, 90, 90, 90, 90]
     result = []
 
-    for _ in range(2):
-        result += angles
+    for _ in range(0):
+        result += list(np.random.permutation(angles))
 
-    angles = result
+    angles = [a for a in angles if a != 90]
+
+    # angles = result
 
     # initial values are those of the liner
 
@@ -231,19 +239,18 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-    ls = np.linspace(r.min(), r.max(), 100)
+    ls = np.linspace(r.min(), r.max(), 200)
 
     interp = interp1d(r, g, kind="cubic")
 
     r = ls
     g = interp(r)
 
-
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
 
-    f1 = plt.figure(1)  #TODO plot
-    plot(r, g, "-o")
+    # f1 = plt.figure(1)  # TODO plot
+    # plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -251,8 +258,8 @@ def main():
 
     initial_line += ((r[-1], 0),)
 
-    lines = (initial_line, )  # accum. for the splines that represent the layers
-    landmarks = (initial_line[-1], )  # accum. for important landmarks
+    lines = (initial_line,)  # accum. for the splines that represent the layers
+    landmarks = (initial_line[-1],)  # accum. for important landmarks
 
     for angle in angles:
 
@@ -268,7 +275,6 @@ def main():
 
         # extract points (redundant, readability)
 
-
         x = layer_points[0]
         y = layer_points[1]
 
@@ -276,16 +282,16 @@ def main():
         landmark = line[-1]
 
         lines += (line,)
-        landmarks += (landmark, )
+        landmarks += (landmark,)
 
         disp = "-o"
-        if True:
-            f1 = plt.figure(1)
-            # plot(*layer_points, disp)
-            plot(x, y, disp)
-
-            f2 = plt.figure(2)
-            plot(x, thickness(x), disp)
+        # if True:
+        #     f1 = plt.figure(1)
+        #     # plot(*layer_points, disp)
+        #     plot(x, y, disp)
+        #
+        #     f2 = plt.figure(2)
+        #     plot(x, thickness(x), disp)
 
     return lines, landmarks
 

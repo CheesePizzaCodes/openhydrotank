@@ -94,6 +94,7 @@ def main():
     indices_list = []
 
     bases_list = []
+
     for st in sts:
         for element in st.elements:
             idx, basis = get_basis(element)

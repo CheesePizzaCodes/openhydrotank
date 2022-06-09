@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="wtf">
-      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="22222">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -369,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654756649903</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="22222">
+      <created>1654765088208</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1654765088208</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -406,30 +412,36 @@
     <MESSAGE value="made end part a straight line instead of a spline" />
     <MESSAGE value="major changes&#10;&#10;debugged FaceArray bullshit&#10;debugged landmarks indexing in some locations (correctly select load set)&#10;added automatic z-coordinate in offset_point()&#10;&#10;&#10;Notes:&#10;-smoothing is ignored by abaqus&#10;-abaqus spline drawing is powerful enough" />
     <MESSAGE value="wtf" />
-    <option name="LAST_COMMIT_MESSAGE" value="wtf" />
+    <MESSAGE value="22222" />
+    <option name="LAST_COMMIT_MESSAGE" value="22222" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>281</line>
+          <line>287</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>249</line>
+          <line>256</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>289</line>
+          <line>295</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>231</line>
+          <line>239</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
