@@ -136,7 +136,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.01
+    tol = 0.08
     t[t < tol] = 0
 
     return t
@@ -212,79 +212,82 @@ def draw_layer(r, g, make_smooth):
     topmost_points = (x, y)  # used to calculate next layer. do not store.
     return layer_points, topmost_points
 
+def main():
+    angles = [15, 20, 30, 40, 50, 80]
 
-angles = [15, 20, 30, 40, 50, 80]
+    result = []
 
-result = []
+    for _ in range(8):
+        result += angles
 
-for _ in range(3):
-    result += angles
+    angles = result
 
-angles = result
+    # initial values are those of the liner
 
-# initial values are those of the liner
+    # TODO massive refactor, check that everything makes sense...
+    globs(angles[0])
+    # r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
+    # g = np.interp(r, liner_r, liner_y)
 
-# TODO massive refactor, check that everything makes sense...
-globs(angles[0])
-# r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
-# g = np.interp(r, liner_r, liner_y)
+    zone_1 = np.diff(liner_r) != 0
 
-zone_1 = np.diff(liner_r) != 0
+    zone_1 = np.append(zone_1, False)
 
-zone_1 = np.append(zone_1, False)
-
-# initialize parametric curve to shape of liner
-r = liner_r[zone_1]
-g = liner_y[zone_1]
-
-
-ls = np.linspace(r.min(), r.max(), 500)
-
-interp = interp1d(r, g, kind="cubic")
-
-r = ls
-g = interp(r)
+    # initialize parametric curve to shape of liner
+    r = liner_r[zone_1]
+    g = liner_y[zone_1]
 
 
-# Initialize topmost as shape of the liner
-topmost_points = (r, g)
-# plot(x, y, "-o")
+    ls = np.linspace(r.min(), r.max(), 40)
 
-f1 = plt.figure(1)
-plot(r, g)
+    interp = interp1d(r, g, kind="cubic")
 
-# draw layup routine TODO make method
-
-lines = ()  # accum. for the splines that represent the layers
-landmarks = ()  # accum. for important landmarks
-
-for angle in angles:
-
-    # overwrite globals
-    globs(angle)
-    # calculate outer contour of new layer
-    # x = linespace used, y = topmost wrt whom to calculate
-    if angle <= 20:
-        make_smooth = False
-    else:
-        make_smooth = False  # TODO this breaks the code
-    layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
-
-    # extract points (redundant, readability)
+    r = ls
+    g = interp(r)
 
 
-    x = layer_points[0]
-    y = layer_points[1]
+    # Initialize topmost as shape of the liner
+    topmost_points = (r, g)
+    # plot(x, y, "-o")
 
-    line = tuple(zip(x, y))
-    landmark = line[-1]
+    f1 = plt.figure(1)
+    # plot(r, g)
 
-    lines += (line,)
-    landmarks += (landmark, )
+    # draw layup routine TODO make method
 
-    disp = "-o"
+    initial_line = tuple(zip(r, g))
 
-    if True:
+    initial_line += ((r[-1], 0),)
+
+    lines = (initial_line, )  # accum. for the splines that represent the layers
+    landmarks = (initial_line[-1], )  # accum. for important landmarks
+
+    for angle in angles:
+
+        # overwrite globals
+        globs(angle)
+        # calculate outer contour of new layer
+        # x = linespace used, y = topmost wrt whom to calculate
+        if angle <= 20:
+            make_smooth = False
+        else:
+            make_smooth = False  # TODO this breaks the code
+        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
+
+        # extract points (redundant, readability)
+
+
+        x = layer_points[0]
+        y = layer_points[1]
+
+        line = tuple(zip(x, y))
+        landmark = line[-1]
+
+        lines += (line,)
+        landmarks += (landmark, )
+
+        disp = "-o"
+    if 1:
         f1 = plt.figure(1)
         # plot(*layer_points, disp)
         plot(x, y, disp)
@@ -292,9 +295,8 @@ for angle in angles:
         f2 = plt.figure(2)
         plot(x, thickness(x), disp)
 
-print("done")
-
-
-def main():
     return lines, landmarks
 
+
+if __name__ == "__main__":
+    main()
