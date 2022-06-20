@@ -39,14 +39,11 @@ def main():
     pickedRegions = prt.sets[rc.LAYUP_SET]
     prt.setElementType(regions=pickedRegions, elemTypes=(elemType1, elemType2))
     # ----- Mesh Controls -----
-    prt = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     pickedRegions = prt.faces
     prt.setMeshControls(regions=pickedRegions, technique=FREE)
     # ----- Mesh Size -----
-    prt = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     prt.seedPart(size=rc.LAYUP_MESH_SIZE, deviationFactor=0.1, minSizeFactor=0.1)
     # ----- Mesh -----
-    prt = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     prt.generateMesh()
 
 

@@ -14,7 +14,9 @@ from scipy.integrate import quad
 from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 
-from design_variables import *
+import design_variables
+from design_variables import angles, b, t_R, t_P, pi, R
+
 
 # TODO move to global definition
 filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
@@ -198,6 +200,7 @@ def draw_layer(r, g, make_smooth):
     x_layer = np.append(x_layer, x_layer[-1])
     y_layer = np.append(y_layer, 0)
 
+
     # x_layer[0] = r[first_true-1]
     # y_layer[0] = g[first_true-1]
 
@@ -207,20 +210,16 @@ def draw_layer(r, g, make_smooth):
 
 
 def main():
-    # angles = [15, 20, 30, 40, 50, 60, 70]
-    angles = [90, 90, 90, 90,
-              15, 15, 15, 15, 15, 15, 15, 15,
-              30, 30, 30, 30,
-              40, 40, 40, 40,
-              50, 50, 50, 50,
-              54, 54, 54, 54,
-              90, 90, 90, 90, 90, 90, 90, 90]
-    result = []
 
-    for _ in range(0):
-        result += list(np.random.permutation(angles))
+    # angles = [15, 20, 30, 40, 50, 60, 70]  # TODO obsolete
 
-    angles = [a for a in angles if a != 90]
+    # result = []
+    #
+    # for _ in range(0):
+    #     result += list(np.random.permutation(angles))
+
+    angles = design_variables.angles
+
 
     # angles = result
 

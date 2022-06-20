@@ -4,6 +4,23 @@ Geometric properties.
 """
 import numpy as np
 
+angles = [90, 90, 90, 90,
+          15, 15, 15, 15, 15, 15, 15, 15,
+          30, 30, 30, 30,
+          40, 40, 40, 40,
+          50, 50, 50, 50,
+          54, 54, 54, 54,
+          90, 90, 90, 90, 90, 90, 90, 90]
+
+# angles = [90, 90, 90, 90,
+#           15, 15, 15, 15,
+#           30, 30, 30, 30,
+#           40, 40, 40, 40,
+#           50, 50, 50, 50,
+#           90, 90, 90, 90, 90, 90, 90, 90]
+
+angles = [a for a in angles if a != 90]
+
 # Independent
 R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
 

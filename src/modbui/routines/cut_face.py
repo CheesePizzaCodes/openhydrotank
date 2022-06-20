@@ -82,6 +82,12 @@ def main(lines):
     p.RemoveFaces(faceList=(f.findAt(coordinates=(0.1, 0.1, 0.0)),),
                   deleteCells=False)
 
+    # remove faulty faces
+
+    f = p.faces
+    face_list = [face for face in f if face.getSize() < 10]
+    p.RemoveFaces(faceList=face_list, deleteCells=False)
+
     end_time = time.time()
 
     total_time = end_time - start_time

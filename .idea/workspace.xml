@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="22222">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="1111">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/build_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/build_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus_pde.deps" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus_pde.deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cut_face.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/cut_face.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/mesher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/mesher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +65,28 @@
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.thickness">
+  <component name="RunManager" selected="Python.orient_elements">
+    <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/design_variables.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="dos" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,14 +115,14 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="E:\Current Workspace\Codebase\hydrotank\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -168,6 +196,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -189,9 +220,11 @@
       <item itemvalue="Python.routine_constants" />
       <item itemvalue="Python.routine_util" />
       <item itemvalue="Python.stubs" />
+      <item itemvalue="Python.design_variables" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.design_variables" />
         <item itemvalue="Python.routine_util" />
         <item itemvalue="Python.routine_constants" />
         <item itemvalue="Python.stubs" />
@@ -375,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654765088208</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="1111">
+      <created>1654798009834</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1654798009834</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,46 +453,60 @@
     <MESSAGE value="major changes&#10;&#10;debugged FaceArray bullshit&#10;debugged landmarks indexing in some locations (correctly select load set)&#10;added automatic z-coordinate in offset_point()&#10;&#10;&#10;Notes:&#10;-smoothing is ignored by abaqus&#10;-abaqus spline drawing is powerful enough" />
     <MESSAGE value="wtf" />
     <MESSAGE value="22222" />
-    <option name="LAST_COMMIT_MESSAGE" value="22222" />
+    <MESSAGE value="1111" />
+    <option name="LAST_COMMIT_MESSAGE" value="1111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>287</line>
+          <line>286</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>256</line>
+          <line>255</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>295</line>
+          <line>294</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>239</line>
+          <line>238</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>210</line>
+          <line>17</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/orient_elements.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/orient_elements.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="y.shape" language="Python" />
-        <watch expression="x.shape" language="Python" />
-        <watch expression="alpha_0" language="Python" />
-        <watch expression="angle" language="Python" />
-        <watch expression="t.shape" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

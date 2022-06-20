@@ -100,4 +100,3 @@ LOAD_MAG = 75  # MPa
 #  ----- Mesh -----
 
 LAYUP_MESH_SIZE = 1  # mm
-LINER_MESH_SIZE = 3  # mm

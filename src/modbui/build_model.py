@@ -17,35 +17,15 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routin
 from routines import thickness, create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, orient_elements, trivial, mesher
 
 def main():
-
-    start_time = time.time()
-
     lines, landmarks = thickness.main()
-    print(time.time()-start_time, ' --- Thickness calculated')
-
     create_part.main()
-    print(time.time()-start_time, ' --- Created')
-
     cut_face.main(lines)
-    print(time.time() - start_time, ' --- Cut')
-
     assemble_parts.main()
-    print(time.time() - start_time, ' --- Assembled')
-
     create_sets_surfs.main(landmarks)
-    print(time.time() - start_time, ' --- Sets and Surfaces')
-
     mesher.main()
-    print(time.time() - start_time, ' --- Mesh')
-
-    orient_elements.main()
-    print(time.time() - start_time, ' --- Orientation Field')
-
+    print("checkpoint")
+    orient_elements.main(lines)
     assign_property.main()
-    print(time.time() - start_time, ' --- Properties')
-
     trivial.main()
-    print(time.time() - start_time, ' --- Step, Load, Interaction')
-
 if __name__ == '__main__':
     main()
