@@ -38,9 +38,22 @@ liner = np.loadtxt(open(filename), delimiter=",", skiprows=0)
 
 
 def get_gamma(position, layer_number):
-    # baseline = lines[layer_number]
-    baseline = list(zip(*liner))
-    gamma_array = np.arctan(np.gradient(baseline[0], baseline[1]))
+    baseline = np.array(list(zip(*lines[layer_number])))
+
+    try:
+        gamma_array = np.arctan(np.gradient(baseline[0], baseline[1]))
+    except FloatingPointError:
+        mask_func = np.gradient(baseline[1]) != 0
+        mask_func[np.where(mask_func == False)[0][0] - 1] = False
+        mask_func[np.where(mask_func == False)[0][-1] + 1] = False
+        mask_vert = np.invert(mask_func)
+
+        gamma_array = np.zeros(baseline.shape[1])
+
+        gamma_array[mask_vert] = - 90 * pi / 180
+
+        gamma_array[mask_func] = np.arctan(np.gradient(baseline[0][mask_func], baseline[1][mask_func]))
+
     idx = (np.abs(baseline[1] - position)).argmin()
     return gamma_array[idx]
 
@@ -51,7 +64,14 @@ def get_alpha(position, layer_number):
         alpha = np.arcsin(R * np.sin(alpha_0) / position)  # R * sin(alpha_0 / r)
     except FloatingPointError:
         alpha = 90 * pi / 180
-    return alpha
+    return alpha + 90 * pi / 180
+
+
+def transform_tensor(tensor, transformation):
+    _ = tensor
+    _ = np.matmul(transformation, _)
+
+    return _
 
 
 def get_basis(element, layer_number):
@@ -67,29 +87,30 @@ def get_basis(element, layer_number):
     sa, ca, sg, cg = np.sin(alpha), np.cos(alpha), np.sin(gamma), np.cos(gamma)
     # Build rotation tensor
 
+    # initialize
     tensor = np.eye(3)
 
-    # beta_1 = np.array([[sa, -ca, 0.],
-    #                    [ca, sa, 0.],
-    #                    [0, 0, 1.]])
+    # --------------- Permutate
+    # beta_1 = np.eye(3)
+    beta_1 = np.array([[0, 1, 0],
+                       [0, 0, 1],
+                       [1, 0, 0.]])
+    tensor = transform_tensor(tensor, beta_1)
 
-    beta_1 = np.eye(3)
-
-    tensor = np.matmul(beta_1, tensor)
-
-    # beta_2 = np.array([[1, 0., 0],
-    #                    [0, 0., 1],
-    #                    [0., 1, 0.]])
-
+    # --------------- WRT liner direction
     beta_2 = np.eye(3)
+    beta_2 = np.array([[cg, 0, -sg],
+                       [0, 1, 0.],
+                       [sg, 0., cg]]).T
+    tensor = transform_tensor(tensor, beta_2)
 
-    tensor = np.matmul(beta_2, tensor)
+    # --------------- With respect to material properties
+    beta_3 = np.eye(3)
+    beta_3 = np.array([[sa, -ca, 0.],
+                       [ca, sa, 0.],
+                       [0, 0, 1.]]).T
 
-    beta_3 = np.array([[cg, -sg, 0.],
-                       [sg, cg, 0.],
-                       [0., 0., 1.]])
-
-    tensor = np.matmul(beta_3, tensor)
+    tensor = transform_tensor(tensor, beta_3)
 
     tensor = tensor.T
 
@@ -108,7 +129,8 @@ def main(_lines):
 
     sts = prt.sets
 
-    sts = [(int(key.split("_")[-1]), sts[key]) for key in sts.keys() if key.startswith('set_layer')]  # Filter: only layer sets
+    sts = [(int(key.split("_")[-1]), sts[key]) for key in sts.keys() if
+           key.startswith('set_layer')]  # Filter: only layer sets
 
     indices_list = []
 
@@ -133,7 +155,8 @@ def main(_lines):
                                               bases_list),),
                                        orientationType=CARTESIAN, partLevelOrientation=True)
 
-l = (1,2,)
-                                       
+
+l = (1, 2,)
+
 if __name__ == "__main__":
     main(l)
