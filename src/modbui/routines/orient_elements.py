@@ -106,9 +106,9 @@ def get_basis(element, layer_number):
 
     # --------------- With respect to material properties
     beta_3 = np.eye(3)
-    beta_3 = np.array([[sa, -ca, 0.],
-                       [ca, sa, 0.],
-                       [0, 0, 1.]]).T
+    # beta_3 = np.array([[sa, -ca, 0.],
+    #                    [ca, sa, 0.],
+    #                    [0, 0, 1.]]).T
 
     tensor = transform_tensor(tensor, beta_3)
 

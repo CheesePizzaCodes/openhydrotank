@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="test checkpoint2">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="orientations FINALLY fucking working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655716290170</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="orientations FINALLY fucking working">
+      <created>1655738796122</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1655738796122</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,7 +438,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implemented some functions" />
     <MESSAGE value="cut_face.py and create_part.py working with simple stub geometry" />
     <MESSAGE value="refactored create_part.py to create sets on each part&#10;finished assembly.py&#10;advanced in sets.py&#10;refactored naming convention in routine_constants.py&#10;finished property.py" />
     <MESSAGE value="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point" />
@@ -455,7 +462,8 @@
     <MESSAGE value="22222" />
     <MESSAGE value="1111" />
     <MESSAGE value="test checkpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="test checkpoint" />
+    <MESSAGE value="orientations FINALLY fucking working" />
+    <option name="LAST_COMMIT_MESSAGE" value="orientations FINALLY fucking working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

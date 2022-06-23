@@ -238,7 +238,7 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-    ls = np.linspace(r.min(), r.max(), 200)
+    ls = np.linspace(r.min(), r.max(), 800)
 
     interp = interp1d(r, g, kind="cubic")
 
