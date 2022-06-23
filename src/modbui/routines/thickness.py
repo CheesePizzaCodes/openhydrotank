@@ -52,7 +52,7 @@ def pd(degree):
     """
     return r_2b ** degree - r_0 ** degree
 
-
+#
 def a_vec(angle):
     """
     Obtain coefficients for the polynomial for the thickness in region 1
