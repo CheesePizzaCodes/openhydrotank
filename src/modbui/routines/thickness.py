@@ -8,15 +8,14 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routin
 
 import numpy as np
 import scipy as sp
-# import matplotlib.pyplot as plt
-# from matplotlib.pyplot import plot
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import plot
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 
 import design_variables
 from design_variables import angles, b, t_R, t_P, pi, R
-
 
 # TODO move to global definition
 filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
@@ -33,7 +32,7 @@ def globs(angle):
     :param angle: alpha_0. Desired cylindrical-section angle.
     :return:
     """
-
+    # TODO this is calculated on every layer. R can be dependent on layer number.
     global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0
     alpha_0 = np.radians(angle)
     r_0 = R * np.sin(alpha_0)  # Polar opening radius
@@ -52,10 +51,10 @@ def pd(degree):
     """
     return r_2b ** degree - r_0 ** degree
 
-#
+
 def a_vec(angle):
     """
-    Obtain coefficients for the polynomial for the thickness in region 1
+    Obtain coefficients for the polynomial (cubic spline) for the thickness in region 1
     :param angle:
     :return:
     """
@@ -67,7 +66,7 @@ def a_vec(angle):
         [pi * (pd(2)), 2 * pi / 3 * (pd(3)), pi / 2 * (pd(4)), 2 * pi / 5 * (pd(5))],
     ])
 
-    # c - vector
+    # c - vector   # TODO this is calculated on every layer. R can be dependent on layer number.
     c_0 = t_R * pi * R * np.cos(angle) / (m_0 * b)
     c_1 = m_R * n_R / pi * (np.arccos(r_0 / r_2b) - np.arccos(r_b / r_2b)) * t_P
     c_2 = m_R * n_R / pi * (r_0 / (r_2b * np.sqrt(pd(2))) - r_b / (r_2b * np.sqrt(r_2b ** 2 - r_b ** 2))) * t_P
@@ -79,30 +78,30 @@ def a_vec(angle):
 
     c = np.array([c_0, c_1, c_2, c_3])
 
-    a_vec = np.linalg.solve(A, c)  # vector of coefficients for the polynomial
+    _a_vec = np.linalg.solve(A, c)  # vector of coefficients for the polynomial
 
-    return a_vec
+    return _a_vec
 
 
-# Segments of the piecewise curve:
+# Use previous information to build Segments of the piecewise curve:
 # Segment 1
 # polynomial object. Already callable and vectorized.
 
-def thickness_1():
+def thickness_1(): # Callable and vectorized. To be called on array of "r" values (lin-space)
     t = np.poly1d(np.flip(a_vec(alpha_0)))
     return t
 
 
 # Segment 2
-def thickness_2(r):  # Callable and vectorized
+def thickness_2(r):  # Callable and vectorized. To be called on array of "r" values (lin-space)
     r = np.asarray(r)
 
     # remove numerical errors
     arg_1 = r_0 / r
-    arg_1[arg_1 > 1] = 1
+    arg_1[arg_1 >= 1] = 1
 
     arg_2 = r_b / r
-    arg_2[arg_2 > 1] = 1
+    arg_2[arg_2 >= 1] = 1
 
     t = (m_R * n_R / pi) * (np.arccos(arg_1) - np.arccos(arg_2)) * t_P
     t = np.nan_to_num(t)
@@ -112,12 +111,14 @@ def thickness_2(r):  # Callable and vectorized
 # Joining two sections:
 def thickness(r):
     """
-    aggregates the thickness distribution of a layer
+    aggregates the thickness distribution of a layer from the two regions
+    aggregation obtained as a piecewise function using logical masks for the regions
     :param r:
     :return:
     """
     r = np.asarray(r)
     t = np.zeros(r.shape)
+    f = 0.5
 
     # First case
     # extract polynomial for given globs
@@ -132,26 +133,30 @@ def thickness(r):
     tol = 0.08
     t[t < tol] = 0
 
-    return t
+    return t * f
 
 
-def smoothing(current, previous):
+def smooth(t, y):
     """
-
-    :param current: points of the current layer in the form (x, y)
-    :param previous: points of the previous layer (x, y)
+    Smoothing function for low-angles (helical layers)
+    Makes layers seek the liner horizontally
+    :param t:
+    :param y:
     :return:
     """
-    x, y = current
-
-    x_p, y_p = previous
-
-    # # get max. From this position to the left, values will be overriden by smoothing.
-    # idx = y.argmax()
-    # # delete left of max
-    # y[idx:] = 10
-    # return x, y
-    pass
+    layer_mask = t > 0  # Logical Mask indicating the layer region ((((preliminarily))))
+    # find index where layer peaks height
+    idx = (y * layer_mask).argmax()  #
+    # ## build mask: True below layer maximum point value AND below flag idx
+    # left of flag index
+    aux_mask = np.zeros(y.shape, dtype="bool")
+    aux_mask[:idx] = True
+    # and below maximum y point
+    aux_mask = np.logical_and(aux_mask, y < y[idx])
+    # delete all points from all vectors that fulfill the condition
+    # x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
+    y[aux_mask] = y[idx]
+    return y
 
 
 def draw_layer(r, g, make_smooth):
@@ -163,65 +168,43 @@ def draw_layer(r, g, make_smooth):
     """
     # calculate thickness distribution
     t = thickness(r)
-    dg = np.gradient(g, r)
-    den = np.sqrt(1 + dg ** 2)
+    df = np.gradient(r)
+    dg = np.gradient(g)
+    den = np.sqrt(df ** 2 + dg ** 2)
     x = r - t * dg / den
-    y = g + t / den
-    layer_mask = t > 0  # Logical Mask indicating the layer region preliminarily
+    y = g + t * df / den
+
     # --- smoothing ---
-
     if make_smooth:
-        # find index where layer peaks height
-        idx = (y * layer_mask).argmax()  #
-
-        # build mask: True below layer maximum point value AND below flag idx
-
-        # left of flag index
-        aux_mask = np.zeros(y.shape, dtype="bool")
-        aux_mask[:idx] = True
-
-        # and below maximum y point
-        aux_mask = np.logical_and(aux_mask, y < y[idx])
-
-        # delete all points from all vectors that fulfill the condition
-        # x, y, r, g = map(lambda v: np.delete(v, aux_mask), (x, y, r, g))
-
-        y[aux_mask] = y[idx]
+        y = smooth(t, y)
 
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
-    # redefine layer region: where previous top (g) deviates from new top (y)
+    # define layer region: where previous top (g) deviates from new top (y)
     layer_mask = y != g
     first_true = np.where(layer_mask)[0][0]
     layer_mask[first_true - 1] = True
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
 
+    # Add straight lines towards the bottom of the tank
     x_layer = np.append(x_layer, x_layer[-1])
     y_layer = np.append(y_layer, 0)
 
-
-    # x_layer[0] = r[first_true-1]
-    # y_layer[0] = g[first_true-1]
-
-    layer_points = (x_layer, y_layer)
+    layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
     topmost_points = (x, y)  # used to calculate next layer. do not store.
     return layer_points, topmost_points
 
 
+
+
+
 def main():
 
-    # angles = [15, 20, 30, 40, 50, 60, 70]  # TODO obsolete
-
-    # result = []
-    #
-    # for _ in range(0):
-    #     result += list(np.random.permutation(angles))
-
+    #  bullshit imports not working, bruteforce to bring angles
     angles = design_variables.angles
 
 
-    # angles = result
 
     # initial values are those of the liner
 
@@ -234,11 +217,11 @@ def main():
 
     zone_1 = np.append(zone_1, False)
 
-    # initialize parametric curve to shape of liner
+    # initialize parametric curve to shape of liner  # TODO maybe this will be obsolete
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-    ls = np.linspace(r.min(), r.max(), 800)
+    ls = np.linspace(r.min(), r.max(), 200)
 
     interp = interp1d(r, g, kind="cubic")
 
@@ -248,8 +231,8 @@ def main():
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
 
-    # f1 = plt.figure(1)  # TODO plot
-    # plot(r, g, "-o")
+    f1 = plt.figure(1)  # TODO plot
+    plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -284,13 +267,13 @@ def main():
         landmarks += (landmark,)
 
         disp = "-o"
-        # if True:
-        #     f1 = plt.figure(1)
-        #     # plot(*layer_points, disp)
-        #     plot(x, y, disp)
-        #
-        #     f2 = plt.figure(2)
-        #     plot(x, thickness(x), disp)
+        if True:
+            f1 = plt.figure(1)
+            # plot(*layer_points, disp)
+            plot(x, y, disp)
+
+            f2 = plt.figure(2)
+            plot(x, thickness(x), disp)
 
     return lines, landmarks
 

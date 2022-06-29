@@ -59,8 +59,15 @@ def get_gamma(position, layer_number):
 
 
 def get_alpha(position, layer_number):
+    """
+    Calculate winding alngle with respect to meridional direction.
+    According to Clariaut's equation.
+    :param position: radial coordinate in mm
+    :param layer_number: self explainatory, int
+    :return: array of values for the angle Alpha.
+    """
     alpha_0 = np.radians(angles[layer_number - 1])
-    try:
+    try:  # TODO this is calculated on every layer. R can be dependent on layer number.
         alpha = np.arcsin(R * np.sin(alpha_0) / position)  # R * sin(alpha_0 / r)
     except FloatingPointError:
         alpha = 90 * pi / 180

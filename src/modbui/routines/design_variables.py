@@ -4,22 +4,38 @@ Geometric properties.
 """
 import numpy as np
 
-angles = [90, 90, 90, 90,
-          15, 15, 15, 15, 15, 15, 15, 15,
-          30, 30, 30, 30,
-          40, 40, 40, 40,
-          50, 50, 50, 50,
-          54, 54, 54, 54,
-          90, 90, 90, 90, 90, 90, 90, 90]
+_ = 1
 
-# angles = [90, 90, 90, 90,
-#           15, 15, 15, 15,
-#           30, 30, 30, 30,
-#           40, 40, 40, 40,
-#           50, 50, 50, 50,
-#           90, 90, 90, 90, 90, 90, 90, 90]
+if _ == 1:
 
-angles = [a for a in angles if a != 90]
+    angles = np.array([90, 90, 90, 90,
+                       15, 15, 15, 15, 15, 15, 15, 15,
+                       30, 30, 30, 30,
+                       40, 40, 40, 40,
+                       50, 50, 50, 50,
+                       54, 54, 54, 54,
+                       90, 90, 90, 90, 90, 90, 90, 90])
+    angles[angles == 90] = 80
+elif _ == 2:
+    angles = [90, 90, 90, 90,
+              15, 15, 15, 15,
+              30, 30, 30, 30,
+              40, 40, 40, 40,
+              50, 50, 50, 50,
+              90, 90, 90, 90, 90, 90, 90, 90]
+    angles[angles == 90] = 70
+
+elif _ == 3:
+    angles = [15, 20, 30, 40, 50, 60, 70]  # TODO obsolete
+
+    result = []
+
+    for _ in range(5):
+        result += list(np.random.permutation(angles))
+    angles = result
+
+
+
 
 # Independent
 R = 156.  # mm - Cylindrical zone radius TODO make dependent on file

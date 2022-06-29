@@ -38,8 +38,6 @@ bsur = 'surf_'
 LAYUP_INTERACTION_SURF = bsur + 'contact_layup'
 LINER_INTERACTION_SURF = bsur + 'contact_liner'
 
-
-
 LOAD_SURF = bsur + 'load'
 
 #  ----- Geometry -----

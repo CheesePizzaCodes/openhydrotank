@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="orientations FINALLY fucking working">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="test of test branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -59,7 +66,7 @@
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.orient_elements">
+  <component name="RunManager" selected="Python.thickness">
     <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,9 +197,6 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -423,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655738796122</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="orientations FINALLY fucking working">
+      <created>1656010361412</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1656010361412</updated>
+    </task>
+    <task id="LOCAL-00029" summary="test of test branch">
+      <created>1656010429880</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1656010429880</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -438,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cut_face.py and create_part.py working with simple stub geometry" />
     <MESSAGE value="refactored create_part.py to create sets on each part&#10;finished assembly.py&#10;advanced in sets.py&#10;refactored naming convention in routine_constants.py&#10;finished property.py" />
     <MESSAGE value="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point" />
     <MESSAGE value="moved trivial steps to trivial.py&#10;changed names of modules to avoid compatibility issues with abaqus native modules&#10;finished sets and surfaces (TODO remove top part on load surf)&#10;finished step&#10;finished load-bc&#10;finished interaction" />
@@ -463,29 +480,30 @@
     <MESSAGE value="1111" />
     <MESSAGE value="test checkpoint" />
     <MESSAGE value="orientations FINALLY fucking working" />
-    <option name="LAST_COMMIT_MESSAGE" value="orientations FINALLY fucking working" />
+    <MESSAGE value="test of test branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="test of test branch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>286</line>
+          <line>269</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>255</line>
+          <line>238</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>294</line>
+          <line>277</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>238</line>
+          <line>221</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
