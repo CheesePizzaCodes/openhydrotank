@@ -15,7 +15,7 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 
 import design_variables
-from design_variables import angles, b, t_R, t_P, pi, R
+from design_variables import angles, b, t_R, t_P, pi
 
 # TODO move to global definition
 filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
@@ -200,7 +200,8 @@ def draw_layer(r, g, make_smooth):
 
 
 def main():
-
+    global R
+    R = liner_r.max()
     #  bullshit imports not working, bruteforce to bring angles
     angles = design_variables.angles
 
@@ -210,16 +211,15 @@ def main():
 
     # TODO massive refactor, check that everything makes sense...
     globs(angles[0])
-    # r = np.linspace(0, R, num=505)  # TODO change to r_0, R. Layer dependent.
-    # g = np.interp(r, liner_r, liner_y)
 
-    zone_1 = np.diff(liner_r) != 0
+    zone_1 = np.diff(liner_r) != 0  # TODO delete this technicality, as parameter is now index. No need.
 
     zone_1 = np.append(zone_1, False)
 
     # initialize parametric curve to shape of liner  # TODO maybe this will be obsolete
     r = liner_r[zone_1]
     g = liner_y[zone_1]
+
 
     ls = np.linspace(r.min(), r.max(), 200)
 
@@ -232,7 +232,7 @@ def main():
     topmost_points = (r, g)
 
     f1 = plt.figure(1)  # TODO plot
-    plot(r, g, "-o")
+    plot(r, g, "")
 
     # draw layup routine TODO make method
 
@@ -253,6 +253,9 @@ def main():
             make_smooth = True
         else:
             make_smooth = False  # TODO this breaks the code
+
+        R = topmost_points[0].max()
+
         layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
 
         # extract points (redundant, readability)
@@ -266,7 +269,7 @@ def main():
         lines += (line,)
         landmarks += (landmark,)
 
-        disp = "-o"
+        disp = ""
         if True:
             f1 = plt.figure(1)
             # plot(*layer_points, disp)
