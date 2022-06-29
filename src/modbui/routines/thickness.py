@@ -118,7 +118,7 @@ def thickness(r):
     """
     r = np.asarray(r)
     t = np.zeros(r.shape)
-    f = 0.5
+    f = 1
 
     # First case
     # extract polynomial for given globs
@@ -220,6 +220,8 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
+    # r = liner_r
+    # g = liner_y
 
     ls = np.linspace(r.min(), r.max(), 200)
 

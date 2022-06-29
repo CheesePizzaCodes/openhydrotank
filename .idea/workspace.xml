@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="checkpoint before messing with global value of R">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="variable R working properly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -445,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656518568912</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="variable R working properly">
+      <created>1656521824363</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1656521824363</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -460,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point" />
     <MESSAGE value="moved trivial steps to trivial.py&#10;changed names of modules to avoid compatibility issues with abaqus native modules&#10;finished sets and surfaces (TODO remove top part on load surf)&#10;finished step&#10;finished load-bc&#10;finished interaction" />
     <MESSAGE value="refactored all files to name==main idiom&#10;&#10;created routine_main.py file" />
     <MESSAGE value="mashed all in one file" />
@@ -485,24 +492,25 @@
     <MESSAGE value="orientations FINALLY fucking working" />
     <MESSAGE value="test of test branch" />
     <MESSAGE value="checkpoint before messing with global value of R" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkpoint before messing with global value of R" />
+    <MESSAGE value="variable R working properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="variable R working properly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>272</line>
+          <line>274</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>238</line>
+          <line>240</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>280</line>
+          <line>282</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
