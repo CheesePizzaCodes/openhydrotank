@@ -33,7 +33,8 @@ def globs(angle):
     :return:
     """
     # TODO this is calculated on every layer. R can be dependent on layer number.
-    global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0
+    global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0, angle_deg
+    angle_deg = angle
     alpha_0 = np.radians(angle)
     r_0 = R * np.sin(alpha_0)  # Polar opening radius
     m_R = 2 * pi * R * np.cos(alpha_0) / b
@@ -116,6 +117,8 @@ def thickness(r):
     :param r:
     :return:
     """
+
+
     r = np.asarray(r)
     t = np.zeros(r.shape)
     f = 1
@@ -130,7 +133,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.08
+    tol = 0.02
     t[t < tol] = 0
 
     return t * f
@@ -223,7 +226,7 @@ def main():
     # r = liner_r
     # g = liner_y
 
-    ls = np.linspace(r.min(), r.max(), 200)
+    ls = np.linspace(r.min(), r.max(), 100)
 
     interp = interp1d(r, g, kind="cubic")
 
@@ -271,7 +274,7 @@ def main():
         lines += (line,)
         landmarks += (landmark,)
 
-        disp = ""
+        disp = "-o"
         if True:
             f1 = plt.figure(1)
             # plot(*layer_points, disp)

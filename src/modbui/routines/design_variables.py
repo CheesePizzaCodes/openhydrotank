@@ -4,11 +4,11 @@ Geometric properties.
 """
 import numpy as np
 
-_ = 1
+_ = 3
 
 if _ == 1:
 
-    angles = np.array([90, 90, 90, 90,
+    angles = np.array([90, 90, 90, 90, 90, 90, 90, 90,
                        15, 15, 15, 15, 15, 15, 15, 15,
                        30, 30, 30, 30,
                        40, 40, 40, 40,
@@ -37,7 +37,7 @@ elif _ == 3:
 
 
 # Independent
-R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
+# R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
 
 b = 8.  # mm - Roving bandwidth
 # alpha_0 = np.radians(40.)  # rad - Cylindrical zone angle TODO must vary with each ply
