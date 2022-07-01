@@ -221,7 +221,7 @@ def main():
     angles = design_variables.angles
 
 
-    # angles = result
+    # angles = results
 
     # initial values are those of the liner
 
