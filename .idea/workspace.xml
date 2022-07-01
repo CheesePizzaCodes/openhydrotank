@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="checkpoint before swapping r and g for interpolation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
-    </list>
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="Several changes improved performance overall:&#10;&#10;-getting rid of tol in thickness.thickness() ( or setting it to a very low value) solved the differenciability issues that caused interlacing points&#10;&#10;-Script is now fully independent of global static R&#10;&#10;- Now robust enough to handle several stacks&#10;&#10;-included angle in degrees as a global variable for comparison purposes in each loop (i.e. to figure out if its a hoop layer, etc.)&#10;&#10;- Script is now even robust enough to SOLVE FUCKING RANDOM ANGLE PERMUTATIONS LETS GOOOOOOOOOOOOOO I LOVE MYSELF AND MY CREATIOIN" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
