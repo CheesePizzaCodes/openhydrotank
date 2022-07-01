@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="orientations FINALLY fucking working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
-    </list>
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="Several changes improved performance overall:&#10;&#10;-getting rid of tol in thickness.thickness() ( or setting it to a very low value) solved the differenciability issues that caused interlacing points&#10;&#10;-Script is now fully independent of global static R&#10;&#10;- Now robust enough to handle several stacks&#10;&#10;-included angle in degrees as a global variable for comparison purposes in each loop (i.e. to figure out if its a hoop layer, etc.)&#10;&#10;- Script is now even robust enough to SOLVE FUCKING RANDOM ANGLE PERMUTATIONS LETS GOOOOOOOOOOOOOO I LOVE MYSELF AND MY CREATIOIN" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -423,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655738796122</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Several changes improved performance overall:&#10;&#10;-getting rid of tol in thickness.thickness() ( or setting it to a very low value) solved the differenciability issues that caused interlacing points&#10;&#10;-Script is now fully independent of global static R&#10;&#10;- Now robust enough to handle several stacks&#10;&#10;-included angle in degrees as a global variable for comparison purposes in each loop (i.e. to figure out if its a hoop layer, etc.)&#10;&#10;- Script is now even robust enough to SOLVE FUCKING RANDOM ANGLE PERMUTATIONS LETS GOOOOOOOOOOOOOO I LOVE MYSELF AND MY CREATIOIN">
+      <created>1656668337035</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1656668337035</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -438,7 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cut_face.py and create_part.py working with simple stub geometry" />
     <MESSAGE value="refactored create_part.py to create sets on each part&#10;finished assembly.py&#10;advanced in sets.py&#10;refactored naming convention in routine_constants.py&#10;finished property.py" />
     <MESSAGE value="included new names and points in routine_constants.py&#10;refactored point selection method as function in routine_util.py&#10;refactored set creations using utility function&#10;added load set routine&#10;TODO: debug load set, to exclude values above a point" />
     <MESSAGE value="moved trivial steps to trivial.py&#10;changed names of modules to avoid compatibility issues with abaqus native modules&#10;finished sets and surfaces (TODO remove top part on load surf)&#10;finished step&#10;finished load-bc&#10;finished interaction" />
@@ -463,7 +465,8 @@
     <MESSAGE value="1111" />
     <MESSAGE value="test checkpoint" />
     <MESSAGE value="orientations FINALLY fucking working" />
-    <option name="LAST_COMMIT_MESSAGE" value="orientations FINALLY fucking working" />
+    <MESSAGE value="Several changes improved performance overall:&#10;&#10;-getting rid of tol in thickness.thickness() ( or setting it to a very low value) solved the differenciability issues that caused interlacing points&#10;&#10;-Script is now fully independent of global static R&#10;&#10;- Now robust enough to handle several stacks&#10;&#10;-included angle in degrees as a global variable for comparison purposes in each loop (i.e. to figure out if its a hoop layer, etc.)&#10;&#10;- Script is now even robust enough to SOLVE FUCKING RANDOM ANGLE PERMUTATIONS LETS GOOOOOOOOOOOOOO I LOVE MYSELF AND MY CREATIOIN" />
+    <option name="LAST_COMMIT_MESSAGE" value="Several changes improved performance overall:&#10;&#10;-getting rid of tol in thickness.thickness() ( or setting it to a very low value) solved the differenciability issues that caused interlacing points&#10;&#10;-Script is now fully independent of global static R&#10;&#10;- Now robust enough to handle several stacks&#10;&#10;-included angle in degrees as a global variable for comparison purposes in each loop (i.e. to figure out if its a hoop layer, etc.)&#10;&#10;- Script is now even robust enough to SOLVE FUCKING RANDOM ANGLE PERMUTATIONS LETS GOOOOOOOOOOOOOO I LOVE MYSELF AND MY CREATIOIN" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
