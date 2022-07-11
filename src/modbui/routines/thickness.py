@@ -22,21 +22,23 @@ filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\l
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
+# extract points from liner
 liner_r = liner[:, 0]
 liner_y = liner[:, 1]
 
 
 def globs(angle):
     """
-    Calculates the global geometric parameters for this routine. Function of alpha_0 and thus layer-dependent.
+    Calculates the global geometric parameters for this routine.
+    These vary with respect to the angle of the layer.
     :param angle: alpha_0. Desired cylindrical-section angle.
     :return:
     """
-    # TODO this is calculated on every layer. R can be dependent on layer number.
+    # TODO this is calculated on every layer.
     global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0, angle_deg
     angle_deg = angle
     alpha_0 = np.radians(angle)
-    r_0 = R * np.sin(alpha_0)  # Polar opening radius
+    r_0 = R * np.sin(alpha_0)  # Polar opening radius. BC for initial drawing of each layer.
     m_R = 2 * pi * R * np.cos(alpha_0) / b
     m_0 = 2 * pi * r_0 * np.cos(alpha_0) / b
     r_b = r_0 + b
@@ -46,8 +48,9 @@ def globs(angle):
 
 def pd(degree):
     """
-    Utility function
-    :param degree:
+    Utility function / shorthand
+    Returns substraction of powers of order :degree: for r_2b and r_b
+    :param degree: exponent of the substraction of powers
     :return:
     """
     return r_2b ** degree - r_0 ** degree
@@ -55,11 +58,12 @@ def pd(degree):
 
 def a_vec(angle):
     """
-    Obtain coefficients for the polynomial (cubic spline) for the thickness in region 1
-    :param angle:
-    :return:
+    Obtain vector of coefficients for the polynomial (cubic spline) for the thickness in region 1
+    :param angle: nominal winding angle of the layer
+    :return: vector of coefficients :a: of the polynomial such that dot(a, [x**0, x**1, x**2. x**3]) is a polynomial
     """
-    # Setting up linear system: Ac = a, A matrix
+    # Setting up linear system: A c = a,
+    # A is a matrix with the constraints and c is the independent-terms vector [TODO reference]
     A = np.array([
         [1., r_0, r_0 ** 2, r_0 ** 3],
         [1., r_2b, r_2b ** 2, r_2b ** 3],
@@ -67,7 +71,7 @@ def a_vec(angle):
         [pi * (pd(2)), 2 * pi / 3 * (pd(3)), pi / 2 * (pd(4)), 2 * pi / 5 * (pd(5))],
     ])
 
-    # c - vector   # TODO this is calculated on every layer. R can be dependent on layer number.
+    # c - vector - independent terms
     c_0 = t_R * pi * R * np.cos(angle) / (m_0 * b)
     c_1 = m_R * n_R / pi * (np.arccos(r_0 / r_2b) - np.arccos(r_b / r_2b)) * t_P
     c_2 = m_R * n_R / pi * (r_0 / (r_2b * np.sqrt(pd(2))) - r_b / (r_2b * np.sqrt(r_2b ** 2 - r_b ** 2))) * t_P
@@ -79,7 +83,7 @@ def a_vec(angle):
 
     c = np.array([c_0, c_1, c_2, c_3])
 
-    _a_vec = np.linalg.solve(A, c)  # vector of coefficients for the polynomial
+    _a_vec = np.linalg.solve(A, c)  # calculate vector of coefficients for the polynomial by inversion of A
 
     return _a_vec
 
@@ -89,7 +93,7 @@ def a_vec(angle):
 # polynomial object. Already callable and vectorized.
 
 def thickness_1(): # Callable and vectorized. To be called on array of "r" values (lin-space)
-    t = np.poly1d(np.flip(a_vec(alpha_0)))
+    t = np.poly1d(np.flip(a_vec(alpha_0))) #  Vector is flipped because of difference in nomenclature between reference and numpy
     return t
 
 
@@ -97,15 +101,15 @@ def thickness_1(): # Callable and vectorized. To be called on array of "r" value
 def thickness_2(r):  # Callable and vectorized. To be called on array of "r" values (lin-space)
     r = np.asarray(r)
 
-    # remove numerical errors
+    # remove numerical errors -- set undefined regions of the domain of arccos to 1, in order to return pi
     arg_1 = r_0 / r
-    arg_1[arg_1 >= 1] = 1
+    arg_1[arg_1 >= 1] = 1  # TODO check if the correct default value is 1 or 0
 
     arg_2 = r_b / r
     arg_2[arg_2 >= 1] = 1
 
     t = (m_R * n_R / pi) * (np.arccos(arg_1) - np.arccos(arg_2)) * t_P
-    t = np.nan_to_num(t)
+    t = np.nan_to_num(t)  # TODO remove, probably obsolete and may break something (test first)
     return t
 
 
@@ -117,11 +121,9 @@ def thickness(r):
     :param r:
     :return:
     """
-
-
     r = np.asarray(r)
     t = np.zeros(r.shape)
-    f = 1
+    f = 1  # Size factor. Used to half the size of each layer to follow the double-pseudolayer approach
 
     # if angle_deg == 90:
     #
@@ -136,6 +138,7 @@ def thickness(r):
     polynomial = thickness_1()
     # find lower bound as the first real root of polynomial
     # lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
+    # lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])  # TODO Obsolete, remove, but test first
     # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
     t += polynomial(r) * ((polynomial(r) >= 0) & (r <= r_2b))
     # Second case
