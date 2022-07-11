@@ -123,11 +123,19 @@ def thickness(r):
     t = np.zeros(r.shape)
     f = 1
 
+    # if angle_deg == 90:
+    #
+    #     d = r[-trailing_points]
+    #
+    #     t += np.sqrt(r - d)
+    #
+    #     return t
+
     # First case
     # extract polynomial for given globs
     polynomial = thickness_1()
     # find lower bound as the first real root of polynomial
-    lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
+    # lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
     # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
     t += polynomial(r) * ((polynomial(r) >= 0) & (r <= r_2b))
     # Second case
@@ -223,11 +231,14 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-    # r = liner_r
-    # g = liner_y
+    global trailing_points
+    trailing_points = 5
 
     ls = np.linspace(r.min(), r.max(), 100)
+    aux_ls = np.linspace(ls[-2], ls[-1], trailing_points)
+    ls = np.unique(np.sort(np.concatenate((ls, aux_ls))))
 
+    # modify original sampling to increase granularity in trailing section
     interp = interp1d(r, g, kind="cubic")
 
     r = ls
@@ -237,7 +248,7 @@ def main():
     topmost_points = (r, g)
 
     f1 = plt.figure(1)  # TODO plot
-    plot(r, g, "")
+    plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -257,11 +268,11 @@ def main():
         if angle <= 20:
             make_smooth = True
         else:
-            make_smooth = False  # TODO this breaks the code
+            make_smooth = False
 
         R = topmost_points[0].max()
 
-        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)
+        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)  # TODO make_smooth parameter is obsolete since angle_deg is a global parameter now
 
         # extract points (redundant, readability)
 

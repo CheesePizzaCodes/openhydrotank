@@ -4,7 +4,7 @@ Geometric properties.
 """
 import numpy as np
 
-_ = 3
+_ = 1
 
 if _ == 1:
 
@@ -15,7 +15,7 @@ if _ == 1:
                        50, 50, 50, 50,
                        54, 54, 54, 54,
                        90, 90, 90, 90, 90, 90, 90, 90])
-    angles[angles == 90] = 80
+    # angles[angles == 90] = 75
 elif _ == 2:
     angles = [90, 90, 90, 90,
               15, 15, 15, 15,
