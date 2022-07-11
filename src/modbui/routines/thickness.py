@@ -8,8 +8,12 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routin
 
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import plot
+
+
+# import matplotlib.pyplot as plt
+# from matplotlib.pyplot import plot
+
+
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
@@ -125,21 +129,17 @@ def thickness(r):
     t = np.zeros(r.shape)
     f = 1  # Size factor. Used to half the size of each layer to follow the double-pseudolayer approach
 
-    # if angle_deg == 90:
-    #
-    #     d = r[-trailing_points]
-    #
-    #     t += np.sqrt(r - d)
-    #
-    #     return t
+    if angle_deg == 90:
+
+        hoop_nominal_thickness = 0.065
+        d = r[-t_p]
+        t[-t_p:] = (r[-t_p:] - d) ** 0.5 * 0.05
+
+        return t
 
     # First case
     # extract polynomial for given globs
     polynomial = thickness_1()
-    # find lower bound as the first real root of polynomial
-    # lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])
-    # lower_bound = np.real(polynomial.roots[np.isreal(polynomial.roots)][0])  # TODO Obsolete, remove, but test first
-    # t += polynomial(r) * ((r_0 <= r) & (r <= r_2b))
     t += polynomial(r) * ((polynomial(r) >= 0) & (r <= r_2b))
     # Second case
     t += thickness_2(r) * (r_2b < r)
@@ -234,12 +234,12 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
-    global trailing_points
-    trailing_points = 5
+    global t_p
+    t_p = 10
 
     ls = np.linspace(r.min(), r.max(), 100)
-    aux_ls = np.linspace(ls[-2], ls[-1], trailing_points)
-    ls = np.unique(np.sort(np.concatenate((ls, aux_ls))))
+    aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
+    ls = np.unique(np.concatenate((ls, aux_ls)))
 
     # modify original sampling to increase granularity in trailing section
     interp = interp1d(r, g, kind="cubic")
@@ -250,8 +250,8 @@ def main():
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
 
-    f1 = plt.figure(1)  # TODO plot
-    plot(r, g, "-o")
+    # f1 = plt.figure(1)  # TODO plot
+    # plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -289,13 +289,13 @@ def main():
         landmarks += (landmark,)
 
         disp = "-o"
-        if True:
-            f1 = plt.figure(1)
-            # plot(*layer_points, disp)
-            plot(x, y, disp)
-
-            f2 = plt.figure(2)
-            plot(x, thickness(x), disp)
+        # if True:
+        #     f1 = plt.figure(1)
+        #     # plot(*layer_points, disp)
+        #     plot(x, y, disp)
+        #
+        #     f2 = plt.figure(2)
+        #     plot(x, thickness(x), disp)
 
     return lines, landmarks
 

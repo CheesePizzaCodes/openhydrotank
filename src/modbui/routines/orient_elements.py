@@ -4,32 +4,32 @@ import numpy as np
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
-# import abaqus modules
-# from abaqus import *
-# from abaqusConstants import *
-# import __main__
-# import section
-# import regionToolset
-# import displayGroupMdbToolset as dgm
-# import part
-# import material
-# import assembly
-# import step
-# import interaction
-# import load
-# import mesh
-# import optimization
-# import job
-# import visualization
-# import xyPlot
-# import displayGroupOdbToolset as dgo
-# import connectorBehavior
+## import abaqus modules
+from abaqus import *
+from abaqusConstants import *
+import __main__
+import section
+import regionToolset
+import displayGroupMdbToolset as dgm
+import part
+import material
+import assembly
+import step
+import interaction
+import load
+import mesh
+import optimization
+import job
+import visualization
+import xyPlot
+import displayGroupOdbToolset as dgo
+import connectorBehavior
 
 from time import time
 
 # import own modules
 import routine_util as ru
-from design_variables import R, angles, pi
+from design_variables import angles, pi
 import routine_constants as rc
 
 filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
@@ -67,6 +67,9 @@ def get_alpha(position, layer_number):
     :return: array of values for the angle Alpha.
     """
     alpha_0 = np.radians(angles[layer_number - 1])
+
+    R = 160.
+
     try:  # TODO this is calculated on every layer. R can be dependent on layer number.
         alpha = np.arcsin(R * np.sin(alpha_0) / position)  # R * sin(alpha_0 / r)
     except FloatingPointError:
@@ -113,9 +116,9 @@ def get_basis(element, layer_number):
 
     # --------------- With respect to material properties
     beta_3 = np.eye(3)
-    # beta_3 = np.array([[sa, -ca, 0.],
-    #                    [ca, sa, 0.],
-    #                    [0, 0, 1.]]).T
+    beta_3 = np.array([[sa, -ca, 0.],
+                       [ca, sa, 0.],
+                       [0, 0, 1.]]).T
 
     tensor = transform_tensor(tensor, beta_3)
 
@@ -136,8 +139,7 @@ def main(_lines):
 
     sts = prt.sets
 
-    sts = [(int(key.split("_")[-1]), sts[key]) for key in sts.keys() if
-           key.startswith('set_layer')]  # Filter: only layer sets
+    sts = [(int(key.split("_")[-1]), sts[key]) for key in sts.keys() if key.startswith('set_layer')]  # Filter: only layer sets
 
     indices_list = []
 
