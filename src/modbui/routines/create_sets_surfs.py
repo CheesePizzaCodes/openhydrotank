@@ -76,11 +76,11 @@ def main(landmarks):
         location = ru.offset_point(landmark, 45)
         face_array = part.faces.findAt((location, (0., 0., 1.)))  # find face at location
         name = rc.LAYER_SET + str(index + 1)
-        part.Set(faces=(face_array,), name=name)
+        part.Set(faces=(face_array,), name=name)  # TODO layer 1 not included bug. Change angle for 45+90
 
     # ---- create surf on layup for contact with liner
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
-    landmark = landmarks[0]
+    landmark = landmarks[0]  # TODO debug loading set here
     location = ru.offset_point(landmark, 90)  # find location of edge above point
     edge = part.edges.findAt(location)
     selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
