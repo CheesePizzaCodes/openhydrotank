@@ -6,12 +6,14 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
+toggle = False
+
 import numpy as np
 import scipy as sp
 
-
-# import matplotlib.pyplot as plt
-# from matplotlib.pyplot import plot
+if toggle:
+    import matplotlib.pyplot as plt
+    from matplotlib.pyplot import plot
 
 
 from scipy.integrate import quad
@@ -135,7 +137,7 @@ def thickness(r):
         d = r[-t_p]
         t[-t_p:] = (r[-t_p:] - d) ** 0.5 * 0.05
 
-        return t
+        return t * f
 
     # First case
     # extract polynomial for given globs
@@ -144,7 +146,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.02
+    tol = 0.061
     t[t < tol] = 0
 
     return t * f
@@ -236,9 +238,14 @@ def main():
 
     global t_p
     t_p = 10
+    b_p = 50
 
     ls = np.linspace(r.min(), r.max(), 100)
+
     aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
+    ls = np.unique(np.concatenate((ls, aux_ls)))
+
+    aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
     ls = np.unique(np.concatenate((ls, aux_ls)))
 
     # modify original sampling to increase granularity in trailing section
@@ -250,8 +257,9 @@ def main():
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
 
-    # f1 = plt.figure(1)  # TODO plot
-    # plot(r, g, "-o")
+    if toggle:
+        f1 = plt.figure(1)  # TODO plot
+        plot(r, g, "-o")
 
     # draw layup routine TODO make method
 
@@ -263,7 +271,6 @@ def main():
     landmarks = (initial_line[-1],)  # accum. for important landmarks
 
     for angle in angles:
-
         # overwrite globals
         globs(angle)
         # calculate outer contour of new layer
@@ -289,13 +296,13 @@ def main():
         landmarks += (landmark,)
 
         disp = "-o"
-        # if True:
-        #     f1 = plt.figure(1)
-        #     # plot(*layer_points, disp)
-        #     plot(x, y, disp)
-        #
-        #     f2 = plt.figure(2)
-        #     plot(x, thickness(x), disp)
+        if toggle:
+            f1 = plt.figure(1)
+            # plot(*layer_points, disp)
+            plot(x, y, disp)
+
+            f2 = plt.figure(2)
+            plot(x, thickness(x), disp)
 
     return lines, landmarks
 

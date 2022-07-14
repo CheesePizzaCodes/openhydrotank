@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="wtf checkpoint">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/create_sets_surfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/create_sets_surfs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
@@ -467,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657536314624</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="granularity in trainling section increased">
+      <created>1657537017054</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1657537017054</updated>
+    </task>
+    <task id="LOCAL-00035" summary="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices">
+      <created>1657565201472</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1657565201472</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,8 +497,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mashed all in one file" />
-    <MESSAGE value="Implemented toggleable liner&#10;implemented ofientations via discrete field&#10;added timestamps to main loop&#10;implemented mesher.py&#10;&#10;added new constants&#10;&#10;implemented job generation in trivial.py&#10;&#10;end" />
     <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
     <MESSAGE value="started implementing thickness.py" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
@@ -507,29 +520,31 @@
     <MESSAGE value="variable R working properly" />
     <MESSAGE value="all is so beautiful i love mechanical engineering &lt;3" />
     <MESSAGE value="wtf checkpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="wtf checkpoint" />
+    <MESSAGE value="granularity in trainling section increased" />
+    <MESSAGE value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>294</line>
+          <line>298</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>260</line>
+          <line>265</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>302</line>
+          <line>306</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>237</line>
+          <line>236</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -541,6 +556,16 @@
           <url>file://$PROJECT_DIR$/src/modbui/routines/orient_elements.py</url>
           <line>36</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/orient_elements.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

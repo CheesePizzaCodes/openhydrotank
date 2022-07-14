@@ -73,10 +73,12 @@ def main(landmarks):
     faces = part.faces
 
     for index, landmark in enumerate(landmarks):  # this required a workaround using findAt...
-        location = ru.offset_point(landmark, 45)
+        location = ru.offset_point(landmark, 45 + 90)
         face_array = part.faces.findAt((location, (0., 0., 1.)))  # find face at location
-        name = rc.LAYER_SET + str(index + 1)
-        part.Set(faces=(face_array,), name=name)  # TODO layer 1 not included bug. Change angle for 45+90
+        name = rc.LAYER_SET + str(index)
+        part.Set(faces=(face_array,), name=name)  # TODO layer 1 not included bug. Change angle for 45 + 90
+
+    del mdb.models['model'].parts['layup'].sets['set_layer_0']
 
     # ---- create surf on layup for contact with liner
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]

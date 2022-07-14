@@ -15,6 +15,7 @@ if _ == 1:
                        50, 50, 50, 50,
                        54, 54, 54, 54,
                        90, 90, 90, 90, 90, 90, 90, 90])
+
 elif _ == 2:
     angles = [90, 90, 90, 90,
               15, 15, 15, 15,
@@ -28,7 +29,7 @@ elif _ == 3:
 
     result = []
 
-    for _ in range(5):
+    for _ in range(3):
         result += list(np.random.permutation(angles))
     angles = result
 
