@@ -68,7 +68,9 @@ def main(landmarks):
     #                       deleteCells=False)
     # print("flag")
 
-    # ---- create one set per layer
+    # -----------------
+    # create one set per layer
+    # -----------------
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     faces = part.faces
 
@@ -79,16 +81,29 @@ def main(landmarks):
         part.Set(faces=(face_array,), name=name)  # TODO layer 1 not included bug. Change angle for 45 + 90
 
     del mdb.models['model'].parts['layup'].sets['set_layer_0']
-
-    # ---- create surf on layup for contact with liner
+    # -----------------
+    # create surf on layup for pressure loading
+    # -----------------
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     landmark = landmarks[0]  # TODO debug loading set here
     location = ru.offset_point(landmark, 90)  # find location of edge above point
     edge = part.edges.findAt(location)
-    selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
-    part.Surface(side1Edges=selection, name=rc.LAYUP_INTERACTION_SURF)
 
-    # ---- create surf on liner for contact with layup TODO remove, obsolete
+
+
+
+    selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
+
+    points = [e.pointOn[0] for e in selection]  # extract characteristic points of the curve of interest
+    points = [(point,) for point in points if point[1] < 477.340487]
+
+    selection = part.edges.findAt(*points)
+
+
+    part.Surface(side1Edges=selection, name=rc.LAYUP_INTERACTION_SURF)
+    # -----------------
+    #  create surf on liner for contact with layup TODO remove, obsolete
+    # -----------------
     if rc.LINER_TOGGLE:
         part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
         location = ru.offset_point(rc.ROOT_POINT, 90)  # find location of edge above point
@@ -96,8 +111,9 @@ def main(landmarks):
         selection = edge.getEdgesByEdgeAngle(rc.GET_EDGES_BY_ANGLE)
         part.Surface(side1Edges=selection, name=rc.LINER_INTERACTION_SURF)
 
-    # ---- create surf on liner for pressure loading
-
+    # -----------------
+    #  create surf on liner for pressure loading
+    # -----------------
     if rc.LINER_TOGGLE:
         part = mdb.models[rc.MODEL].parts[rc.LINER_PART]
         location = ru.offset_point(rc.LINER_ROOT_POINT, 90)  # find location of edge above point
@@ -115,8 +131,9 @@ def main(landmarks):
             ):
                 pass
         part.Surface(side1Edges=selection, name=rc.LOAD_SURF)  # TODO removeedges above a certain location
-
-    # ---- create set for symmetry BC
+    # -----------------
+    # create set for symmetry BC
+    # -----------------
     a1 = mdb.models[rc.MODEL].rootAssembly
     landmark = landmarks[0]
     location = ru.offset_point(landmark, 0)  # to the right

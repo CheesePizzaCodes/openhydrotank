@@ -135,7 +135,7 @@ def thickness(r):
 
         hoop_nominal_thickness = 0.065
         d = r[-t_p]
-        t[-t_p:] = (r[-t_p:] - d) ** 0.5 * 0.05
+        t[-t_p:] = (r[-t_p:] - d) ** 0.5 * 0.15
 
         return t * f
 
@@ -146,7 +146,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    tol = 0.061
+    tol = 0.085
     t[t < tol] = 0
 
     return t * f

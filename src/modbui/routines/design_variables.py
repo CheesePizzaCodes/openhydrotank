@@ -4,7 +4,7 @@ Geometric properties.
 """
 import numpy as np
 
-_ = 1
+_ = 2
 
 if _ == 1:
 
@@ -14,6 +14,9 @@ if _ == 1:
                        40, 40, 40, 40,
                        50, 50, 50, 50,
                        54, 54, 54, 54,
+                       60, 60, 60, 60,
+                       70, 70, 70, 70,
+                       80, 80, 80, 80,
                        90, 90, 90, 90, 90, 90, 90, 90])
 
 elif _ == 2:
@@ -39,10 +42,10 @@ elif _ == 3:
 # Independent
 # R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
 
-b = 8.  # mm - Roving bandwidth
+b = 16.  # mm - Roving bandwidth
 # alpha_0 = np.radians(40.)  # rad - Cylindrical zone angle TODO must vary with each ply
-t_R = 0.15  # mm - Roving thickness
-t_P = 0.65  # mm - Ply thickness TODO must depend on hoop / helical
+t_R = 0.325 * 2  # mm - Ply thickness
+t_P = 0.325  # mm - Roving thickness TODO must depend on hoop / helical
 
 pi = np.pi
 
