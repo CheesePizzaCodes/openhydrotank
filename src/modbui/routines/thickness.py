@@ -235,32 +235,31 @@ def main():
     zone_1 = np.append(zone_1, False)
 
     # initialize parametric curve to shape of liner  # TODO maybe this will be obsolete
-    r = liner_r[zone_1]
-    g = liner_y[zone_1]
+    # r = liner_r[zone_1]
+    # g = liner_y[zone_1]
 
     #  Obtain original guide points
-    # r = liner_r
-    # g = liner_y
+    r = liner_r
+    g = liner_y
 
     global t_p
     t_p = 10
     b_p = 50
-
-
-    # create sampling points
-    ls = np.linspace(r.min(), r.max(), 100)
-
-    aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
-    ls = np.unique(np.concatenate((ls, aux_ls)))
-
-    aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
-    ls = np.unique(np.concatenate((ls, aux_ls)))
-
-    # modify original sampling to increase granularity in trailing section
-    interp = interp1d(r, g, kind="cubic")
-
-    r = ls
-    g = interp(r)
+    #
+    # # create sampling points
+    # ls = np.linspace(r.min(), r.max(), 100)
+    #
+    # aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
+    # ls = np.unique(np.concatenate((ls, aux_ls)))
+    #
+    # aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
+    # ls = np.unique(np.concatenate((ls, aux_ls)))
+    #
+    # # modify original sampling to increase granularity in trailing section
+    # interp = interp1d(r, g, kind="cubic")
+    #
+    # r = ls
+    # g = interp(r)
 
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
@@ -273,7 +272,7 @@ def main():
 
     initial_line = tuple(zip(r, g))
 
-    initial_line += ((r[-1], 0),)
+    # initial_line += ((r[-1], 0),)  # pad end straight line
 
     lines = (initial_line,)  # accum. for the splines that represent the layers
     landmarks = (initial_line[-1],)  # accum. for important landmarks
