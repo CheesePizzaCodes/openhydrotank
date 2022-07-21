@@ -1,12 +1,14 @@
 import sys, os, time
 
+cwd = os.getcwd()
+
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
-toggle = False
+toggle = True
 
 import numpy as np
 import scipy as sp
@@ -24,7 +26,8 @@ import design_variables
 from design_variables import angles, b, t_R, t_P, pi
 
 # TODO move to global definition
-filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
+
+filename = cwd + '\\liner.csv'
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
@@ -177,7 +180,6 @@ def smooth(t, y):
 
 def draw_layer(r, g, make_smooth):
     """
-
     :param r: r coordinates of the liner (or previous topmost) points
     :param g: z coordinates of the liner bzw. previous topmost
     :return: Tuple of points belonging to the new layer
@@ -236,10 +238,16 @@ def main():
     r = liner_r[zone_1]
     g = liner_y[zone_1]
 
+    #  Obtain original guide points
+    # r = liner_r
+    # g = liner_y
+
     global t_p
     t_p = 10
     b_p = 50
 
+
+    # create sampling points
     ls = np.linspace(r.min(), r.max(), 100)
 
     aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
