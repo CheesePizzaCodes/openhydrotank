@@ -32,8 +32,8 @@ import routine_util as ru
 from design_variables import angles, pi
 import routine_constants as rc
 
+# Extract liner shape
 filename = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines\\liner.csv'
-
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=0)
 
 
@@ -58,7 +58,7 @@ def get_gamma(position, layer_number):
     return gamma_array[idx]
 
 
-def get_alpha(position, layer_number):
+def get_alpha(angle, position, layer_number):
     """
     Calculate winding alngle with respect to meridional direction.
     According to Clariaut's equation.
@@ -72,6 +72,7 @@ def get_alpha(position, layer_number):
 
     try:  # TODO this is calculated on every layer. R can be dependent on layer number.
         alpha = np.arcsin(R * np.sin(alpha_0) / position)  # R * sin(alpha_0 / r)
+        alpha = np.arcsin(rc.R * np.sin(angle) / position)
     except FloatingPointError:
         alpha = 90 * pi / 180
     return alpha + 90 * pi / 180
