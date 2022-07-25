@@ -185,10 +185,22 @@ def draw_layer(r, g, make_smooth):
     :return: Tuple of points belonging to the new layer
     """
     # calculate thickness distribution
-    t = thickness(r)
-    df = np.gradient(r)
+
+    if angle_deg == 90:
+        y_0 = 380.
+        t = np.zeros(g.shape)
+        t += (g + y_0) ** 0.5 * 0.1 * (g < y_0 - 350)
+        t += 0.6 * (g > y_0 - 350)
+
+        t = t[::-1]
+
+    else:
+        t = thickness(r)
+
+    df = np.gradient(r)  # derivative wrt parameter, e.g., index
     dg = np.gradient(g)
     den = np.sqrt(df ** 2 + dg ** 2)
+    # calculate new points
     x = r - t * dg / den
     y = g + t * df / den
 
@@ -199,15 +211,15 @@ def draw_layer(r, g, make_smooth):
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
     # define layer region: where previous top (g) deviates from new top (y)
-    layer_mask = y != g
+    layer_mask = np.logical_not(np.logical_and(x == r, y == g))
     first_true = np.where(layer_mask)[0][0]
-    layer_mask[first_true - 1] = True
+    layer_mask[first_true - 1] = True  # pad one time
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
 
     # Add straight lines towards the bottom of the tank
-    x_layer = np.append(x_layer, x_layer[-1])
-    y_layer = np.append(y_layer, 0)
+    # x_layer = np.append(x_layer, x_layer[-1])
+    # y_layer = np.append(y_layer, 0)
 
     layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
     topmost_points = (x, y)  # used to calculate next layer. do not store.
@@ -309,7 +321,7 @@ def main():
             plot(x, y, disp)
 
             f2 = plt.figure(2)
-            plot(x, thickness(x), disp)
+            plot(thickness(x), disp)
 
     return lines, landmarks
 
