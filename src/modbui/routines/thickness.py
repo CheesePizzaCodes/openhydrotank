@@ -134,14 +134,6 @@ def thickness(r):
     t = np.zeros(r.shape)
     f = 1  # Size factor. Used to half the size of each layer to follow the double-pseudolayer approach
 
-    if angle_deg == 90:
-
-        hoop_nominal_thickness = 0.065
-        d = r[-t_p]
-        t[-t_p:] = (r[-t_p:] - d) ** 0.5 * 0.15
-
-        return t * f
-
     # First case
     # extract polynomial for given globs
     polynomial = thickness_1()
@@ -178,6 +170,51 @@ def smooth(t, y):
     return y
 
 
+def thickness_hoop(y):
+    # Initialize arrays
+    y = np.asarray(y)
+    t = np.zeros(y.shape)
+    #
+    #
+    # y_0 = 380.
+    # d = 30.
+    # t_0 = 0.6
+    # y_d = y_0 - d
+    #
+    # matrix = np.array([
+    #     [1, y_0, y_0 ** 2, y_0 ** 3],
+    #     [1, y_d, y_d ** 2, y_d ** 3],
+    #     [0, 1, 2 * y_0, 3 * y_0 ** 2],
+    #     [0, 1, 2 * y_d, 3 * y_d ** 2],
+    # ])
+    #
+    # vector = np.array([
+    #     0., t_0, -1, 0.
+    # ])
+    #
+    # coeffs = np.linalg.solve(matrix, vector)
+    #
+    # poly = np.poly1d(coeffs)
+    #
+    # t += poly(y) * ((y > y_0) & (y < y_d))
+    #
+    # t += t_0 * (y > y_d)
+
+    y_0 = 385.
+    t_0 = 0.3
+    y_1 = y_0 - 20
+    idx_0 = np.argmin(np.abs(y - y_0))
+    idx_1 = np.argmin(np.abs(y - y_1))
+
+
+
+    t[idx_0: idx_1] = t_0 * (np.linspace(0, 1, np.abs(idx_0 - idx_1))) ** 0.5
+    t[idx_1:] = t_0
+
+    return t
+
+
+
 def draw_layer(r, g, make_smooth):
     """
     :param r: r coordinates of the liner (or previous topmost) points
@@ -187,12 +224,7 @@ def draw_layer(r, g, make_smooth):
     # calculate thickness distribution
 
     if angle_deg == 90:
-        y_0 = 380.
-        t = np.zeros(g.shape)
-        t += (g + y_0) ** 0.5 * 0.1 * (g < y_0 - 350)
-        t += 0.6 * (g > y_0 - 350)
-
-        t = t[::-1]
+        t = thickness_hoop(g)
 
     else:
         t = thickness(r)
@@ -255,23 +287,23 @@ def main():
     g = liner_y
 
     global t_p
-    t_p = 10
-    b_p = 50
+    t_p = 100
+    # b_p = 50
     #
-    # # create sampling points
-    # ls = np.linspace(r.min(), r.max(), 100)
+    # create sampling points
+    ls = np.linspace(g.max(), g.min(), 200)
     #
-    # aux_ls = np.linspace(ls[-1] - 10, ls[-1], t_p)
+    # aux_ls = np.linspace(490, 490, t_p)
     # ls = np.unique(np.concatenate((ls, aux_ls)))
     #
     # aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
     # ls = np.unique(np.concatenate((ls, aux_ls)))
-    #
-    # # modify original sampling to increase granularity in trailing section
-    # interp = interp1d(r, g, kind="cubic")
-    #
-    # r = ls
-    # g = interp(r)
+
+    # modify original sampling to increase granularity in trailing section
+    interp = interp1d(g, r, kind="cubic")
+
+    g = ls
+    r = interp(g)
 
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
@@ -321,7 +353,7 @@ def main():
             plot(x, y, disp)
 
             f2 = plt.figure(2)
-            plot(thickness(x), disp)
+            plot(x, thickness(x), disp)
 
     return lines, landmarks
 

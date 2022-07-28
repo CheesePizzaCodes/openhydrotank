@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices">
-      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="refactor for full coverage&#10;&#10;- temporarily removed smoothing algorithm&#10;&#10;- removed &quot;zone 1&quot; formulation that makes the liner into a function&#10;&#10;- removed spline interpolation of liner&#10;&#10;-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +29,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -217,12 +215,12 @@
     </configuration>
     <list>
       <item itemvalue="Python.dos" />
-      <item itemvalue="Python.thickness" />
       <item itemvalue="Python.orient_elements" />
+      <item itemvalue="Python.thickness" />
+      <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.routine_constants" />
       <item itemvalue="Python.routine_util" />
       <item itemvalue="Python.stubs" />
-      <item itemvalue="Python.design_variables" />
     </list>
     <recent_temporary>
       <list>
@@ -550,13 +548,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>265</line>
-          <option name="timeStamp" value="42" />
+          <line>288</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>244</line>
-          <option name="timeStamp" value="43" />
+          <line>213</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>205</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
