@@ -174,39 +174,12 @@ def thickness_hoop(y):
     # Initialize arrays
     y = np.asarray(y)
     t = np.zeros(y.shape)
-    #
-    #
-    # y_0 = 380.
-    # d = 30.
-    # t_0 = 0.6
-    # y_d = y_0 - d
-    #
-    # matrix = np.array([
-    #     [1, y_0, y_0 ** 2, y_0 ** 3],
-    #     [1, y_d, y_d ** 2, y_d ** 3],
-    #     [0, 1, 2 * y_0, 3 * y_0 ** 2],
-    #     [0, 1, 2 * y_d, 3 * y_d ** 2],
-    # ])
-    #
-    # vector = np.array([
-    #     0., t_0, -1, 0.
-    # ])
-    #
-    # coeffs = np.linalg.solve(matrix, vector)
-    #
-    # poly = np.poly1d(coeffs)
-    #
-    # t += poly(y) * ((y > y_0) & (y < y_d))
-    #
-    # t += t_0 * (y > y_d)
 
     y_0 = 385.
     t_0 = 0.3
     y_1 = y_0 - 20
     idx_0 = np.argmin(np.abs(y - y_0))
     idx_1 = np.argmin(np.abs(y - y_1))
-
-
 
     t[idx_0: idx_1] = t_0 * (np.linspace(0, 1, np.abs(idx_0 - idx_1))) ** 0.5
     t[idx_1:] = t_0
@@ -287,14 +260,15 @@ def main():
     g = liner_y
 
     global t_p
-    t_p = 100
+    t_p = 150
     # b_p = 50
     #
     # create sampling points
     ls = np.linspace(g.max(), g.min(), 200)
     #
-    # aux_ls = np.linspace(490, 490, t_p)
-    # ls = np.unique(np.concatenate((ls, aux_ls)))
+    aux_ls = np.linspace(440, 490, t_p)
+    ls = np.unique(np.concatenate((ls, aux_ls)))
+    ls = ls[::-1]
     #
     # aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
     # ls = np.unique(np.concatenate((ls, aux_ls)))
@@ -310,7 +284,7 @@ def main():
 
     if toggle:
         f1 = plt.figure(1)  # TODO plot
-        plot(r, g, "-o")
+        plot(r, g, "")
 
     # draw layup routine TODO make method
 
@@ -346,14 +320,14 @@ def main():
         lines += (line,)
         landmarks += (landmark,)
 
-        disp = "-o"
+        disp = ""
         if toggle:
             f1 = plt.figure(1)
             # plot(*layer_points, disp)
             plot(x, y, disp)
 
             f2 = plt.figure(2)
-            plot(x, thickness(x), disp)
+            plot(thickness(x), disp)
 
     return lines, landmarks
 

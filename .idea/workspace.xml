@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="refactor for full coverage&#10;&#10;- temporarily removed smoothing algorithm&#10;&#10;- removed &quot;zone 1&quot; formulation that makes the liner into a function&#10;&#10;- removed spline interpolation of liner&#10;&#10;-">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="hoop layers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
@@ -199,6 +199,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -485,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657565201472</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="hoop layers">
+      <created>1659034462074</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1659034462074</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +511,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
     <MESSAGE value="started implementing thickness.py" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
     <MESSAGE value="smart interpolation" />
@@ -526,7 +535,8 @@
     <MESSAGE value="wtf checkpoint" />
     <MESSAGE value="granularity in trainling section increased" />
     <MESSAGE value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
+    <MESSAGE value="hoop layers" />
+    <option name="LAST_COMMIT_MESSAGE" value="hoop layers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -548,22 +558,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>288</line>
+          <line>261</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>213</line>
+          <line>186</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>205</line>
+          <line>180</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>210</line>
+          <line>183</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
