@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="refactor for full coverage&#10;&#10;- temporarily removed smoothing algorithm&#10;&#10;- removed &quot;zone 1&quot; formulation that makes the liner into a function&#10;&#10;- removed spline interpolation of liner&#10;&#10;-">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="progress">
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +200,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -498,7 +502,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
