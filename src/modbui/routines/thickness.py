@@ -175,7 +175,7 @@ def thickness_hoop(y):
     y = np.asarray(y)
     t = np.zeros(y.shape)
 
-    y_0 = 385.
+    y_0 = 378.
     t_0 = 0.3
     y_1 = y_0 - 20
     idx_0 = np.argmin(np.abs(y - y_0))
@@ -186,6 +186,25 @@ def thickness_hoop(y):
 
     return t
 
+
+def clean_curve(x, y):
+
+    dx = np.gradient(x)
+    dy = np.gradient(y)
+    ddx = np.gradient(dx)
+    ddy = np.gradient(dy)
+
+    curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
+
+    cleaner = curvature < 0.1
+
+    cleaner[x < 40] = True
+
+    x, y = x[cleaner], y[cleaner]
+
+
+
+    return cleaner
 
 
 def draw_layer(r, g, make_smooth):
@@ -209,22 +228,36 @@ def draw_layer(r, g, make_smooth):
     x = r - t * dg / den
     y = g + t * df / den
 
+
+
     # --- smoothing ---
     if make_smooth:
         y = smooth(t, y)
 
+    cleaner = clean_curve(x, y)
+
+    x, y, r, g = x[cleaner], y[cleaner], r[cleaner], g[cleaner]
+
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
     # define layer region: where previous top (g) deviates from new top (y)
-    layer_mask = np.logical_not(np.logical_and(x == r, y == g))
-    first_true = np.where(layer_mask)[0][0]
+    layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
+
+    if len(layer_mask) == 1:
+        first_true = np.where(layer_mask)[0]
+    else:
+        first_true = np.where(layer_mask)[0][0]
+
     layer_mask[first_true - 1] = True  # pad one time
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
 
+
+
     # Add straight lines towards the bottom of the tank
     # x_layer = np.append(x_layer, x_layer[-1])
     # y_layer = np.append(y_layer, 0)
+
 
     layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
     topmost_points = (x, y)  # used to calculate next layer. do not store.

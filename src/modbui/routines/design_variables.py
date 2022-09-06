@@ -4,7 +4,7 @@ Geometric properties.
 """
 import numpy as np
 
-_ = 1
+_ = 3
 
 if _ == 1:
 
@@ -34,7 +34,7 @@ elif _ == 3:
 
     result = []
 
-    for _ in range(3):
+    for _ in range(6):
         result += list(np.random.permutation(angles))
     angles = result
 
@@ -43,7 +43,7 @@ elif _ == 3:
 
 b = 16.  # mm - Roving bandwidth
 # alpha_0 = np.radians(40.)  # rad - Cylindrical zone angle TODO must vary with each ply
-t_R = 0.35  # mm - Roving thickness
+t_R = 0.65  # mm - Roving thickness
 t_P = 0.35  # mm - Ply thickness TODO must depend on hoop / helical
 
 pi = np.pi

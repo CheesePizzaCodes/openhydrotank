@@ -28,4 +28,5 @@ def main():
     assign_property.main()
     trivial.main()
 if __name__ == '__main__':
+
     main()
