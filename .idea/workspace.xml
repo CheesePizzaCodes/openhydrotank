@@ -218,13 +218,13 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.dos" />
       <item itemvalue="Python.orient_elements" />
-      <item itemvalue="Python.thickness" />
-      <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.routine_constants" />
       <item itemvalue="Python.routine_util" />
       <item itemvalue="Python.stubs" />
+      <item itemvalue="Python.thickness" />
     </list>
     <recent_temporary>
       <list>
