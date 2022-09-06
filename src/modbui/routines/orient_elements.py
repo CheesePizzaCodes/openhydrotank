@@ -58,7 +58,7 @@ def get_gamma(position, layer_number):
     return gamma_array[idx]
 
 
-def get_alpha(angle, position, layer_number):
+def get_alpha(position, layer_number):
     """
     Calculate winding alngle with respect to meridional direction.
     According to Clariaut's equation.
@@ -91,7 +91,7 @@ def get_basis(element, layer_number):
     location = vertices.mean(axis=0)  # 0: x, radial; 1:y axial  # TODO change for faster routine
 
     # Calculate alpha
-    alpha = get_alpha(location[0], layer_number)  # takes radial value
+    alpha = get_alpha(location[0], layer_number)  #` takes radial value
     # Calculate gamma
     gamma = get_gamma(location[1], layer_number)  # takes axial value
     # Calculate trig functions

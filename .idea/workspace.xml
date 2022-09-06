@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="hoop layers">
+    <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="progress">
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/build_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/build_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/thickness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,27 +70,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.thickness">
-    <configuration name="build_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hydrotank" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/build_model.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -246,11 +225,9 @@
       <item itemvalue="Python.routine_constants" />
       <item itemvalue="Python.routine_util" />
       <item itemvalue="Python.stubs" />
-      <item itemvalue="Python.build_model" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.build_model" />
         <item itemvalue="Python.design_variables" />
         <item itemvalue="Python.routine_util" />
         <item itemvalue="Python.routine_constants" />
@@ -512,21 +489,7 @@
       <option name="project" value="LOCAL" />
       <updated>1657565201472</updated>
     </task>
-    <task id="LOCAL-00036" summary="hoop layers">
-      <created>1659034462074</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1659034462074</updated>
-    </task>
-    <task id="LOCAL-00037" summary="hoop layers">
-      <created>1659629326124</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1659629326124</updated>
-    </task>
-    <option name="localTasksCounter" value="38" />
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -539,9 +502,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
     <MESSAGE value="started implementing thickness.py" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
     <MESSAGE value="smart interpolation" />
@@ -566,8 +529,7 @@
     <MESSAGE value="wtf checkpoint" />
     <MESSAGE value="granularity in trainling section increased" />
     <MESSAGE value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
-    <MESSAGE value="hoop layers" />
-    <option name="LAST_COMMIT_MESSAGE" value="hoop layers" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -589,18 +551,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>206</line>
-          <option name="timeStamp" value="53" />
+          <line>288</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>246</line>
-          <option name="timeStamp" value="54" />
+          <line>213</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>243</line>
-          <option name="timeStamp" value="55" />
+          <line>205</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
