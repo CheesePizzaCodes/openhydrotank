@@ -1,8 +1,0 @@
-<Description>
-    ABQcaeK.exe / rank 0 / thread 0  encountered a system exception 0xC0000005 (EXCEPTION_ACCESS_VIOLATION)
-
-</Description>
-
-<Callstack>
-KERNELBASE.dll                 RaiseException                
-</Callstack>

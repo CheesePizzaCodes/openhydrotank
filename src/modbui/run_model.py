@@ -1,1 +1,0 @@
-'''assigns computational resources and runs abaqus model'''

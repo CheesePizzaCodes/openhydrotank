@@ -8,7 +8,191 @@
       <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dos.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/build_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/assemble_components.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/assign_material.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/define_interaction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/define_load.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/define_mesh.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/define_solver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/generate_layup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/logics_util.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/orient_elements.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/logics/process_geometry.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/assemble_parts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/assign_property.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/ABQcaeG.11544.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/aaa.cae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/aaa.jnl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus.rpy.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqusMacros.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/cae.cae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/cae.jnl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/fort.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester3/liner.sat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.odb_f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Job-1.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqus.rpy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqusMacros.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester5/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeG.9640.00.exception" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.10080.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.3504.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.3632.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/ABQcaeK.7324.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus.rpy.5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus1.rec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus_acis.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester7/fort.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeG.11016.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeG.16092.00.exception" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeK.10796.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/ABQcaeK.20640.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/Job-1.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus.rpy.8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/foo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester8/fort.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.10332.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.13812.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.14696.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.18336.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.20836.00.exception" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeG.28204.00.exception" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeK.17004.00.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/ABQcaeK.18300.00.exception" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus.rpy.8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus.rpy.9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqusMacros.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/baseline_stub.cae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/baseline_stub.jnl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/fort.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/geometry_cut_compare.cae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/geometry_cut_compare.jnl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.cae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.jnl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/god.rec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/model-Copy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/model.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cae_tester_junkyard/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/create_part.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/create_sets_surfs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/cut_face.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/design_variables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/discrete_field.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/liner.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/mesher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/Job-1.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/Model-1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus.rpy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus.rpy.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/abaqus_pde.deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/ori2/fort.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orient_elements.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy2.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy3.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy4.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1-Copy5.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.com" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.ipm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.msg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.odb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.prt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.sim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/Job-1.sta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/abaqus.rpy.5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/orientations_tester/liner.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_constants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/routine_util.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/stubs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/thickness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/routines/trivial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modbui/run_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uno.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +214,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -69,7 +252,7 @@
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.thickness">
+  <component name="RunManager" selected="Python.main">
     <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,6 +287,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dos.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -206,11 +410,11 @@
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
       <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="false" />
-      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/thickness.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -218,16 +422,18 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.dos" />
       <item itemvalue="Python.orient_elements" />
+      <item itemvalue="Python.thickness" />
+      <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.routine_constants" />
       <item itemvalue="Python.routine_util" />
       <item itemvalue="Python.stubs" />
-      <item itemvalue="Python.thickness" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.design_variables" />
         <item itemvalue="Python.routine_util" />
         <item itemvalue="Python.routine_constants" />
@@ -489,7 +695,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657565201472</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="progress">
+      <created>1659952037727</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1659952037727</updated>
+    </task>
+    <task id="LOCAL-00037" summary="progress">
+      <created>1659952043606</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1659952043606</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +724,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="orientation working, meeds adjustments:&#10;-follow bottommost&#10;-inculde true alpha for each layer" />
     <MESSAGE value="started implementing thickness.py" />
     <MESSAGE value="layup generation algorithm works now for the most part...&#10;still some problems" />
     <MESSAGE value="smart interpolation" />
@@ -529,7 +748,8 @@
     <MESSAGE value="wtf checkpoint" />
     <MESSAGE value="granularity in trainling section increased" />
     <MESSAGE value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;orient_elements.py&#10;-Included R as a fixed global parameter in get_alpha&#10;&#10;-Activated material rotation tensor&#10;&#10;-removed blank line that was bugging the abq interpreter in comprenhension&#10;&#10;thickness.py&#10;-implemented hoop layer thickness distribution&#10;-removed mention of lower_bound&#10;-implemented granularization in the trailing section via global variable trailing_points&#10;-implemented trailing region as a measure of radial distance instead of number of indices" />
+    <MESSAGE value="progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -551,23 +771,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>288</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>213</line>
+          <line>211</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>205</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
-          <line>210</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -580,7 +785,9 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="lines" language="Python" />
+        <watch expression="alpha_0" language="Python" />
+        <watch expression="angle" language="Python" />
+        <watch expression="angle_deg" language="Python" />
       </configuration>
     </watches-manager>
   </component>
