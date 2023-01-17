@@ -29,11 +29,11 @@ import routine_util as ru
 import routine_constants as rc
 
 def main():
-    start_time = time.time()
+
 
     # import stubs as stb
 
-    print(time.time() - start_time)
+
 
     # --- Create materials and assign sections
     # --Layup

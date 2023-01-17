@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="progress i guess&#10;refactoring file structure">
-      <change afterPath="$PROJECT_DIR$/src/bin/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routines/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/build_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/assign_property.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/assign_property.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/cut_face.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/cut_face.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/design_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/design_variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/thickness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +71,7 @@
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.thickness (1)">
     <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,27 +156,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="routine_util" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hydrotank" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/routine_util.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="stubs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -214,6 +198,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="thickness (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/routines/thickness.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="thickness" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,18 +242,18 @@
       <item itemvalue="Python.orient_elements" />
       <item itemvalue="Python.thickness" />
       <item itemvalue="Python.design_variables" />
-      <item itemvalue="Python.routine_util" />
-      <item itemvalue="Python.stubs" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.stubs" />
       <item itemvalue="Python.test" />
+      <item itemvalue="Python.thickness (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.thickness (1)" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.design_variables" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.design_variables" />
-        <item itemvalue="Python.routine_util" />
       </list>
     </recent_temporary>
   </component>
@@ -530,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663590647964</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="progress i guess&#10;refactoring file structure">
+      <created>1664635023851</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1664635023851</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -594,6 +603,11 @@
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
           <line>211</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/routines/thickness.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

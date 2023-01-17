@@ -8,15 +8,16 @@ sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
 
 sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
-toggle = False
+toggle = 'ABQcaeK.exe' not in sys.executable
 
+# toggle = False
 import numpy as np
 import scipy as sp
 
 if toggle:
     import matplotlib.pyplot as plt
     from matplotlib.pyplot import plot
-
+    from cycler import cycler
 
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
@@ -27,7 +28,10 @@ from design_variables import b, t_R, t_P, pi
 
 # TODO move to global definition
 
-filename = r'.\bin\liner.csv'
+if toggle:
+    filename = r'..\bin\liner.csv'
+else:
+    filename = r'.\bin\liner.csv'
 
 liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 
@@ -101,8 +105,9 @@ def a_vec(angle):
 # Segment 1
 # polynomial object. Already callable and vectorized.
 
-def thickness_1(): # Callable and vectorized. To be called on array of "r" values (lin-space)
-    t = np.poly1d(np.flip(a_vec(alpha_0))) #  Vector is flipped because of difference in nomenclature between reference and numpy
+def thickness_1():  # Callable and vectorized. To be called on array of "r" values (lin-space)
+    t = np.poly1d(
+        np.flip(a_vec(alpha_0)))  # Vector is flipped because of difference in nomenclature between reference and numpy
     return t
 
 
@@ -161,7 +166,7 @@ def smooth(t, x, y):
     # find index where layer peaks height
     idx = (y * layer_mask).argmax()  #
 
-    target = np.argmin(np.abs(y[idx] - y[:idx-1]))
+    target = np.argmin(np.abs(y[idx] - y[:idx - 1]))
     # ## build mask: True below layer maximum point value AND below flag idx
     # left of flag index
     aux_mask = np.zeros(y.shape, dtype="bool")
@@ -201,7 +206,6 @@ def thickness_hoop(y):
 
 
 def clean_curve(x, y):
-
     dx = np.gradient(x)
     dy = np.gradient(y)
     ddx = np.gradient(dx)
@@ -236,8 +240,6 @@ def draw_layer(r, g, make_smooth):
     x = r - t * dg / den
     y = g + t * df / den
 
-
-
     # --- smoothing ---
     if make_smooth:
         x, y = smooth(t, x, y)
@@ -260,19 +262,13 @@ def draw_layer(r, g, make_smooth):
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
 
-
-
     # Add straight lines towards the bottom of the tank
     # x_layer = np.append(x_layer, x_layer[-1])
     # y_layer = np.append(y_layer, 0)
 
-
     layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
     topmost_points = (x, y)  # used to calculate next layer. do not store.
     return layer_points, topmost_points
-
-
-
 
 
 def main():
@@ -280,8 +276,6 @@ def main():
     R = liner_r.max()
     #  bullshit imports not working, bruteforce to bring angles
     angles = design_variables.get_angles()
-
-
 
     # initial values are those of the liner
 
@@ -322,19 +316,35 @@ def main():
 
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
-
+    f2 = 0
     if toggle:
-        f1 = plt.figure(1)  # TODO plot
-        plot(r, g, "-o")
+        plt.figure(1)  # TODO plot
+        f1, ax1 = plt.subplots()
+        f1.suptitle('Plot of the stacked layers', fontsize=16)
+        ax1.set_xlabel('radial coordinate -- r (mm)')
+        ax1.set_ylabel('axial coordinate -- y (mm)')
+        line, = ax1.plot(r, g, c="k")
+        line.set_label('Liner outer shape')
+        ax1.legend()
+
+        plt.figure(2)
+        f2, ax2 = plt.subplots()
+        custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
+        ax2.set_prop_cycle(custom_cycler)
+        f2.suptitle('Thickness progression at different winding angles', fontsize=16)
+        ax2.set_xlabel('radial coordinate (mm)')
+        ax2.set_ylabel('thickness(mm)')
 
     # draw layup routine TODO make method
 
     initial_line = tuple(zip(r, g))
 
-    # initial_line += ((r[-1], 0),)  # pad end straight line
+    # initial_line += ((r[-1], 0),)  # pad end straight line2
 
     lines = (initial_line,)  # accum. for the splines that represent the layers
     landmarks = (initial_line[-1],)  # accum. for important landmarks
+
+    # plt.set_cmap("Pastel1")
 
     for angle in angles:
         # overwrite globals
@@ -348,30 +358,51 @@ def main():
 
         R = topmost_points[0].max()
 
-        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1], make_smooth)  # TODO make_smooth parameter is obsolete since angle_deg is a global parameter now
+        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1],
+                                                  make_smooth)  # TODO make_smooth parameter is obsolete since angle_deg is a global parameter now
 
         # extract points (redundant, readability)
 
         x = layer_points[0]
         y = layer_points[1]
 
-        line = tuple(zip(x, y))
-        landmark = line[-1]
+        line2 = tuple(zip(x, y))
+        landmark = line2[-1]
 
-        lines += (line,)
+        lines += (line2,)
         landmarks += (landmark,)
 
         disp = "-o"
         if toggle:
-            f1 = plt.figure(1)
             # plot(*layer_points, disp)
-            plot(x, y, disp)
+            line1, = ax1.plot(x, y, '')
 
-            f2 = plt.figure(2)
-            plot(thickness(x), disp)
+            line2, = ax2.plot(x[x < 159], thickness(x)[x < 159], disp)
+            # line2.set_label(f'alpha={angle}')
+            ax2.legend()
 
-    return lines, landmarks
+    if toggle:
+        return lines, landmarks, f1, ax1, f2, ax2
+    else:
+        return lines, landmarks
 
 
 if __name__ == "__main__":
-    main()
+    _, _, f1, ax1, f2, ax2 = main()
+
+    from graphics import add_zoom
+    # add_zoom(f1, ax1)
+
+    # f2.savefig(r'D:\Simon\Documentos\Bewerbungen\CSE\test.svg')
+
+    # y = np.linspace(500, 0, 1000)
+    # r = thickness_hoop(y)
+    # fig, ax = plt.subplots()
+    #
+    # fig.suptitle('Thickness progression for Hoop layers', fontsize=16)
+    # ax.set_xlabel('axial coordinate y (mm)')
+    # ax.set_ylabel('thickness t (mm)')
+    # line, = ax.plot(y, r, c='b')
+    # line.set_label('alpha = 90')
+    # ax.invert_xaxis()
+    # ax.legend()

@@ -4,10 +4,17 @@
 
 # my packages
 
-import sys, os, time
+import os
+import sys
+import time
+
 
 # allow abaqus python interpreter to import the routines module
-sys.path.append(r'.\routines')
+cwd = os.getcwd()  # src\test\xxx
+cwd = os.path.dirname(cwd)  # src\test
+cwd = os.path.dirname(cwd)  # src\routines
+sys.path.append(cwd)  # for running from wrapper.bat and pycharm
+  # for running from one folder inside ./test
 
 from routines import thickness, create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
     orient_elements, trivial, mesher
@@ -41,5 +48,4 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()

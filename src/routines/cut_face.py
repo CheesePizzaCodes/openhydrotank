@@ -10,7 +10,7 @@ DONE
 
 import sys, os
 
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
+sys.path.append(r'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 # import abaqus modules
 from abaqus import *
 from abaqusConstants import *
@@ -86,7 +86,12 @@ def main(lines):
 
     f = p.faces
     face_list = [face for face in f if face.getSize() < 10]
-    p.RemoveFaces(faceList=face_list, deleteCells=False)
+
+    try:
+        p.RemoveFaces(faceList=face_list, deleteCells=False)
+    except:
+        print('No faces were removed')
+
 
     end_time = time.time()
 
