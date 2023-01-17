@@ -33,7 +33,13 @@ if toggle:
 else:
     filename = r'.\bin\liner.csv'
 
-liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
+
+try:
+    liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
+except:
+    alt_filename = 'liner.csv'
+    liner = np.loadtxt(open(alt_filename), delimiter=",", skiprows=1)
+
 
 # extract points from liner
 liner_r = liner[:, 0]

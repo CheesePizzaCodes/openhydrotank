@@ -24,7 +24,12 @@ def main():
     st = time.time()
 
     # so that abaqus saves simulation files in temp folder
-    os.chdir(r'./temp')
+    try:
+        os.chdir(r'./temp')
+    except WindowsError:
+        print('Running from Debugger')
+        pass
+
 
     lines, landmarks = thickness.main()
     print("thickness -- ", time.time() - st)

@@ -34,7 +34,13 @@ import routine_constants as rc
 
 # Extract liner shape
 filename = r'.\bin\liner.csv'
-liner = np.loadtxt(open(filename), delimiter=",", skiprows=0)
+
+try:
+    liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
+except:
+    alt_filename = 'liner.csv'
+    liner = np.loadtxt(open(alt_filename), delimiter=",", skiprows=1)
+
 angles = get_angles()
 
 
