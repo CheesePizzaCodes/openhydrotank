@@ -10,7 +10,6 @@ DONE
 
 import sys, os
 
-sys.path.append(r'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 # import abaqus modules
 from abaqus import *
 from abaqusConstants import *

@@ -7,8 +7,7 @@ This file contains several constants used by the routines in the package
 
 
 
-LINER_PATH = 'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/caet_tester3/liner.sat'
-ROUTINES_PATH = 'E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines'
+# LINER_PATH = 'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/caet_tester3/liner.sat'
 
 #  ----- Global Names -----
 MODEL = 'model'

@@ -9,7 +9,6 @@ out: axisymmentric part with twist generated inside CAE
 
 import sys, os
 
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 # import abaqus modules
 from abaqus import *
 from abaqusConstants import *
@@ -55,7 +54,7 @@ def main():
     g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
 
     # draw symmetry line
-    s.ConstructionLine(point1=(0.0, -100.0), point2=(0.0, 100.0))  # TODO remove for optimization
+    s.ConstructionLine(point1=(0.0, -100.0), point2=(0.0, 100.0))
 
     # use passed list of curves to produce a closed section
     ru.draw_line(s, points)

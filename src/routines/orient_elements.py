@@ -2,7 +2,6 @@ import sys, os
 
 import numpy as np
 
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
 
 ## import abaqus modules
 from abaqus import *

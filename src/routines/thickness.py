@@ -2,12 +2,6 @@ import sys, os, time
 
 cwd = os.getcwd()
 
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src')
-
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui')
-
-sys.path.append('E:\\Current Workspace\\Codebase\\hydrotank\\src\\modbui\\routines')
-
 toggle = 'ABQcaeK.exe' not in sys.executable
 
 # toggle = False
@@ -21,7 +15,6 @@ if toggle:
 
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
-from scipy.interpolate import make_interp_spline
 
 import design_variables
 from design_variables import b, t_R, t_P, pi

@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="checkpoint before big refactor">
+      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/build_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/assemble_parts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/assemble_parts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/assign_property.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/assign_property.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/create_part.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/create_part.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/create_sets_surfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/create_sets_surfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/cut_face.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/cut_face.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/discrete_field.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/mesher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/mesher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/orient_elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/routine_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/routine_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/routine_main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/thickness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/trivial.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/trivial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wrapper.bat" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +65,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python39" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/SIMULIA/EstProducts/2020/win_b64/code/python2.7/lib",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines" />
@@ -199,6 +212,9 @@
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/routines" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -610,7 +626,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/routines/thickness.py</url>
-          <line>16</line>
+          <line>10</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
