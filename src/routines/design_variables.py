@@ -5,8 +5,10 @@ Geometric properties.
 import csv
 import numpy as np
 
+
 def get_angles():
-    _ = 1
+    angles = None
+    _ = 6
 
     if _ == 1:
 
@@ -54,9 +56,19 @@ def get_angles():
                   30,
                   40,
                   50,
-                  70,]
+                  70, ]
+    elif _ == 6:
+        angles = ([90, ] * 4 +
+                  [15, ] * 10 +
+                  [24, ] * 2 +
+                  [40, ] * 4 +
+                  [90, ] * 4 +
+                  [56, ] * 6 +
+                  [90, ] * 4 +
+                  [66, ] * 4)
 
     return angles
+
 
 # Independent
 # R = 156.  # mm - Cylindrical zone radius TODO make dependent on file
