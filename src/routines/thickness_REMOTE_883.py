@@ -4,7 +4,7 @@ cwd = os.getcwd()
 
 toggle = 'ABQcaeK.exe' not in sys.executable
 
-=======
+# toggle = False
 import numpy as np
 import scipy as sp
 
@@ -26,6 +26,8 @@ if toggle:
 else:
     filename = r'.\bin\liner.csv'
 
+
+try:
     liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
 except:
     alt_filename = 'liner.csv'
@@ -386,6 +388,10 @@ def main():
 
 if __name__ == "__main__":
     _, _, f1, ax1, f2, ax2 = main()
+
+    from graphics import add_zoom
+    # add_zoom(f1, ax1)
+
     # f2.savefig(r'D:\Simon\Documentos\Bewerbungen\CSE\test.svg')
 
     # y = np.linspace(500, 0, 1000)
