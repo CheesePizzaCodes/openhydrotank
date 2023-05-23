@@ -1,0 +1,222 @@
+# -*- coding: mbcs -*-
+#
+# Abaqus/CAE Release 2020 replay file
+# Internal Version: 2019_09_13-12.49.31 163176
+# Run by simon on Mon Mar 27 13:57:43 2023
+#
+
+# from driverUtils import executeOnCaeGraphicsStartup
+# executeOnCaeGraphicsStartup()
+#: Executing "onCaeGraphicsStartup()" in the site directory ...
+from abaqus import *
+from abaqusConstants import *
+session.Viewport(name='Viewport: 1', origin=(0.0, 0.0), width=179.166656494141, 
+    height=106.430557250977)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].maximize()
+from caeModules import *
+from driverUtils import executeOnCaeStartup
+executeOnCaeStartup()
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+execfile('build_model.py', __main__.__dict__)
+#: ('thickness -- ', 0.0279998779296875)
+#: The model "model" has been created.
+#: 0.0170001983643
+#: ('part -- ', 0.0450000762939453)
+#: 0.0500001907349
+#: 45.2990000248
+#: Area of face = 269.37403893722
+#: Area of face = 267.841207312092
+#: Area of face = 269.545162556003
+#: Area of face = 269.22205530813
+#: Area of face = 357.749785697632
+#: Area of face = 267.957259142247
+#: Area of face = 267.74467730675
+#: Area of face = 267.681537670546
+#: Area of face = 338.12694678392
+#: Area of face = 357.750488963918
+#: Area of face = 333.68334859036
+#: Area of face = 269.319631165146
+#: Area of face = 357.854727357485
+#: Area of face = 379.666161882875
+#: Area of face = 358.424109819279
+#: Area of face = 267.566579873531
+#: Area of face = 378.587977778438
+#: Area of face = 267.741366261105
+#: Area of face = 267.643778089794
+#: Area of face = 448.136815254495
+#: Area of face = 316.65842536307
+#: Area of face = 357.755755967821
+#: Area of face = 358.014568111654
+#: Area of face = 380.935666552573
+#: Area of face = 378.024915157593
+#: Area of face = 529.535336875151
+#: Area of face = 524.394479914724
+#: Area of face = 521.410104229024
+#: Area of face = 516.847573811608
+#: Area of face = 512.619696081237
+#: Area of face = 507.822288614672
+#: Area of face = 500.065186462117
+#: Area of face = 486.348602757677
+#: Area of face = 463.953558497677
+#: Area of face = 267.627639321474
+#: Area of face = 326.8190997804
+#: Area of face = 451.345024169014
+#: Area of face = 533.077846191905
+#: Area of face = 0.246722479105366
+#: Area of face = 0.000131823068912487
+#: 50.4660000801
+#: ('cut -- ', 50.4609999656677)
+#: ('assemble -- ', 50.4619998931885)
+#: 0.0
+#: Warning: findAt could not find a geometric entity at (155.929289321881, 0.0707106781186548, 0.0)
+#: ('sets -- ', 50.5190000534058)
+#: ('mesh -- ', 59.6169998645782)
+#: ('orientation -- ', 66.7070000171661)
+#: ('material -- ', 66.7089998722076)
+#: ('others -- ', 68.2009999752045)
+#:  -- done -- 
+#: Job Job-1: Analysis Input File Processor completed successfully.
+a = mdb.models['model'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(
+    optimizationTasks=OFF, geometricRestrictions=OFF, stopConditions=OFF)
+#: Job Job-1: Abaqus/Standard completed successfully.
+#: Job Job-1 completed successfully. 
+o3 = session.openOdb(
+    name='C:/Users/simon/codebase/hydrotank/src/temp/Job-1.odb')
+#: Model: C:/Users/simon/codebase/hydrotank/src/temp/Job-1.odb
+#: Number of Assemblies:         1
+#: Number of Assembly instances: 0
+#: Number of Part instances:     1
+#: Number of Meshes:             1
+#: Number of Element Sets:       42
+#: Number of Node Sets:          41
+#: Number of Steps:              1
+session.viewports['Viewport: 1'].setValues(displayedObject=o3)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].odbDisplay.setFrame(step=0, frame=15 )
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    CONTOURS_ON_DEF, ))
+session.viewports['Viewport: 1'].odbDisplay.commonOptions.setValues(
+    deformationScaling=UNIFORM, uniformScaleFactor=1)
+session.viewports['Viewport: 1'].odbDisplay.commonOptions.setValues(
+    visibleEdges=FREE)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1143.94, 
+    farPlane=1844.65, width=539.887, height=195.169, viewOffsetX=-11.3667, 
+    viewOffsetY=116.84)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1130.13, 
+    farPlane=1909.55, width=533.37, height=192.813, cameraPosition=(-298.237, 
+    464.474, 1449.46), cameraUpVector=(0.138065, 0.98449, -0.108247), 
+    cameraTarget=(84.7862, 253.647, 20.5573), viewOffsetX=-11.2294, 
+    viewOffsetY=115.429)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1127.12, 
+    farPlane=1903.73, width=531.951, height=192.3, cameraPosition=(448.159, 
+    465.195, 1461.21), cameraUpVector=(0.131077, 0.975766, -0.175215), 
+    cameraTarget=(98.4964, 254.058, 23.8245), viewOffsetX=-11.1995, 
+    viewOffsetY=115.122)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1147.71, 
+    farPlane=1933.29, width=541.667, height=195.813, cameraPosition=(1077.93, 
+    701.018, 1108.79), cameraUpVector=(-0.0748054, 0.944418, -0.320124), 
+    cameraTarget=(135.869, 262.413, 34.9754), viewOffsetX=-11.404, 
+    viewOffsetY=117.225)
+session.viewports['Viewport: 1'].view.setValues(width=525.422, height=189.94, 
+    cameraPosition=(83.1458, 399.717, 1501.36), cameraUpVector=(0, 1, 0), 
+    cameraTarget=(83.1458, 399.717, -39.1445), viewOffsetX=0, viewOffsetY=0)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1206.92, 
+    farPlane=1795.8, width=214.255, height=77.4532, viewOffsetX=2.98628, 
+    viewOffsetY=46.1251)
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    ORIENT_ON_DEF, ))
+session.viewports['Viewport: 1'].odbDisplay.materialOrientationOptions.setValues(
+    randomSamplingFactor=2.58)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1200.88, 
+    farPlane=1801.84, width=256.665, height=92.7846, viewOffsetX=6.07281, 
+    viewOffsetY=44.3334)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1259.51, 
+    farPlane=1805.19, width=269.198, height=97.3151, cameraPosition=(1415.57, 
+    741.385, 648.14), cameraUpVector=(-0.0822332, 0.939558, -0.332368), 
+    cameraTarget=(57.2541, 396.263, 8.60085), viewOffsetX=6.36933, 
+    viewOffsetY=46.4981)
+session.viewports['Viewport: 1'].odbDisplay.materialOrientationOptions.setValues(
+    symbolSize=0)
+session.viewports['Viewport: 1'].odbDisplay.materialOrientationOptions.setValues(
+    symbolSize=1)
+session.viewports['Viewport: 1'].odbDisplay.materialOrientationOptions.setValues(
+    randomSamplingFactor=1.44)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1195.6, 
+    farPlane=1849.4, width=255.539, height=92.3774, cameraPosition=(1006.93, 
+    615.884, 1183.83), cameraUpVector=(0.188373, 0.92686, -0.324726), 
+    cameraTarget=(41.7658, 398.346, 3.03489), viewOffsetX=6.04615, 
+    viewOffsetY=44.1388)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1191.59, 
+    farPlane=1864.48, width=254.682, height=92.0677, cameraPosition=(396.952, 
+    542.764, 1479.38), cameraUpVector=(-0.0314132, 0.995182, -0.0928776), 
+    cameraTarget=(59.7712, 392.536, -16.2407), viewOffsetX=6.02588, 
+    viewOffsetY=43.9908)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1187.23, 
+    farPlane=1875.12, width=253.751, height=91.7311, cameraPosition=(758.633, 
+    634.351, 1340.78), cameraUpVector=(0.104706, 0.968191, -0.22725), 
+    cameraTarget=(49.8088, 394.931, -5.84517), viewOffsetX=6.00385, 
+    viewOffsetY=43.83)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1189.8, 
+    farPlane=1940.6, width=254.3, height=91.9294, cameraPosition=(697.435, 
+    886.324, 1312.56), cameraUpVector=(0.083546, 0.919141, -0.384967), 
+    cameraTarget=(51.2115, 396.47, 2.74943), viewOffsetX=6.01683, 
+    viewOffsetY=43.9248)
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    CONTOURS_ON_DEF, ))
+session.viewports['Viewport: 1'].view.setValues(width=250.288, height=90.4792, 
+    cameraPosition=(52.8359, 439.889, 1521.87), cameraUpVector=(0, 1, 0), 
+    cameraTarget=(52.8359, 439.889, -43.3311), viewOffsetX=0, viewOffsetY=0)
+session.viewports['Viewport: 1'].odbDisplay.setPrimaryVariable(
+    variableLabel='S', outputPosition=INTEGRATION_POINT, refinement=(COMPONENT, 
+    'S33'), )
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1213.97, 
+    farPlane=1829.77, width=308.738, height=111.609, viewOffsetX=29.7675, 
+    viewOffsetY=17.3717)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1211.36, 
+    farPlane=1832.38, width=308.077, height=111.37, viewOffsetX=55.1488, 
+    viewOffsetY=5.81346)
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    UNDEFORMED, ))
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap=session.viewports['Viewport: 1'].colorMappings['Set']
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap = session.viewports['Viewport: 1'].colorMappings['Set']
+cmap.updateOverrides(overrides={' ALL ELEMENTS':(False, ), 
+    'LAYUP_INSTANCE.SET_LAYUP': (False, ), 'SET_SYM_BC':(False, ), 
+    'WarnElemDistorted': (False, )})
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1235.06, 
+    farPlane=1808.68, width=141.095, height=58.041, viewOffsetX=41.2483, 
+    viewOffsetY=26.7051)
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    CONTOURS_ON_DEF, ))
+session.viewports['Viewport: 1'].odbDisplay.display.setValues(plotState=(
+    UNDEFORMED, ))
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1229.07, 
+    farPlane=1814.67, width=178.471, height=73.4161, viewOffsetX=62.7116, 
+    viewOffsetY=24.062)
+p = mdb.models['model'].parts['layup']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=1219.83, 
+    farPlane=1315.48, width=298.28, height=122.701, viewOffsetX=16.0207, 
+    viewOffsetY=194.673)
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap=session.viewports['Viewport: 1'].colorMappings['Set']
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()
+session.viewports['Viewport: 1'].enableMultipleColors()
+session.viewports['Viewport: 1'].setColor(initialColor='#BDBDBD')
+cmap = session.viewports['Viewport: 1'].colorMappings['Set']
+cmap.updateOverrides(overrides={'set_layup':(False, )})
+session.viewports['Viewport: 1'].setColor(colorMapping=cmap)
+session.viewports['Viewport: 1'].disableMultipleColors()
