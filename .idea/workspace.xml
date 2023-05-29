@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="747d0801-fa02-497f-b071-c8ecac718182" name="Changes" comment="checkpoint before big refactor">
-      <change beforePath="$PROJECT_DIR$/.idea/hydrotank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hydrotank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/assemble_parts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/assemble_parts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/assign_property.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/assign_property.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/create_part.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/create_part.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/create_sets_surfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/create_sets_surfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/cut_face.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/cut_face.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/discrete_field.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/mesher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/mesher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/orient_elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/orient_elements.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/routine_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/routine_constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/routine_main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routines/thickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/thickness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routines/trivial.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routines/trivial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wrapper.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness.py.orig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness_BACKUP_883.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness_BASE_883.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness_LOCAL_883.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routines/thickness_REMOTE_883.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +26,32 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -81,7 +98,7 @@
       <recent name="E:\Current Workspace\Codebase\hydrotank\src\modbui\routines\orientations_tester" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.thickness (1)">
+  <component name="RunManager" selected="Python.thickness_REMOTE_883">
     <configuration name="design_variables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,27 +183,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stubs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hydrotank" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/modbui/routines" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modbui/routines/stubs.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="hydrotank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -250,23 +246,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="thickness" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hydrotank" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/routines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\simon\codebase\hydrotank\src\routines\thickness.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.dos" />
       <item itemvalue="Python.orient_elements" />
       <item itemvalue="Python.thickness" />
+      <item itemvalue="Python.thickness_REMOTE_883" />
       <item itemvalue="Python.design_variables" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.stubs" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.thickness (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.thickness_REMOTE_883" />
         <item itemvalue="Python.thickness (1)" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.design_variables" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.design_variables" />
       </list>
     </recent_temporary>
   </component>
@@ -567,7 +581,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -623,11 +649,6 @@
           <url>file://$PROJECT_DIR$/src/modbui/routines/thickness.py</url>
           <line>211</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/routines/thickness.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
