@@ -45,7 +45,7 @@ def get_angles():
         """
         use user specified layup
         """
-        _input_file = r'E:\Current Workspace\Codebase\hydrotank\src\bin\sequence.csv'
+        _input_file = r'..\resources\sequence.csv'
         with open(_input_file) as fh:
             reader = csv.reader(fh)
             angles = list(reader)[0]

@@ -1,16 +1,19 @@
-import sys, os, time
+"""
+Thickness computation routine
 
-cwd = os.getcwd()
+Run from 'routines' directory
+"""
+import sys
 
+# Toggles if the code is rand standalone to graph
+# or by Abaqus to plot the geometry
+# True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
 toggle = 'ABQcaeK.exe' not in sys.executable
 
-# toggle = False
 import numpy as np
-import scipy as sp
 
 if toggle:
     import matplotlib.pyplot as plt
-    from matplotlib.pyplot import plot
     from cycler import cycler
 
 from scipy.integrate import quad
@@ -19,19 +22,12 @@ from scipy.interpolate import interp1d
 import design_variables
 from design_variables import b, t_R, t_P, pi
 
-# TODO move to global definition
 
-if toggle:
-    filename = r'..\bin\liner.csv'
-else:
-    filename = r'.\bin\liner.csv'
+filename = r'..\resources\liner.csv'
 
 
-try:
-    liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
-except:
-    alt_filename = 'liner.csv'
-    liner = np.loadtxt(open(alt_filename), delimiter=",", skiprows=1)
+liner = np.loadtxt(filename, delimiter=",", skiprows=1)
+
 
 
 # extract points from liner
@@ -317,7 +313,6 @@ def main():
     topmost_points = (r, g)
     f2 = 0
     if toggle:
-        plt.figure(1)  # TODO plot
         f1, ax1 = plt.subplots()
         f1.suptitle('Plot of the stacked layers', fontsize=16)
         ax1.set_xlabel('radial coordinate -- r (mm)')
@@ -326,7 +321,6 @@ def main():
         line.set_label('Liner outer shape')
         ax1.legend()
 
-        plt.figure(2)
         f2, ax2 = plt.subplots()
         custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
         ax2.set_prop_cycle(custom_cycler)
@@ -392,7 +386,6 @@ if __name__ == "__main__":
 
     plt.show()
 
-    from graphics import add_zoom
     # add_zoom(f1, ax1)
 
     # f2.savefig(r'D:\Simon\Documentos\Bewerbungen\CSE\test.svg')
