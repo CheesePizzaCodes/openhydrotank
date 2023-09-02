@@ -1,2 +1,2 @@
 cd ./temp
-abaqus cae script=./src/build_model.py
+abaqus cae script=../src/build_model.py

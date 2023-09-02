@@ -8,12 +8,12 @@ import os
 import sys
 import time
 
-sys.path.append('./src')
-os.chdir('./temp')
+sys.path.append('../src')
+
 
 
 def main():
-    from src.routines import thickness, create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
+    from routines import thickness, create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
         orient_elements, trivial, mesher
     st = time.time()
 
