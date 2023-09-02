@@ -8,11 +8,11 @@ import sys
 # Toggles if the code is rand standalone to graph
 # or by Abaqus to plot the geometry
 # True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
-toggle = 'ABQcaeK.exe' not in sys.executable
+RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable
 
 import numpy as np
 
-if toggle:
+if RUNNING_STANDALONE:
     import matplotlib.pyplot as plt
     from cycler import cycler
 
@@ -22,27 +22,25 @@ from scipy.interpolate import interp1d
 import design_variables
 from design_variables import b, t_R, t_P, pi
 
-
 filename = r'..\resources\liner.csv'
 
-
-liner = np.loadtxt(filename, delimiter=",", skiprows=1)
-
-
+liner = np.loadtxt(filename, delimiter=",", skiprows=0)
 
 # extract points from liner
 liner_r = liner[:, 0]
 liner_y = liner[:, 1]
 
+# Initialize global variables
+r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = 0.
 
-def globs(angle):
+
+def define_global_variables(angle):
     """
     Calculates the global geometric parameters for this routine.
     These vary with respect to the angle of the layer.
-    :param angle: alpha_0. Desired cylindrical-section angle.
+    :param angle: alpha_0. Desired cylindrical-section winding angle.
     :return:
     """
-    # TODO this is calculated on every layer.
     global r_0, m_R, m_0, r_b, r_2b, n_R, alpha_0, angle_deg
     angle_deg = angle
     alpha_0 = np.radians(angle)
@@ -64,11 +62,11 @@ def pd(degree):
     return r_2b ** degree - r_0 ** degree
 
 
-def a_vec(angle):
+def get_a_vec(angle):
     """
     Obtain vector of coefficients for the polynomial (cubic spline) for the thickness in region 1
     :param angle: nominal winding angle of the layer
-    :return: vector of coefficients :a: of the polynomial such that dot(a, [x**0, x**1, x**2. x**3]) is a polynomial
+    :return: vector of coefficients :a: of the polynomial such that dot(a, [x**0, x**1, x**2, x**3]) is a polynomial
     """
     # Setting up linear system: A c = a,
     # A is a matrix with the constraints and c is the independent-terms vector [TODO reference]
@@ -84,10 +82,10 @@ def a_vec(angle):
     c_1 = m_R * n_R / pi * (np.arccos(r_0 / r_2b) - np.arccos(r_b / r_2b)) * t_P
     c_2 = m_R * n_R / pi * (r_0 / (r_2b * np.sqrt(pd(2))) - r_b / (r_2b * np.sqrt(r_2b ** 2 - r_b ** 2))) * t_P
 
-    int_1, err = quad(lambda r: r * np.arccos(r_0 / r), r_0, r_b)
-    int_2, err = quad(lambda r: r * np.arccos(r_0 / r_2b) - r * np.arccos(r_b / r_2b), r_b, r_2b)
+    int_1, _ = quad(lambda r: r * np.arccos(r_0 / r), r_0, r_b)
+    int_2, _ = quad(lambda r: r * np.arccos(r_0 / r_2b) - r * np.arccos(r_b / r_2b), r_b, r_2b)
 
-    c_3 = 2 * m_R * n_R * t_P * (int_1 + int_2)
+    c_3 = 2. * m_R * n_R * t_P * (int_1 + int_2)
 
     c = np.array([c_0, c_1, c_2, c_3])
 
@@ -99,27 +97,26 @@ def a_vec(angle):
 # Use previous information to build Segments of the piecewise curve:
 # Segment 1
 # polynomial object. Already callable and vectorized.
-
-def thickness_1():  # Callable and vectorized. To be called on array of "r" values (lin-space)
-    t = np.poly1d(
-        np.flip(a_vec(alpha_0)))  # Vector is flipped because of difference in nomenclature between reference and numpy
-    return t
+def thickness_1():
+    """
+    :return: vectorized function that takes an array of r coordinates
+    and returns an array of equal length of thickness values
+    """
+    # Callable and vectorized. To be called on array of "radius coordinate" values (lin-space)
+    # Vector is flipped because of difference in nomenclature between reference and numpy
+    return np.poly1d(np.flip(get_a_vec(alpha_0)))
 
 
 # Segment 2
 def thickness_2(r):  # Callable and vectorized. To be called on array of "r" values (lin-space)
     r = np.asarray(r)
-
     # remove numerical errors -- set undefined regions of the domain of arccos to 1, in order to return pi
     arg_1 = r_0 / r
-    arg_1[arg_1 >= 1] = 1  # TODO check if the correct default value is 1 or 0
-
+    arg_1[arg_1 >= 1] = 1
     arg_2 = r_b / r
     arg_2[arg_2 >= 1] = 1
-
     t = (m_R * n_R / pi) * (np.arccos(arg_1) - np.arccos(arg_2)) * t_P
-    t = np.nan_to_num(t)  # TODO remove, probably obsolete and may break something (test first)
-    return t
+    return np.nan_to_num(t)
 
 
 # Joining two sections:
@@ -132,7 +129,6 @@ def thickness(r):
     """
     r = np.asarray(r)
     t = np.zeros(r.shape)
-    f = 1  # Size factor. Used to half the size of each layer to follow the double-pseudolayer approach
 
     # First case
     # extract polynomial for given globs
@@ -144,15 +140,15 @@ def thickness(r):
     t[r == r.max()] = 0.65
 
     tol = 0.085
+    # tol = 0
     t[t < tol] = 0
 
-    return t * f
-
-
-def smooth(t, x, y):
+    return t
+def smoothen_curve(t, x, y):
     """
     Smoothing function for low-angles (helical layers)
     Makes layers seek the liner horizontally
+    :param x:
     :param t:
     :param y:
     :return:
@@ -200,7 +196,7 @@ def thickness_hoop(y):
     return t
 
 
-def clean_curve(x, y):
+def calculate_cleaner_mask(x, y):
     dx = np.gradient(x)
     dy = np.gradient(y)
     ddx = np.gradient(dx)
@@ -208,10 +204,10 @@ def clean_curve(x, y):
 
     curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
 
-    cleaner = curvature < 0.1
+    cleaner_mask = curvature < 0.1
 
-    cleaner[x < 40] = True
-    return cleaner
+    cleaner_mask[x < 40] = True
+    return cleaner_mask
 
 
 def draw_layer(r, g, make_smooth):
@@ -237,18 +233,18 @@ def draw_layer(r, g, make_smooth):
 
     # --- smoothing ---
     if make_smooth:
-        x, y = smooth(t, x, y)
+        x, y = smoothen_curve(t, x, y)
+    # ---
+    cleaner_mask = calculate_cleaner_mask(x, y)
 
-    cleaner = clean_curve(x, y)
-
-    x, y, r, g = x[cleaner], y[cleaner], r[cleaner], g[cleaner]
+    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]
 
     # finally, evaluate returns. distinction between zero thickness considered vs deleted
 
     # define layer region: where previous top (g) deviates from new top (y)
     layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
 
-    if len(layer_mask) == 1:
+    if len(layer_mask) == 1:  # TODO
         first_true = np.where(layer_mask)[0]
     else:
         first_true = np.where(layer_mask)[0][0]
@@ -256,10 +252,6 @@ def draw_layer(r, g, make_smooth):
     layer_mask[first_true - 1] = True  # pad one time
 
     x_layer, y_layer = x[layer_mask], y[layer_mask]
-
-    # Add straight lines towards the bottom of the tank
-    # x_layer = np.append(x_layer, x_layer[-1])
-    # y_layer = np.append(y_layer, 0)
 
     layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
     topmost_points = (x, y)  # used to calculate next layer. do not store.
@@ -269,13 +261,12 @@ def draw_layer(r, g, make_smooth):
 def main():
     global R
     R = liner_r.max()
-    #  bullshit imports not working, bruteforce to bring angles
     angles = design_variables.get_angles()
 
     # initial values are those of the liner
 
     # TODO massive refactor, check that everything makes sense...
-    globs(angles[0])
+    define_global_variables(angles[0])
 
     zone_1 = np.diff(liner_r) != 0  # TODO delete this technicality, as parameter is now index. No need.
 
@@ -312,7 +303,7 @@ def main():
     # # Initialize topmost as shape of the liner
     topmost_points = (r, g)
     f2 = 0
-    if toggle:
+    if RUNNING_STANDALONE:
         f1, ax1 = plt.subplots()
         f1.suptitle('Plot of the stacked layers', fontsize=16)
         ax1.set_xlabel('radial coordinate -- r (mm)')
@@ -341,7 +332,7 @@ def main():
 
     for angle in angles:
         # overwrite globals
-        globs(angle)
+        define_global_variables(angle)
         # calculate outer contour of new layer
         # x = linespace used, y = topmost wrt whom to calculate
         if angle <= 30:
@@ -366,7 +357,7 @@ def main():
         landmarks += (landmark,)
 
         disp = "-o"
-        if toggle:
+        if RUNNING_STANDALONE:
             # plot(*layer_points, disp)
             line1, = ax1.plot(x, y, '')
 
@@ -374,7 +365,7 @@ def main():
             # line2.set_label(f'alpha={angle}')
             ax2.legend()
 
-    if toggle:
+    if RUNNING_STANDALONE:
         return lines, landmarks, f1, ax1, f2, ax2
     else:
         return lines, landmarks
@@ -382,7 +373,6 @@ def main():
 
 if __name__ == "__main__":
     _, _, f1, ax1, f2, ax2 = main()
-
 
     plt.show()
 

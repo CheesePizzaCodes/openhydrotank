@@ -35,7 +35,7 @@ import routine_constants as rc
 filename = r'..\resources\liner.csv'
 
 
-liner = np.loadtxt(open(filename), delimiter=",", skiprows=1)
+liner = np.loadtxt(filename, delimiter=",", skiprows=0)
 
 
 angles = get_angles()
