@@ -212,8 +212,10 @@ def calculate_cleaner_mask(x, y):
     curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
 
     cleaner_mask = curvature < 0.1
+    # ignore 1 cm to the right of the opening, where high curvature is expected
+    ignored_region = x < x.min() + 10
 
-    cleaner_mask[x < 40] = True
+    cleaner_mask[ignored_region] = True  # TODO make 40 not be a literal
     return cleaner_mask
 
 
