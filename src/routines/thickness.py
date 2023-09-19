@@ -22,7 +22,7 @@ from scipy.integrate import quad
 from scipy.interpolate import interp1d
 
 import design_variables
-from design_variables import b, t_R, t_P
+from design_variables import b, t_R, t_P, max_y_hoop, t_hoop
 
 filename = r'..\resources\liner.csv'
 
@@ -175,16 +175,25 @@ def smoothen_curve(t, x, y):  # TODO fix and refalctor
 
 
 def thickness_hoop(y):
+    """
+    Calculates the thickness distribution of hoop layers
+    :param y:
+    :return:
+    """
     # Initialize arrays
     y = np.asarray(y)
     t = np.zeros(y.shape)
 
-    y_0 = 378.
-    t_0 = 0.72
-    y_1 = y_0 - 20
+    y_0 = max_y_hoop  # starting y position of the hoop layer
+    t_0 = t_hoop
+
+    thickness_development = 20  # distance in mm it takes a hoop layer to achieve max thickness
+
+    y_1 = y_0 - thickness_development  # ending y position of the hoop development
     idx_0 = np.argmin(np.abs(y - y_0))
     idx_1 = np.argmin(np.abs(y - y_1))
 
+    # Square root function is used to describe the thickness
     t[idx_0: idx_1] = t_0 * (np.linspace(0, 1, np.abs(idx_0 - idx_1))) ** 0.5
     t[idx_1:] = t_0
 

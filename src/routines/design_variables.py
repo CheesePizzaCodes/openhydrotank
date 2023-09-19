@@ -73,3 +73,5 @@ def get_angles():
 b = 16.  # mm - Roving bandwidth
 t_R = 0.65  # mm - Laminate thickness ar r = R (cylindrical part)
 t_P = 0.35  # mm - Ply thickness
+max_y_hoop = 378.
+t_hoop = 0.72
