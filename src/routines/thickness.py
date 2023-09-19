@@ -130,18 +130,20 @@ def thickness(r):
     :return:
     """
     r = np.asarray(r)
-    t = np.zeros(r.shape)
+    t = np.zeros(r.shape)  # initialize thickness array to all zeros
 
-    # First case
+    # First case: r <= r_2b
     # extract polynomial for given globs
-    polynomial = thickness_1()
-    t += polynomial(r) * ((polynomial(r) >= 0) & (r <= r_2b))
+    _thickness_1 = thickness_1()
+    t += _thickness_1(r) * ((_thickness_1(r) >= 0) & (r <= r_2b))  # multiply by logical mask
     # Second case
-    t += thickness_2(r) * (r_2b < r)
+    t += thickness_2(r) * (r_2b < r)  # multiply by logical mask
 
-    t[r == r.max()] = t_R
+    t[r == r.max()] = t_R  # set cylindrical region as constant thickness
 
     return t
+
+
 def smoothen_curve(t, x, y):  # TODO fix and refalctor
     """
     Smoothing function for low-angle helical layers, typically < 30°
@@ -153,26 +155,21 @@ def smoothen_curve(t, x, y):  # TODO fix and refalctor
     """
     layer_mask = t > 0  # Logical Mask indicating the layer region
     # find index where layer peaks height
-    idx = (y * layer_mask).argmax()  #
+    max_y_idx = (y * layer_mask).argmax()  #
 
-    target = np.argmin(np.abs(y[idx] - y[:idx - 1]))
-    # ## build mask: True below layer maximum point value AND below flag idx
+    target = np.argmin(np.abs(y[max_y_idx] - y[:max_y_idx - 1]))
+    # ## build a mask that is: True below layer maximum point value AND before max_y_idx
     # left of flag index
-    aux_mask = np.zeros(y.shape, dtype="bool")
-    aux_mask[:idx] = True
+    aux_mask = np.zeros(y.shape, dtype="bool")  # initialize as all false of the same shape as y
+    aux_mask[:max_y_idx] = True
     # and below maximum y point
-    aux_mask = np.logical_and(aux_mask, y < y[idx])
-    # delete all points from all vectors that fulfill the condition
+    aux_mask = np.logical_and(aux_mask, y < y[max_y_idx])
 
-    try:
-        x_target = np.where(aux_mask)[0][0]
-
-        y[aux_mask] = y[idx]  # project points to target
-
-        x[aux_mask] = np.linspace(x[x_target] + 1, x[idx], aux_mask.sum())
-
-    except IndexError:
-        x, y = x, y
+    x_indices = np.where(aux_mask)[0]
+    if x_indices.size > 0:
+        y[aux_mask] = y[max_y_idx]  # update y inside mask to be constant as the highest y value
+        # create a linspace to distribute the x values
+        x[aux_mask] = np.linspace(x[x_indices[0]] + 1, x[max_y_idx], aux_mask.sum())
 
     return x, y
 
