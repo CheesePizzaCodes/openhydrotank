@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Thickness computation routine
 
@@ -11,6 +12,7 @@ import sys
 RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable
 
 import numpy as np
+from numpy import pi
 
 if RUNNING_STANDALONE:
     import matplotlib.pyplot as plt
@@ -20,7 +22,7 @@ from scipy.integrate import quad
 from scipy.interpolate import interp1d
 
 import design_variables
-from design_variables import b, t_R, t_P, pi
+from design_variables import b, t_R, t_P
 
 filename = r'..\resources\liner.csv'
 
@@ -137,12 +139,12 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)
 
-    t[r == r.max()] = 0.65
+    t[r == r.max()] = t_R
 
     return t
-def smoothen_curve(t, x, y):
+def smoothen_curve(t, x, y):  # TODO fix and refalctor
     """
-    Smoothing function for low-angles (helical layers)
+    Smoothing function for low-angle helical layers, typically < 30°
     Makes layers seek the liner horizontally
     :param x:
     :param t:

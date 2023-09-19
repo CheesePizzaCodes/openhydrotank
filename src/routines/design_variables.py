@@ -72,6 +72,4 @@ def get_angles():
 
 b = 16.  # mm - Roving bandwidth
 t_R = 0.65  # mm - Laminate thickness ar r = R (cylindrical part)
-t_P = 0.35  # mm - Ply thickness TODO must depend on hoop / helical
-
-pi = np.pi
+t_P = 0.35  # mm - Ply thickness
