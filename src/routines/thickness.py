@@ -33,7 +33,7 @@ liner_r = liner[:, 0]
 liner_y = liner[:, 1]
 
 # Initialize global variables
-r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = 0.
+r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = 0.
 
 
 def define_global_variables(angle):
@@ -204,66 +204,63 @@ def thickness_hoop(y, thickness_development=20):
 
 
 def calculate_cleaner_mask(x, y):
+    # ignore 1 cm to the right of the opening, where high curvature is expected
+    ignored_region = x < x.min() + 10
+
     dx = np.gradient(x)
     dy = np.gradient(y)
     ddx = np.gradient(dx)
     ddy = np.gradient(dy)
 
     curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
-
+    curvature[ignored_region] = 0.
     cleaner_mask = curvature < 0.1
-    # ignore 1 cm to the right of the opening, where high curvature is expected
-    ignored_region = x < x.min() + 10
 
-    cleaner_mask[ignored_region] = True  # TODO make 40 not be a literal
     return cleaner_mask
 
 
-def draw_layer(r, g, make_smooth):
-    """
-    :param r: r coordinates of the liner (or previous topmost) points
-    :param g: z coordinates of the liner bzw. previous topmost
-    :return: Tuple of points belonging to the new layer
-    """
-    # calculate thickness distribution
+def detect_layer_and_topmost(r, g, x, y):
+    # define layer region: where previous topmost points (r, g) deviate from new topmost (x, y)
+    # ~( x = r ^ y = g )
+    layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
+    first_true = np.argmax(layer_mask)
+    layer_mask[first_true - 1] = True  # pad one time
+    x_layer, y_layer = x[layer_mask], y[layer_mask]
+    layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
+    topmost_points = (x, y)  # used to calculate next layer. do not store.
+    return layer_points, topmost_points
 
+
+def draw_layer(r, g, smoothing_threshold=30):
+    """
+    :param r: r coordinates of the previous topmost points
+    :param g: y coordinates of the previous topmost
+    :return x:
+    :return y:
+    :return r:
+    :return g:
+    """
+    # calculate the appropriate thickness distribution
     if angle_deg == 90:
         t = thickness_hoop(g)
-
     else:
         t = thickness(r)
 
-    df = np.gradient(r)  # derivative wrt parameter, e.g., index
+    df = np.gradient(r)  # derivative wrt parameter, i.e., index
     dg = np.gradient(g)
     den = np.sqrt(df ** 2 + dg ** 2)
     # calculate new points
     x = r - t * dg / den
     y = g + t * df / den
 
-    # --- smoothing ---
-    if make_smooth:
+    # --- smoothing to enter neck ---
+    if angle_deg < smoothing_threshold:
         x, y = smoothen_curve(t, x, y)
-    # ---
+    # --- cleaning points of high curvature
     cleaner_mask = calculate_cleaner_mask(x, y)
-
     x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]
 
-    # finally, evaluate returns. distinction between zero thickness considered vs deleted
-
-    # define layer region: where previous top (g) deviates from new top (y)
-    layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
-
-    if len(layer_mask) == 1:  # TODO
-        first_true = np.where(layer_mask)[0]
-    else:
-        first_true = np.where(layer_mask)[0][0]
-
-    layer_mask[first_true - 1] = True  # pad one time
-
-    x_layer, y_layer = x[layer_mask], y[layer_mask]
-
-    layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
-    topmost_points = (x, y)  # used to calculate next layer. do not store.
+    layer_points, topmost_points = detect_layer_and_topmost(r, g, x, y)
     return layer_points, topmost_points
 
 
@@ -273,17 +270,7 @@ def main():
     angles = design_variables.get_angles()
 
     # initial values are those of the liner
-
-    # TODO massive refactor, check that everything makes sense...
     define_global_variables(angles[0])
-
-    zone_1 = np.diff(liner_r) != 0  # TODO delete this technicality, as parameter is now index. No need.
-
-    zone_1 = np.append(zone_1, False)
-
-    # initialize parametric curve to shape of liner  # TODO maybe this will be obsolete
-    # r = liner_r[zone_1]
-    # g = liner_y[zone_1]
 
     #  Obtain original guide points
     r = liner_r
@@ -344,15 +331,11 @@ def main():
         define_global_variables(angle)
         # calculate outer contour of new layer
         # x = linespace used, y = topmost wrt whom to calculate
-        if angle <= 30:
-            make_smooth = True
-        else:
-            make_smooth = False
 
         R = topmost_points[0].max()
 
         layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1],
-                                                  make_smooth)  # TODO make_smooth parameter is obsolete since angle_deg is a global parameter now
+                                                  30)
 
         # extract points (redundant, readability)
 
