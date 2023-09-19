@@ -24,17 +24,6 @@ from scipy.interpolate import interp1d
 import design_variables
 from design_variables import b, t_R, t_P, max_y_hoop, t_hoop
 
-filename = r'..\resources\liner.csv'
-
-liner = np.loadtxt(filename, delimiter=",", skiprows=0)
-
-# extract points from liner
-liner_r = liner[:, 0]
-liner_y = liner[:, 1]
-
-# Initialize global variables
-r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = 0.
-
 
 def define_global_variables(angle):
     """
@@ -231,8 +220,9 @@ def detect_layer_and_topmost(r, g, x, y):
     return layer_points, topmost_points
 
 
-def draw_layer(r, g, smoothing_threshold=30):
+def calculate_layer_points(r, g, smoothing_threshold=30):
     """
+    :param smoothing_threshold:
     :param r: r coordinates of the previous topmost points
     :param g: y coordinates of the previous topmost
     :return x:
@@ -273,58 +263,36 @@ def main():
     define_global_variables(angles[0])
 
     #  Obtain original guide points
-    r = liner_r
-    g = liner_y
+    x = liner_r
+    y = liner_y
 
-    global t_p
-    t_p = 100
-    # b_p = 50
-    #
-    # create sampling points
-    ls = np.linspace(g.max(), g.min(), 200)
-    #
-    aux_ls = np.linspace(440, 540, t_p)
-    ls = np.unique(np.concatenate((ls, aux_ls)))
-    ls = ls[::-1]
-    #
-    # aux_ls = np.linspace(ls[0], ls[0] + 10, b_p)
-    # ls = np.unique(np.concatenate((ls, aux_ls)))
+    # Compute the cumulative arc length
+    dx = np.diff(x)
+    dy = np.diff(y)
+    distances = np.sqrt(dx ** 2 + dy ** 2)
+    cumulative_length = np.insert(np.cumsum(distances), 0, 0)
 
-    # modify original sampling to increase granularity in trailing section
-    interp = interp1d(g, r, kind="cubic")
+    # Interpolate based on arc length
+    num_points = 500  # Number of points for the new curve
+    s = np.linspace(0, cumulative_length[-1], num_points)
+    interpolator_kind = 'cubic'
+    x_interp_func = interp1d(cumulative_length, x, kind=interpolator_kind)
+    y_interp_func = interp1d(cumulative_length, y, kind=interpolator_kind)
 
-    g = ls
-    r = interp(g)
+    x = x_interp_func(s)
+    y = y_interp_func(s)
+
 
     # # Initialize topmost as shape of the liner
-    topmost_points = (r, g)
-    f2 = 0
+    topmost_points = (x, y)
     if RUNNING_STANDALONE:
-        f1, ax1 = plt.subplots()
-        f1.suptitle('Plot of the stacked layers', fontsize=16)
-        ax1.set_xlabel('radial coordinate -- r (mm)')
-        ax1.set_ylabel('axial coordinate -- y (mm)')
-        line, = ax1.plot(r, g, c="k")
-        line.set_label('Liner outer shape')
-        ax1.legend()
+        ax1, ax2, f1, f2 = initialize_plots(x, y)
 
-        f2, ax2 = plt.subplots()
-        custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
-        ax2.set_prop_cycle(custom_cycler)
-        f2.suptitle('Thickness progression at different winding angles', fontsize=16)
-        ax2.set_xlabel('radial coordinate (mm)')
-        ax2.set_ylabel('thickness(mm)')
-
-    # draw layup routine TODO make method
-
-    initial_line = tuple(zip(r, g))
-
-    # initial_line += ((r[-1], 0),)  # pad end straight line2
+    # draw layup routine
+    initial_line = tuple(zip(x, y))
 
     lines = (initial_line,)  # accum. for the splines that represent the layers
     landmarks = (initial_line[-1],)  # accum. for important landmarks
-
-    # plt.set_cmap("Pastel1")
 
     for angle in angles:
         # overwrite globals
@@ -334,8 +302,7 @@ def main():
 
         R = topmost_points[0].max()
 
-        layer_points, topmost_points = draw_layer(topmost_points[0], topmost_points[1],
-                                                  30)
+        layer_points, topmost_points = calculate_layer_points(topmost_points[0], topmost_points[1], 30)
 
         # extract points (redundant, readability)
 
@@ -363,7 +330,35 @@ def main():
         return lines, landmarks
 
 
+def initialize_plots(x, y):
+    f1, ax1 = plt.subplots()
+    f1.suptitle('Plot of the stacked layers', fontsize=16)
+    ax1.set_xlabel('radial coordinate -- x (mm)')
+    ax1.set_ylabel('axial coordinate -- y (mm)')
+    line, = ax1.plot(x, y, c="k")
+    line.set_label('Liner outer shape')
+    ax1.legend()
+    f2, ax2 = plt.subplots()
+    custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
+    ax2.set_prop_cycle(custom_cycler)
+    f2.suptitle('Thickness progression at different winding angles', fontsize=16)
+    ax2.set_xlabel('radial coordinate (mm)')
+    ax2.set_ylabel('thickness(mm)')
+    return ax1, ax2, f1, f2
+
+
 if __name__ == "__main__":
+    filename = r'..\resources\liner.csv'
+    liner = np.loadtxt(filename, delimiter=",", skiprows=0)
+
+    # extract points from liner
+    liner_r = liner[:, 0]
+    liner_y = liner[:, 1]
+
+    # Initialize global variables
+    r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
+
+
     _, _, f1, ax1, f2, ax2 = main()
 
     plt.show()
