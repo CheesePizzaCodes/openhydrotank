@@ -139,10 +139,6 @@ def thickness(r):
 
     t[r == r.max()] = 0.65
 
-    tol = 0.085
-    # tol = 0
-    t[t < tol] = 0
-
     return t
 def smoothen_curve(t, x, y):
     """
