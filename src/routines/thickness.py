@@ -174,28 +174,31 @@ def smoothen_curve(t, x, y):  # TODO fix and refalctor
     return x, y
 
 
-def thickness_hoop(y):
+def thickness_hoop(y, thickness_development=20):
     """
-    Calculates the thickness distribution of hoop layers
-    :param y:
-    :return:
+    Calculates the thickness distribution of hoop layers based on a given vertical position array.
+
+    Parameters:
+    - y (array-like): Array of vertical positions.
+    - thickness_development (float, optional): Distance in mm it takes a hoop layer to achieve max thickness. Default is 20.
+
+    Returns:
+    - t (numpy array): Array representing the thickness distribution.
     """
     # Initialize arrays
     y = np.asarray(y)
     t = np.zeros(y.shape)
 
-    y_0 = max_y_hoop  # starting y position of the hoop layer
+    y_start = max_y_hoop  # starting y position of the hoop layer
     t_0 = t_hoop
 
-    thickness_development = 20  # distance in mm it takes a hoop layer to achieve max thickness
-
-    y_1 = y_0 - thickness_development  # ending y position of the hoop development
-    idx_0 = np.argmin(np.abs(y - y_0))
-    idx_1 = np.argmin(np.abs(y - y_1))
+    y_end = y_start - thickness_development  # ending y position of the hoop development
+    idx_start = np.argmin(np.abs(y - y_start))
+    idx_end = np.argmin(np.abs(y - y_end))
 
     # Square root function is used to describe the thickness
-    t[idx_0: idx_1] = t_0 * (np.linspace(0, 1, np.abs(idx_0 - idx_1))) ** 0.5
-    t[idx_1:] = t_0
+    t[idx_start: idx_end] = t_0 * (np.linspace(0, 1, np.abs(idx_start - idx_end))) ** 0.5
+    t[idx_end:] = t_0
 
     return t
 
