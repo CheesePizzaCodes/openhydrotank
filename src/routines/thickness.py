@@ -254,46 +254,35 @@ def calculate_layer_points(r, g, smoothing_threshold=30):
     return layer_points, topmost_points
 
 
-def main():
-    global R
-    R = liner_r.max()
-    angles = design_variables.get_angles()
-
-    # initial values are those of the liner
-    define_global_variables(angles[0])
-
-    #  Obtain original guide points
+def interpolate_liner_by_arclength(liner_r, liner_y):
     x = liner_r
     y = liner_y
-
     # Compute the cumulative arc length
     dx = np.diff(x)
     dy = np.diff(y)
     distances = np.sqrt(dx ** 2 + dy ** 2)
     cumulative_length = np.insert(np.cumsum(distances), 0, 0)
-
     # Interpolate based on arc length
-    num_points = 500  # Number of points for the new curve
-    s = np.linspace(0, cumulative_length[-1], num_points)
+    # Determine the desired distance between interpolated points
+    desired_distance = 2.5  # mm - Adjust this value as needed
+    s = np.arange(0, cumulative_length[-1], desired_distance)
     interpolator_kind = 'cubic'
     x_interp_func = interp1d(cumulative_length, x, kind=interpolator_kind)
     y_interp_func = interp1d(cumulative_length, y, kind=interpolator_kind)
-
     x = x_interp_func(s)
     y = y_interp_func(s)
+    x[-1], y[-1] = liner_r[-1], liner_y[-1]
+    return x, y
 
 
+def calculate_layup(angles, x, y):
+    global R
     # # Initialize topmost as shape of the liner
-    topmost_points = (x, y)
-    if RUNNING_STANDALONE:
-        ax1, ax2, f1, f2 = initialize_plots(x, y)
-
+    topmost_points = (x, y)  # tuple containing two arrays
     # draw layup routine
     initial_line = tuple(zip(x, y))
-
     lines = (initial_line,)  # accum. for the splines that represent the layers
     landmarks = (initial_line[-1],)  # accum. for important landmarks
-
     for angle in angles:
         # overwrite globals
         define_global_variables(angle)
@@ -317,20 +306,44 @@ def main():
 
         disp = "-o"
         if RUNNING_STANDALONE:
+            global ax1, ax2
             # plot(*layer_points, disp)
-            line1, = ax1.plot(x, y, '')
+            line1, = ax1.plot(x, y, disp)
 
             line2, = ax2.plot(x[x < 159], thickness(x)[x < 159], disp)
             # line2.set_label(f'alpha={angle}')
             ax2.legend()
+    return lines, landmarks
+
+
+def main():
+    filename = r'..\resources\liner.csv'
+    liner = np.loadtxt(filename, delimiter=",", skiprows=0)
+
+    # extract points from liner
+    liner_r = liner[:, 0]
+    liner_y = liner[:, 1]
+
+    global R
+    R = liner_r.max()
+    angles = design_variables.get_angles()
+
+    # initial values are those of the liner
+    define_global_variables(angles[0])
+
+    #  copy original guide points
+    x, y = interpolate_liner_by_arclength(liner_r, liner_y)
 
     if RUNNING_STANDALONE:
-        return lines, landmarks, f1, ax1, f2, ax2
-    else:
-        return lines, landmarks
+        initialize_plots(x, y)
+
+    landmarks, lines = calculate_layup(angles, x, y)
+
+    return lines, landmarks
 
 
 def initialize_plots(x, y):
+    global ax1, ax2, f1, f2
     f1, ax1 = plt.subplots()
     f1.suptitle('Plot of the stacked layers', fontsize=16)
     ax1.set_xlabel('radial coordinate -- x (mm)')
@@ -344,22 +357,13 @@ def initialize_plots(x, y):
     f2.suptitle('Thickness progression at different winding angles', fontsize=16)
     ax2.set_xlabel('radial coordinate (mm)')
     ax2.set_ylabel('thickness(mm)')
-    return ax1, ax2, f1, f2
 
 
 if __name__ == "__main__":
-    filename = r'..\resources\liner.csv'
-    liner = np.loadtxt(filename, delimiter=",", skiprows=0)
-
-    # extract points from liner
-    liner_r = liner[:, 0]
-    liner_y = liner[:, 1]
-
     # Initialize global variables
     r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
-
-
-    _, _, f1, ax1, f2, ax2 = main()
+    f1 = ax1 = f2 = ax2 = None
+    main()
 
     plt.show()
 
