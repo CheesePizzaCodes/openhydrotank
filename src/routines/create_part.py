@@ -39,6 +39,7 @@ import time
 
 
 def main():
+
     start_time = time.time()
 
     points = stb.test_shape  # stub.
