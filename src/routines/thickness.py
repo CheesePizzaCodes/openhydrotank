@@ -247,11 +247,16 @@ def calculate_layer_points(r, g, smoothing_threshold=30):
     if angle_deg < smoothing_threshold:
         x, y = smoothen_curve(t, x, y)
     # --- cleaning points of high curvature
-    cleaner_mask = calculate_cleaner_mask(x, y)
-    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]
+    g, r, x, y = remove_anomalous_points(x, y, r, g)
 
     layer_points, topmost_points = detect_layer_and_topmost(r, g, x, y)
     return layer_points, topmost_points
+
+
+def remove_anomalous_points(x, y, r, g):
+    cleaner_mask = calculate_cleaner_mask(x, y)
+    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]
+    return g, r, x, y
 
 
 def interpolate_liner_by_arclength(liner_r, liner_y):
@@ -264,7 +269,7 @@ def interpolate_liner_by_arclength(liner_r, liner_y):
     cumulative_length = np.insert(np.cumsum(distances), 0, 0)
     # Interpolate based on arc length
     # Determine the desired distance between interpolated points
-    desired_distance = 2.5  # mm - Adjust this value as needed
+    desired_distance = 0.5  # mm - Adjust this value as needed
     s = np.arange(0, cumulative_length[-1], desired_distance)
     interpolator_kind = 'cubic'
     x_interp_func = interp1d(cumulative_length, x, kind=interpolator_kind)

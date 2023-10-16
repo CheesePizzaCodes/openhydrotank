@@ -12,13 +12,11 @@ sys.path.append('../src')
 
 
 
-def main():
-    from routines import thickness, create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
+def main(lines, landmarks):
+    from routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
         orient_elements, trivial, mesher
     st = time.time()
 
-    lines, landmarks = thickness.main()
-    print("thickness -- ", time.time() - st)
     create_part.main()
     print("part -- ", time.time() - st)
     cut_face.main(lines)
