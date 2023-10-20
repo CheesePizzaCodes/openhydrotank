@@ -5,11 +5,10 @@ Thickness computation routine
 Run from 'routines' directory
 """
 import sys
-
 # Toggles if the code is rand standalone to graph
 # or by Abaqus to plot the geometry
 # True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
-RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable
+RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable  # TODO obsolete, will always run outside of abq
 
 import numpy as np
 from numpy import pi
@@ -21,8 +20,8 @@ if RUNNING_STANDALONE:
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 
-import design_variables
-from design_variables import b, t_R, t_P, max_y_hoop, t_hoop
+import routines.design_variables as dv
+from routines.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
 
 
 def define_global_variables(angle):
@@ -169,7 +168,8 @@ def thickness_hoop(y, thickness_development=20):
 
     Parameters:
     - y (array-like): Array of vertical positions.
-    - thickness_development (float, optional): Distance in mm it takes a hoop layer to achieve max thickness. Default is 20.
+    - thickness_development (float, optional): Distance in mm it takes a hoop layer to achieve max thickness.
+        Default is 20.
 
     Returns:
     - t (numpy array): Array representing the thickness distribution.
@@ -255,7 +255,8 @@ def calculate_layer_points(r, g, smoothing_threshold=30):
 
 def remove_anomalous_points(x, y, r, g):
     cleaner_mask = calculate_cleaner_mask(x, y)
-    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]
+    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]  # TODO avoid unpacking
+
     return g, r, x, y
 
 
@@ -296,7 +297,7 @@ def calculate_layup(angles, x, y):
 
         R = topmost_points[0].max()
 
-        layer_points, topmost_points = calculate_layer_points(topmost_points[0], topmost_points[1], 30)
+        layer_points, topmost_points = calculate_layer_points(topmost_points[0], topmost_points[1], 30)  # TODO points and index, no need to replicate data
 
         # extract points (redundant, readability)
 
@@ -317,7 +318,7 @@ def calculate_layup(angles, x, y):
 
             line2, = ax2.plot(x[x < 159], thickness(x)[x < 159], disp)
             # line2.set_label(f'alpha={angle}')
-            ax2.legend()
+            # ax2.legend()
     return lines, landmarks
 
 
@@ -331,7 +332,7 @@ def main():
 
     global R
     R = liner_r.max()
-    angles = design_variables.get_angles()
+    angles = dv.get_angles()
 
     # initial values are those of the liner
     define_global_variables(angles[0])
@@ -355,7 +356,7 @@ def initialize_plots(x, y):
     ax1.set_ylabel('axial coordinate -- y (mm)')
     line, = ax1.plot(x, y, c="k")
     line.set_label('Liner outer shape')
-    ax1.legend()
+    # ax1.legend()
     f2, ax2 = plt.subplots()
     custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
     ax2.set_prop_cycle(custom_cycler)
