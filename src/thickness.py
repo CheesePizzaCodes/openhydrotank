@@ -22,6 +22,7 @@ from scipy.interpolate import interp1d
 
 import routines.design_variables as dv
 from routines.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
+from model import Curve
 
 
 def define_global_variables(angle):
@@ -260,13 +261,12 @@ def remove_anomalous_points(x, y, r, g):
     return g, r, x, y
 
 
-def interpolate_liner_by_arclength(liner_r, liner_y):
-    x = liner_r
-    y = liner_y
+def interpolate_liner_by_arclength(liner: Curve):
+    x = liner.x()
+    y = liner.y()
     # Compute the cumulative arc length
-    dx = np.diff(x)
-    dy = np.diff(y)
-    distances = np.sqrt(dx ** 2 + dy ** 2)
+    diff = np.diff(liner.points)
+    distances = np.sqrt((diff ** 2).sum(axis=1))  # 1-D array
     cumulative_length = np.insert(np.cumsum(distances), 0, 0)
     # Interpolate based on arc length
     # Determine the desired distance between interpolated points
@@ -277,7 +277,7 @@ def interpolate_liner_by_arclength(liner_r, liner_y):
     y_interp_func = interp1d(cumulative_length, y, kind=interpolator_kind)
     x = x_interp_func(s)
     y = y_interp_func(s)
-    x[-1], y[-1] = liner_r[-1], liner_y[-1]
+    x[-1], y[-1] = liner.points
     return x, y
 
 
@@ -324,21 +324,19 @@ def calculate_layup(angles, x, y):
 
 def main():
     filename = r'..\resources\liner.csv'
-    liner = np.loadtxt(filename, delimiter=",", skiprows=0)
+    liner = Curve(np.loadtxt(filename, delimiter=",", skiprows=0))
 
     # extract points from liner
-    liner_r = liner[:, 0]
-    liner_y = liner[:, 1]
+
 
     global R
-    R = liner_r.max()
+    R = liner.x().max()
     angles = dv.get_angles()
 
     # initial values are those of the liner
     define_global_variables(angles[0])
 
-    #  copy original guide points
-    x, y = interpolate_liner_by_arclength(liner_r, liner_y)
+    x, y = interpolate_liner_by_arclength(liner)
 
     if RUNNING_STANDALONE:
         initialize_plots(x, y)
