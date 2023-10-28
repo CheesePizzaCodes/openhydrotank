@@ -267,32 +267,30 @@ def calculate_layer_points(previous_topmost: Curve, smoothing_threshold=30) -> C
     new_curve.layer_start_index = start_idx
     return new_curve
 
-def remove_anomalous_points(x, y, r, g):
-    cleaner_mask = calculate_cleaner_mask(x, y)
-    x, y, r, g = x[cleaner_mask], y[cleaner_mask], r[cleaner_mask], g[cleaner_mask]  # TODO avoid unpacking
-
-    return g, r, x, y
 
 
-def interpolate_liner_by_arclength(liner: Curve):
-    x = liner.x()
-    y = liner.y()
+def interpolate_layer_region_constant_arclength(curve: Curve) -> Curve:
+    pts = curve.get_layer_points().copy()
+
     # Compute the cumulative arc length
-    diff = np.diff(liner.points)
+    diff = np.diff(pts, axis=0)
     distances = np.sqrt((diff ** 2).sum(axis=1))  # 1-D array
     cumulative_length = np.insert(np.cumsum(distances), 0, 0)
     # Interpolate based on arc length
     # Determine the desired distance between interpolated points
-    desired_distance = 0.5  # mm - Adjust this value as needed
+    desired_distance = 1.5  # mm - Adjust this value as needed
     s = np.arange(0, cumulative_length[-1], desired_distance)
-    interpolator_kind = 'cubic'
-    x_interp_func = interp1d(cumulative_length, x, kind=interpolator_kind)
-    y_interp_func = interp1d(cumulative_length, y, kind=interpolator_kind)
-    x = x_interp_func(s)
-    y = y_interp_func(s)
-    x[-1], y[-1] = liner.points
-    return x, y
+    interpolator_kind = 'linear'
+    interp_func = interp1d(cumulative_length, pts, kind=interpolator_kind, axis=0)
 
+    if curve.layer_start_index is None:  # Liner
+        curve.points = interp_func(s)
+    else:
+        head = curve.get_non_layer_points()
+        tail = interp_func(s)
+        curve.points = np.concatenate((head, tail), axis=0)
+    curve.points[-1, -1] = 0.  # Guarantee that the curve finishes in y=0
+    return curve
 
 def calculate_layup(angles, x, y):
     global R
