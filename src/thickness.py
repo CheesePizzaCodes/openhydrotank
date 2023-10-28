@@ -215,17 +215,16 @@ def calculate_cleaner_mask(curve: Curve):
     return cleaner_mask
 
 
-def detect_layer_and_topmost(r, g, x, y):
+def detect_layer_start(prev: Curve, new: Curve):
     # define layer region: where previous topmost points (r, g) deviate from new topmost (x, y)
-    # ~( x = r ^ y = g )
-    layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
-    first_true = np.argmax(layer_mask)
-    layer_mask[first_true - 1] = True  # pad one time
-    x_layer, y_layer = x[layer_mask], y[layer_mask]
-    layer_points = (x_layer, y_layer)  # Both members of the tuple are a list of floats
-    topmost_points = (x, y)  # used to calculate next layer. do not store.
-    return layer_points, topmost_points
+    # ~( x = r ^ y = g )\
+    r, g = prev.unpack_xy()
+    x, y = new.unpack_xy()
 
+    layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
+    first = np.argmax(layer_mask) - 1
+
+    return first
 
 def calculate_layer_points(r, g, smoothing_threshold=30):
     """
