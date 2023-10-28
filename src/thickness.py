@@ -1,31 +1,33 @@
 # coding=utf-8
 """
 Thickness computation routine
-
-Run from 'routines' directory
+TODO memoize t as polynomials
+Run from '/temp' directory
 """
 import sys
+
 # Toggles if the code is rand standalone to graph
 # or by Abaqus to plot the geometry
 # True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
 RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable  # TODO obsolete, will always run outside of abq
+
+from typing import List, Optional, Tuple
 
 import numpy as np
 from numpy import pi
 
 if RUNNING_STANDALONE:
     import matplotlib.pyplot as plt
-    from cycler import cycler
 
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 
 import routines.design_variables as dv
 from routines.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
-from model import Curve
+from model import Curve, CurvesBunch, ValuesArray, CoordinatesArray
 
 
-def define_global_variables(angle):
+def define_global_variables(angle: float):
     """
     Calculates the global geometric parameters for this routine.
     These vary with respect to the angle of the layer.
