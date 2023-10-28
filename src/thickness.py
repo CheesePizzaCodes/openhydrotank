@@ -130,12 +130,12 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)  # multiply by logical mask
 
-    t[r == r.max()] = t_R  # set cylindrical region as constant thickness
+    t[t <= 0.05] = 0.
 
     return t
 
 
-def smoothen_curve(t, x, y):  # TODO fix and refalctor
+def smoothen_curve(t: np.ndarray, curve: Curve):  # TODO fix and refalctor
     """
     Smoothing function for low-angle helical layers, typically < 30°
     Makes layers seek the liner horizontally
@@ -144,6 +144,8 @@ def smoothen_curve(t, x, y):  # TODO fix and refalctor
     :param y:
     :return:
     """
+    x = curve.x
+    y = curve.y
     layer_mask = t > 0  # Logical Mask indicating the layer region
     # find index where layer peaks height
     max_y_idx = (y * layer_mask).argmax()  #
@@ -161,11 +163,11 @@ def smoothen_curve(t, x, y):  # TODO fix and refalctor
         y[aux_mask] = y[max_y_idx]  # update y inside mask to be constant as the highest y value
         # create a linspace to distribute the x values
         x[aux_mask] = np.linspace(x[x_indices[0]] + 1, x[max_y_idx], aux_mask.sum())
+    curve.points = np.column_stack((x, y))
+    return curve
 
-    return x, y
 
-
-def thickness_hoop(y, thickness_development=20):
+def thickness_hoop(y, thickness_development=40):
     """
     Calculates the thickness distribution of hoop layers based on a given vertical position array.
 
@@ -195,9 +197,11 @@ def thickness_hoop(y, thickness_development=20):
     return t
 
 
-def calculate_cleaner_mask(x, y):
+def calculate_cleaner_mask(curve: Curve):
+    # DEPRECATED
     # ignore 1 cm to the right of the opening, where high curvature is expected
-    ignored_region = x < x.min() + 10
+    x, y = curve.unpack_xy()
+    ignored_region = x < x.min() + 10  # Todo check the validity of these int literals
 
     dx = np.gradient(x)
     dy = np.gradient(y)
@@ -206,7 +210,7 @@ def calculate_cleaner_mask(x, y):
 
     curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
     curvature[ignored_region] = 0.
-    cleaner_mask = curvature < 0.1
+    cleaner_mask = curvature < 0.05
 
     return cleaner_mask
 
