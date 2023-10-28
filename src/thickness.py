@@ -292,45 +292,43 @@ def interpolate_layer_region_constant_arclength(curve: Curve) -> Curve:
     curve.points[-1, -1] = 0.  # Guarantee that the curve finishes in y=0
     return curve
 
-def calculate_layup(angles, x, y):
+
+def calculate_layup(angles: List[float], liner: Curve) -> CurvesBunch:
+    # data initialization
+    curves = CurvesBunch([liner, ])  # initialize container
     global R
-    # # Initialize topmost as shape of the liner
-    topmost_points = (x, y)  # tuple containing two arrays
-    # draw layup routine
-    initial_line = tuple(zip(x, y))
-    lines = (initial_line,)  # accum. for the splines that represent the layers
-    landmarks = (initial_line[-1],)  # accum. for important landmarks
+    R = liner.x.max()
+    topmost_curve = liner
+
     for angle in angles:
         # overwrite globals
         define_global_variables(angle)
-        # calculate outer contour of new layer
-        # x = linespace used, y = topmost wrt whom to calculate
-
-        R = topmost_points[0].max()
-
-        layer_points, topmost_points = calculate_layer_points(topmost_points[0], topmost_points[1], 30)  # TODO points and index, no need to replicate data
-
-        # extract points (redundant, readability)
-
-        x = layer_points[0]
-        y = layer_points[1]
-
-        line2 = tuple(zip(x, y))
-        landmark = line2[-1]
-
-        lines += (line2,)
-        landmarks += (landmark,)
-
-        disp = "-o"
+        # calculate new curve
+        topmost_curve = calculate_layer_points(topmost_curve, 30)  # TODO points and index, no need to replicate data
+        # add new Curve to Bunch
+        topmost_curve = interpolate_layer_region_constant_arclength(topmost_curve)
+        topmost_curve.winding_angle = angle
+        curves.add_curve(topmost_curve)
         if RUNNING_STANDALONE:
-            global ax1, ax2
-            # plot(*layer_points, disp)
-            line1, = ax1.plot(x, y, disp)
+            update_layup_graph(topmost_curve)
 
-            line2, = ax2.plot(x[x < 159], thickness(x)[x < 159], disp)
-            # line2.set_label(f'alpha={angle}')
-            # ax2.legend()
-    return lines, landmarks
+    return curves
+
+
+def update_layup_graph(curve: Curve):
+    x, y = curve.get_layer_unpacked_xy()
+
+    disp = "-o"
+    global ax1, ax2, ax3
+
+    line1, = ax1.plot(x, y, disp)
+    match curve.winding_angle:
+        case 90:
+            line3, = ax3.plot(y, thickness_hoop(y), disp)
+        case None:
+            pass
+        case _:
+            line3, = ax2.plot(x, thickness(x), disp)
 
 
 def main():
