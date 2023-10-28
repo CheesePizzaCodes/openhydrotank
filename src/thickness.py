@@ -226,38 +226,46 @@ def detect_layer_start(prev: Curve, new: Curve):
 
     return first
 
-def calculate_layer_points(r, g, smoothing_threshold=30):
-    """
-    :param smoothing_threshold:
-    :param r: r coordinates of the previous topmost points
-    :param g: y coordinates of the previous topmost
-    :return x:
-    :return y:
-    :return r:
-    :return g:
-    """
-    # calculate the appropriate thickness distribution
-    if angle_deg == 90:
-        t = thickness_hoop(g)
-    else:
-        t = thickness(r)
 
-    df = np.gradient(r)  # derivative wrt parameter, i.e., index
-    dg = np.gradient(g)
-    den = np.sqrt(df ** 2 + dg ** 2)
+def calculate_layer_points(previous_topmost: Curve, smoothing_threshold=30) -> Curve:
+    """
+    :param previous_topmost: previous curve
+    :param smoothing_threshold: Minimum angle at which neck smoothing occurs
+    """
+    # unpack values
+    x, y = previous_topmost.unpack_xy()
+
+    # calculate the appropriate thickness distribution
+    match angle_deg:
+        case 90.:
+            t = thickness_hoop(y)
+        case _:
+            t = thickness(x)
+
+    dx = np.gradient(x)  # derivative wrt parameter of parametric curve, i.e., index
+    dy = np.gradient(y)
+    den = np.sqrt(dx ** 2 + dy ** 2)
     # calculate new points
-    x = r - t * dg / den
-    y = g + t * df / den
+    x = x - t * dy / den
+    y = y + t * dx / den
+    # compensate for the loss of a point when applying diff
+
+    new_curve = Curve.from_unpacked_xy(x, y)
 
     # --- smoothing to enter neck ---
     if angle_deg < smoothing_threshold:
-        x, y = smoothen_curve(t, x, y)
+        new_curve = smoothen_curve(t, new_curve)
     # --- cleaning points of high curvature
-    g, r, x, y = remove_anomalous_points(x, y, r, g)
 
-    layer_points, topmost_points = detect_layer_and_topmost(r, g, x, y)
-    return layer_points, topmost_points
+    # cleaner_mask = calculate_cleaner_mask(new_curve)
+    #
+    # for _ in [new_curve, previous_topmost]:
+    #     # _.apply_mask(cleaner_mask)
+    #     pass
 
+    start_idx = detect_layer_start(previous_topmost, new_curve)
+    new_curve.layer_start_index = start_idx
+    return new_curve
 
 def remove_anomalous_points(x, y, r, g):
     cleaner_mask = calculate_cleaner_mask(x, y)
