@@ -337,45 +337,48 @@ def main():
 
     # extract points from liner
 
-
     global R
-    R = liner.x().max()
+    R = liner.x.max()
     angles = dv.get_angles()
 
     # initial values are those of the liner
     define_global_variables(angles[0])
 
-    x, y = interpolate_liner_by_arclength(liner)
+    liner = interpolate_layer_region_constant_arclength(liner)
 
     if RUNNING_STANDALONE:
-        initialize_plots(x, y)
+        initialize_plots(liner)
 
-    landmarks, lines = calculate_layup(angles, x, y)
+    curves: CurvesBunch = calculate_layup(angles, liner)
 
-    return lines, landmarks
+    return curves
 
 
-def initialize_plots(x, y):
-    global ax1, ax2, f1, f2
+def initialize_plots(curve: Curve) -> None:
+    global ax1, ax2, ax3, f1, f2, f3
     f1, ax1 = plt.subplots()
     f1.suptitle('Plot of the stacked layers', fontsize=16)
     ax1.set_xlabel('radial coordinate -- x (mm)')
     ax1.set_ylabel('axial coordinate -- y (mm)')
-    line, = ax1.plot(x, y, c="k")
+    line, = ax1.plot(curve.x, curve.y, c="k")
     line.set_label('Liner outer shape')
     # ax1.legend()
     f2, ax2 = plt.subplots()
-    custom_cycler = (cycler(color=['b', 'r', 'g', 'm', 'xkcd:purple']))
-    ax2.set_prop_cycle(custom_cycler)
+
     f2.suptitle('Thickness progression at different winding angles', fontsize=16)
     ax2.set_xlabel('radial coordinate (mm)')
+    ax2.set_ylabel('thickness(mm)')
+
+    f3, ax3 = plt.subplots()
+    f3.suptitle('Thickness progression at different winding angles of hoop layers', fontsize=16)
+    ax2.set_xlabel('axial coordinate (mm)')
     ax2.set_ylabel('thickness(mm)')
 
 
 if __name__ == "__main__":
     # Initialize global variables
     r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
-    f1 = ax1 = f2 = ax2 = None
+    f1 = ax1 = f2 = ax2 = f3 = ax3 = None
     main()
 
     plt.show()
