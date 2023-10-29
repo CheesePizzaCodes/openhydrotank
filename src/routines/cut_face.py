@@ -39,8 +39,6 @@ import routine_constants as rc
 
 start_time = time.time()
 
-import stubs as stb
-
 
 def main(lines):
     print(time.time() - start_time)
@@ -97,5 +95,3 @@ def main(lines):
     print(total_time)
 
 
-if __name__ == '__main__':
-    main()

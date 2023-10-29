@@ -1,7 +1,8 @@
 # coding=utf-8
 """
 Thickness computation routine
-TODO memoize t as polynomials
+TODO memoize t as polynomials that can later be accessed at values of r, instead of computing points every time
+TODO message passing between routines and thickness
 Run from '/temp' directory
 """
 import sys
@@ -167,7 +168,7 @@ def smoothen_curve(t: np.ndarray, curve: Curve):  # TODO fix and refalctor
     return curve
 
 
-def thickness_hoop(y, thickness_development=40):
+def thickness_hoop(y: ValuesArray, thickness_development: float = 40.):
     """
     Calculates the thickness distribution of hoop layers based on a given vertical position array.
 
@@ -200,7 +201,7 @@ def thickness_hoop(y, thickness_development=40):
 def calculate_cleaner_mask(curve: Curve):
     # DEPRECATED
     # ignore 1 cm to the right of the opening, where high curvature is expected
-    x, y = curve.unpack_xy()
+    x, y = curve.get_unpacked_xy()
     ignored_region = x < x.min() + 10  # Todo check the validity of these int literals
 
     dx = np.gradient(x)
@@ -218,8 +219,8 @@ def calculate_cleaner_mask(curve: Curve):
 def detect_layer_start(prev: Curve, new: Curve):
     # define layer region: where previous topmost points (r, g) deviate from new topmost (x, y)
     # ~( x = r ^ y = g )\
-    r, g = prev.unpack_xy()
-    x, y = new.unpack_xy()
+    r, g = prev.get_unpacked_xy()
+    x, y = new.get_unpacked_xy()
 
     layer_mask = np.logical_not(np.logical_and(np.equal(x, r), np.equal(y, g)))
     first = np.argmax(layer_mask) - 1
@@ -233,7 +234,7 @@ def calculate_layer_points(previous_topmost: Curve, smoothing_threshold=30) -> C
     :param smoothing_threshold: Minimum angle at which neck smoothing occurs
     """
     # unpack values
-    x, y = previous_topmost.unpack_xy()
+    x, y = previous_topmost.get_unpacked_xy()
 
     # calculate the appropriate thickness distribution
     match angle_deg:
