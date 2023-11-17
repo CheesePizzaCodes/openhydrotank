@@ -8,7 +8,7 @@ import numpy as np
 
 def get_angles():
     angles = None
-    variant = 3
+    variant = 1
 
     if variant == 1:
 
