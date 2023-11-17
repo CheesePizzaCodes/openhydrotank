@@ -27,9 +27,12 @@ def draw_lines(sketch, lines):
     :param lines: a list of lists of tuples
     :return:
     """
+    line_amount = len(lines)
+    c = 1
     for line in lines:
         draw_line(sketch, line)
-
+        print("line {} of {} drawn".format(c, line_amount))
+        c += 1
 
 ##Drawing things
 # def draw_line(sketch, points):
