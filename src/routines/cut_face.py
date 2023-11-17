@@ -54,13 +54,14 @@ def main(lines):
     p = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     p.projectReferencesOntoSketch(sketch=s1, filter=COPLANAR_EDGES)
 
-    c = 0
+    counter = 1
     for line in lines:
-        c += 1
         s1.Spline(points=(line[:-1]),
                   constrainPoints=False)  # use points up to second-to-last-point to draw a spline
         ru.draw_line(s1, line[-2:])  # use last two points to go straight below
-        print('Partition line {} of {} has been created'.format(c, len(lines)))
+        print('Partition line {} of {} has been created'.format(counter, len(lines)))
+        counter += 1
+    # ru.draw_lines(s1, lines)
 
     print(time.time() - start_time)
 
