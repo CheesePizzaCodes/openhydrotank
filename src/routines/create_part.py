@@ -99,5 +99,4 @@ def main():
         except:
             print('No CAD geometry found')
 
-if __name__ == '__main__':
-    main()
+
