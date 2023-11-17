@@ -4,37 +4,31 @@
 
 # my packages
 
-import os
+
 import sys
-import time
+
 
 sys.path.append('../src')
 
 
+def main():
+    from src.routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, orient_elements, trivial, mesher
 
-def main(lines, landmarks):
-    from routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, \
-        orient_elements, trivial, mesher
-    st = time.time()
+    with open("../resources/a.txt", "r") as file:
+        lines = eval(file.read())
 
     create_part.main()
-    print("part -- ", time.time() - st)
     cut_face.main(lines)
-    print("cut -- ", time.time() - st)
     assemble_parts.main()
-    print("assemble -- ", time.time() - st)
-    create_sets_surfs.main(landmarks)
-    print("sets -- ", time.time() - st)
+    create_sets_surfs.main(lines)
     mesher.main()
-    print("mesh -- ", time.time() - st)
     orient_elements.main(lines)
-    print("orientation -- ", time.time() - st)
     assign_property.main()
-    print("material -- ", time.time() - st)
     trivial.main()
-    print("others -- ", time.time() - st)
+
     print(" -- done -- ")
 
 
 if __name__ == '__main__':
+
     main()
