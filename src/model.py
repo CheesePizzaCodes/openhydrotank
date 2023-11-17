@@ -6,16 +6,18 @@ from dataclasses import dataclass
 
 import numpy as np
 
-CoordinatesArray = np.ndarray  # Nx2 size
-ValuesArray = np.ndarray  # Nx1 size
-UnpackedXY = tuple[ValuesArray, ValuesArray]
-AbaqusFormat = Tuple[Tuple[float, float], ...]
+Array2D = np.ndarray  # Nx2 size
+Array1D = np.ndarray  # Nx1 size
+Point = Tuple[float, float]
+
+UnpackedXY = Tuple[Array1D, Array1D]
+AbaqusCurveFormat = Tuple[Point, ...]
 
 
 @dataclass
 class Curve:
     # Private attributes. Will be handled as properties
-    _points: CoordinatesArray
+    _points: Array2D
     _alpha_0: Optional[float] = None
     _layer_start_index: Optional[int] = None
 
@@ -32,7 +34,7 @@ class Curve:
 
     #  ## Properties
     @property
-    def points(self) -> CoordinatesArray:
+    def points(self) -> Array2D:
         return self._points
 
     @points.setter
@@ -40,16 +42,16 @@ class Curve:
         self._points = value
 
     @property
-    def x(self) -> ValuesArray:
+    def x(self) -> Array1D:
         return self._points[:, 0]
 
     @property
-    def y(self) -> ValuesArray:
+    def y(self) -> Array1D:
         return self._points[:, 1]
 
-    @property  #
-    def to_abaqus_format(self) -> AbaqusFormat:
-        return tuple(zip(self.x, self.y))
+    def to_abaqus_format(self) -> AbaqusCurveFormat:
+        idx = self.layer_start_index
+        return tuple(zip(self.x[idx:], self.y[idx:]))
 
     @property
     def layer_start_index(self) -> int:
@@ -70,7 +72,7 @@ class Curve:
     def get_unpacked_xy(self) -> UnpackedXY:
         return self.x, self.y
 
-    def apply_mask(self, logical_mask: ValuesArray) -> None:
+    def apply_mask(self, logical_mask: Array1D) -> None:
         self._points = self._points[logical_mask]  # inplace modification
 
     def get_layer_unpacked_xy(self) -> UnpackedXY:
@@ -78,12 +80,12 @@ class Curve:
             return self.x[self.layer_start_index:], self.y[self.layer_start_index:]
         return self.get_unpacked_xy()
 
-    def get_layer_points(self) -> CoordinatesArray:
+    def get_layer_points(self) -> Array2D:
         if self.layer_start_index is None:
             return self.points
         return self.points[self.layer_start_index:]
 
-    def get_non_layer_points(self) -> CoordinatesArray:
+    def get_non_layer_points(self) -> Array2D:
         if self.layer_start_index is None:
             return self.points
         return self.points[:self.layer_start_index]
@@ -93,10 +95,12 @@ class Curve:
 class CurvesBunch:
     _curves: List[Curve]
 
-    def get_landmarks(self):
-        pass
 
     @property
     def curves(self) -> List[Curve]: return self._curves  # readonly
 
     def add_curve(self, value: Curve) -> None: self._curves.append(value)
+
+    def curves_to_abaqus_format(self) -> List[AbaqusCurveFormat]:
+        return [curve.to_abaqus_format() for curve in self.curves]
+
