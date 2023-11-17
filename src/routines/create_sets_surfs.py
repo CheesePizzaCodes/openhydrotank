@@ -47,12 +47,12 @@ import routine_util as ru
 import routine_constants as rc
 
 
-def main(landmarks):
+def main(lines):
     start_time = time.time()
 
     # import stubs as stb
 
-    print(time.time() - start_time)
+    landmarks = [line[-1] for line in lines]
 
     sys.path.append('.')
 
@@ -73,11 +73,11 @@ def main(landmarks):
     part = mdb.models[rc.MODEL].parts[rc.LAYUP_PART]
     faces = part.faces
 
-    for index, landmark in enumerate(landmarks):  # this required a workaround using findAt...
-        location = ru.offset_point(landmark, 45 + 90)
+    for index, landmark in enumerate(landmarks):
+        location = ru.offset_point(landmark, 45 + 90)  # look to the left of the vertical
         face_array = part.faces.findAt((location, (0., 0., 1.)))  # find face at location
         name = rc.LAYER_SET + str(index)
-        part.Set(faces=(face_array,), name=name)  # TODO layer 1 not included bug. Change angle for 45 + 90
+        part.Set(faces=(face_array,), name=name)
 
     del mdb.models['model'].parts['layup'].sets['set_layer_0']
     # -----------------
