@@ -3,14 +3,14 @@
 Thickness computation routine
 TODO memoize t as polynomials that can later be accessed at values of r, instead of computing points every time
 TODO message passing between routines and thickness
-Run from '/temp' directory
+Run from  root '/' directory
 """
 import sys
 
 # Toggles if the code is rand standalone to graph
 # or by Abaqus to plot the geometry
 # True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
-RUNNING_STANDALONE = 'ABQcaeK.exe' not in sys.executable  # TODO obsolete, will always run outside of abq
+RUNNING_STANDALONE = __name__ == "__main__"
 
 from typing import List, Optional, Tuple
 
@@ -25,7 +25,7 @@ from scipy.interpolate import interp1d
 
 import routines.design_variables as dv
 from routines.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
-from model import Curve, CurvesBunch, ValuesArray, CoordinatesArray
+from model import Curve, CurvesBunch, Array1D, Array2D
 
 
 def define_global_variables(angle: float):
@@ -131,7 +131,7 @@ def thickness(r):
     # Second case
     t += thickness_2(r) * (r_2b < r)  # multiply by logical mask
 
-    t[t <= 0.05] = 0.
+    t[t <= MINIMUM_THICKNESS_THRESHOLD] = 0.
 
     return t
 
@@ -168,7 +168,7 @@ def smoothen_curve(t: np.ndarray, curve: Curve):  # TODO fix and refalctor
     return curve
 
 
-def thickness_hoop(y: ValuesArray, thickness_development: float = 40.):
+def thickness_hoop(y: Array1D, thickness_development: float = 40.):
     """
     Calculates the thickness distribution of hoop layers based on a given vertical position array.
 
@@ -270,7 +270,7 @@ def calculate_layer_points(previous_topmost: Curve, smoothing_threshold=30) -> C
 
 
 
-def interpolate_layer_region_constant_arclength(curve: Curve) -> Curve:
+def interpolate_layer_region_constant_arclength(curve: Curve, arclength = 5) -> Curve:
     pts = curve.get_layer_points().copy()
 
     # Compute the cumulative arc length
@@ -279,8 +279,8 @@ def interpolate_layer_region_constant_arclength(curve: Curve) -> Curve:
     cumulative_length = np.insert(np.cumsum(distances), 0, 0)
     # Interpolate based on arc length
     # Determine the desired distance between interpolated points
-    desired_distance = 1.5  # mm - Adjust this value as needed
-    s = np.arange(0, cumulative_length[-1], desired_distance)
+
+    s = np.arange(0, cumulative_length[-1], arclength)
     interpolator_kind = 'linear'
     interp_func = interp1d(cumulative_length, pts, kind=interpolator_kind, axis=0)
 
@@ -333,7 +333,7 @@ def update_layup_graph(curve: Curve):
 
 
 def main():
-    filename = r'..\resources\liner.csv'
+    filename = r'.\resources\liner.csv'
     liner = Curve(np.loadtxt(filename, delimiter=",", skiprows=0))
 
     # extract points from liner
@@ -341,11 +341,11 @@ def main():
     global R
     R = liner.x.max()
     angles = dv.get_angles()
-
+    print(angles)
     # initial values are those of the liner
     define_global_variables(angles[0])
 
-    liner = interpolate_layer_region_constant_arclength(liner)
+    liner = interpolate_layer_region_constant_arclength(liner, arclength=1)
 
     if RUNNING_STANDALONE:
         initialize_plots(liner)
@@ -377,6 +377,7 @@ def initialize_plots(curve: Curve) -> None:
 
 
 if __name__ == "__main__":
+    MINIMUM_THICKNESS_THRESHOLD = 0.2
     # Initialize global variables
     r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
     f1 = ax1 = f2 = ax2 = f3 = ax3 = None
