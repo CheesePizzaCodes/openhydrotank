@@ -19,6 +19,7 @@ HydroSim is an open-source software tool designed to automate the structural Fin
 All commands are to be ran from `/`, the root directory of the cloned repository. First, you need to define the physical problem using input parameters like material properties, vessel dimensions, and internal pressure. These can be specified in `/src/design_variables.py` for the geometry and processing parameters, and in `/src/routines/routine_constants` for the material properties.
 There are two use cases:
 1. Plotting the predicted geometry
+   - Specify the desired liner shape by replacing `/resources/liner.csv`
    - Run `python ./src/thickness.py`
    - There should appear the generated graphs.
 
@@ -26,7 +27,7 @@ When the user is happy with the generated layup, she can proceed to use case 2.
 2. Set up a simulation
    - Run `python ./src/main.py`
    - Wait for the model to be setup and ran
-   - Analyze the output for optimization and design validation.
+   - Analyze the output for optimization and design validation. The odb as well as all simulation files are located in `/temp`
 
 ## Support
 For support, queries, or contributions, please open an issue on the GitHub repository.
