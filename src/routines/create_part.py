@@ -33,7 +33,7 @@ import connectorBehavior
 # import own modules
 import routine_util as ru
 import routine_constants as rc
-import stubs as stb
+
 
 import time
 
@@ -42,7 +42,11 @@ def main():
 
     start_time = time.time()
 
-    points = stb.test_shape  # stub.
+    points = [(0, 0),
+              (200, 0),
+              (200, 600),
+              (0, 600),
+              (0, 0)]  # stub.
 
     # initialize model
 

@@ -1,20 +1,12 @@
-# This is the main loop. It calls all the required
-
-# global packages
-
-# my packages
-
-
 import sys
-
 
 sys.path.append('../src')
 
 
-def main():
+if __name__ == '__main__':
     from src.routines import create_part, cut_face, assemble_parts, create_sets_surfs, assign_property, orient_elements, trivial, mesher
 
-    with open("../resources/a.txt", "r") as file:
+    with open("../resources/intermediate_file.txt", "r") as file:
         lines = eval(file.read())
 
     create_part.main()
@@ -27,8 +19,3 @@ def main():
     trivial.main()
 
     print(" -- done -- ")
-
-
-if __name__ == '__main__':
-
-    main()
