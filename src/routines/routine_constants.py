@@ -3,12 +3,6 @@ This file contains several constants used by the routines in the package
 '''
 
 #  ----- Design Variables -----
-
-
-
-
-# LINER_PATH = 'E:/Current Workspace/Codebase/hydrotank/src/modbui/routines/caet_tester3/liner.sat'
-
 #  ----- Global Names -----
 MODEL = 'model'
 
@@ -70,7 +64,6 @@ LAYUP_MATERIAL_PROPS = (
     2612.0,  # G13
     2139.0)  #
 
-# LAYUP_MATERIAL_PROPS = (139260.0, 5989.0, 5989.0, 0.26, 0.26, 0.4, 2612.0, 2612.0, 2139.0)
 
 LAYUP_SECTION = LAYUP_PART + '_section'
 
@@ -92,7 +85,7 @@ MAX_INC = 0.1
 
 #  ----- Load -----
 
-LOAD_MAG = 75  # MPa
+LOAD_MAG = 75  # MPa  # Magnitude of internal pressure
 
 
 #  ----- Mesh -----
