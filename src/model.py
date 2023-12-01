@@ -1,17 +1,35 @@
-"""
-Data model for the GUI application
-"""
-from typing import List, Optional, Tuple, Any
+'''
+OpenHydroTank: Type IV Hydrogen Pressure Vessel Analysis Tool
+Copyright (C) 2023 Simón Cadavid
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+'''
+# Import necessary objects from the typing package
+from typing import List, Optional, Tuple
 from dataclasses import dataclass
 
 import numpy as np
+# Declare the custom type aliases
+type Array2D = np.ndarray  # Nx2 size
+type Array1D = np.ndarray  # Nx1 size
+type Point = Tuple[float, float]
+type UnpackedXY = Tuple[Array1D, Array1D]
+type AbaqusCurveFormat = Tuple[Point, ...]
 
-Array2D = np.ndarray  # Nx2 size
-Array1D = np.ndarray  # Nx1 size
-Point = Tuple[float, float]
 
-UnpackedXY = Tuple[Array1D, Array1D]
-AbaqusCurveFormat = Tuple[Point, ...]
+
 
 
 @dataclass
@@ -49,9 +67,6 @@ class Curve:
     def y(self) -> Array1D:
         return self._points[:, 1]
 
-    def to_abaqus_format(self) -> AbaqusCurveFormat:
-        idx = self.layer_start_index
-        return tuple(zip(self.x[idx:], self.y[idx:]))
 
     @property
     def layer_start_index(self) -> int:
@@ -69,38 +84,40 @@ class Curve:
     def winding_angle(self, value) -> None:
         self._alpha_0 = value
 
+
     def get_unpacked_xy(self) -> UnpackedXY:
         return self.x, self.y
 
-    def apply_mask(self, logical_mask: Array1D) -> None:
-        self._points = self._points[logical_mask]  # inplace modification
-
     def get_layer_unpacked_xy(self) -> UnpackedXY:
+        x, y = self.get_unpacked_xy()
+        idx = self.layer_start_index
         if self.layer_start_index is not None:
-            return self.x[self.layer_start_index:], self.y[self.layer_start_index:]
-        return self.get_unpacked_xy()
+            return x[idx:], y[idx:]
+        return x, y
 
     def get_layer_points(self) -> Array2D:
-        if self.layer_start_index is None:
+        idx = self.layer_start_index
+        if idx is None:
             return self.points
-        return self.points[self.layer_start_index:]
+        return self.points[idx:]
 
     def get_non_layer_points(self) -> Array2D:
-        if self.layer_start_index is None:
+        idx = self.layer_start_index
+        if idx is None:
             return self.points
-        return self.points[:self.layer_start_index]
+        return self.points[:idx]
+    def to_abaqus_format(self) -> AbaqusCurveFormat:
+        return tuple(zip(*self.get_layer_unpacked_xy()))
 
 
-@dataclass
 class CurvesBunch:
-    _curves: List[Curve]
-
-
+    def __init__(self, initial_curve: Curve):
+        self._curves: List[Curve] = [initial_curve, ]
     @property
     def curves(self) -> List[Curve]: return self._curves  # readonly
 
     def add_curve(self, value: Curve) -> None: self._curves.append(value)
 
-    def curves_to_abaqus_format(self) -> List[AbaqusCurveFormat]:
+    def to_abaqus_format(self) -> List[AbaqusCurveFormat]:
         return [curve.to_abaqus_format() for curve in self.curves]
 
