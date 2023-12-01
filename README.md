@@ -1,36 +1,44 @@
-# OpenHydroTank
+---
+# OpenHydroTank: Type IV Hydrogen Pressure Vessel Analysis Tool
 
 ## Description
-This is an open source plugin for ABAQUS
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+HydroSim is an open-source software tool designed to automate the structural Finite Element (FE) analysis of type IV hydrogen pressure vessels made from carbon-fiber reinforced polymers (CFRP) subjected to internal pressure loading in the commercial FE software Abaqus. For more information about Abaqus, please visit [Abaqus homepage](https://www.3ds.com/products-services/simulia/products/abaqus/). This tool is specifically developed to produce simulation models and results based on desired material properties, angle stacking sequences, and process parameters. It plays a crucial role in analyzing and optimizing the design of type IV hydrogen pressure vessels, ensuring they are light, safe, and reliable for commercial production.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Key Features 
+- Predicts the through-thickness geometry to produce an axisymmetric model
+- Computes and assigns the material orientations element-wise
+- Simulates the structural response of composite pressure vessels under internal pressure loading.
+- Designed for future integration with other software for optimization and machine learning regression tasks.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1. Clone the repository from [this link](https://github.com/sai-kalai/openhydrotank).
+2. Ensure that you have the required commercial FE software ABAQUS installed and that the command `abaqus cae` is available in your system.
+3. Install the required dependencies by running `pip install numpy scipy matplotlib`
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+All commands are to be ran from `/`, the root directory of the cloned repository. First, you need to define the physical problem using input parameters like material properties, vessel dimensions, and internal pressure. These can be specified in `/src/design_variables.py` for the geometry and processing parameters, and in `/src/routines/routine_constants` for the material properties.
+There are two use cases:
+1. Plotting the predicted geometry
+   - Run `python ./src/thickness.py`
+   - There should appear the generated graphs.
+
+When the user is happy with the generated layup, she can proceed to use case 2.
+2. Set up a simulation
+   - Run `python ./src/main.py`
+   - Wait for the model to be setup and ran
+   - Analyze the output for optimization and design validation.
 
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+For support, queries, or contributions, please open an issue on the GitHub repository.
 
 ## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Contributions are welcome! Please open an issue and start a discussion.
 
 ## License
-For open source projects, say how it is licensed.
+HydroSim is licensed under GPLv3, which allows for open-source use and distribution. Please find more information in `LICENSE.md`
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Authors and Acknowledgment
+Developed by Simón Cadavid. Special thanks to Weili Jiang and the TUM chair for carbon composites for their guidance and support.
+
+## Project Status
+The project is currently in active development, with plans for future enhancements including integration with optimization algorithms and machine learning models.
