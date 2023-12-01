@@ -39,7 +39,7 @@ Contributions are welcome! Please open an issue and start a discussion.
 HydroSim is licensed under GPLv3, which allows for open-source use and distribution. Please find more information in `LICENSE.md`
 
 ## Authors and Acknowledgment
-Developed by Simón Cadavid. Special thanks to Weili Jiang and the TUM chair for carbon composites for their guidance and support.
+Developed by Simón Cadavid. Special thanks to M.Sc. Weili Jiang and the TUM chair for carbon composites for their guidance and support.
 
 ## Project Status
 The project is currently in active development, with plans for future enhancements including integration with optimization algorithms and machine learning models.
