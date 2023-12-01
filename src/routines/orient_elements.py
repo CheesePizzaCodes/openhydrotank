@@ -1,5 +1,3 @@
-import sys, os
-
 import numpy as np
 from numpy import pi
 
@@ -28,8 +26,7 @@ import connectorBehavior
 from time import time
 
 # import own modules
-import routine_util as ru
-from design_variables import get_angles
+from src.design_variables import get_angles
 import routine_constants as rc
 
 # Extract liner shape
