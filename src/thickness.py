@@ -5,14 +5,14 @@ TODO memoize t as polynomials that can later be accessed at values of r, instead
 TODO message passing between routines and thickness
 Run from  root '/' directory
 """
-import sys
 
 # Toggles if the code is rand standalone to graph
 # or by Abaqus to plot the geometry
 # True: graphing is enabled, i.e., running standalone, not in the abaqus interpreter
 RUNNING_STANDALONE = __name__ == "__main__"
 
-from typing import List, Optional, Tuple
+from typing import List
+
 
 import numpy as np
 from numpy import pi
@@ -23,9 +23,9 @@ if RUNNING_STANDALONE:
 from scipy.integrate import quad
 from scipy.interpolate import interp1d
 
-import routines.design_variables as dv
-from routines.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
-from model import Curve, CurvesBunch, Array1D, Array2D
+import src.design_variables as dv
+from src.design_variables import b, t_R, t_P, max_y_hoop, t_hoop
+from model import Curve, CurvesBunch, Array1D
 
 
 def define_global_variables(angle: float):
@@ -136,7 +136,7 @@ def thickness(r):
     return t
 
 
-def smoothen_curve(t: np.ndarray, curve: Curve):  # TODO fix and refalctor
+def smoothen_curve(t: Array1D, curve: Curve):  # TODO fix and refalctor
     """
     Smoothing function for low-angle helical layers, typically < 30°
     Makes layers seek the liner horizontally
@@ -168,7 +168,7 @@ def smoothen_curve(t: np.ndarray, curve: Curve):  # TODO fix and refalctor
     return curve
 
 
-def thickness_hoop(y: Array1D, thickness_development: float = 40.):
+def thickness_hoop(y: Array1D, thickness_development: float = 40.) -> Array1D:
     """
     Calculates the thickness distribution of hoop layers based on a given vertical position array.
 
@@ -198,25 +198,25 @@ def thickness_hoop(y: Array1D, thickness_development: float = 40.):
     return t
 
 
-def calculate_cleaner_mask(curve: Curve):
-    # DEPRECATED
-    # ignore 1 cm to the right of the opening, where high curvature is expected
-    x, y = curve.get_unpacked_xy()
-    ignored_region = x < x.min() + 10  # Todo check the validity of these int literals
+# def calculate_cleaner_mask(curve: Curve):
+#     # DEPRECATED
+#     # ignore 1 cm to the right of the opening, where high curvature is expected
+#     x, y = curve.get_unpacked_xy()
+#     ignored_region = x < x.min() + 10  # Todo check the validity of these int literals
+#
+#     dx = np.gradient(x)
+#     dy = np.gradient(y)
+#     ddx = np.gradient(dx)
+#     ddy = np.gradient(dy)
+#
+#     curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
+#     curvature[ignored_region] = 0.
+#     cleaner_mask = curvature < 0.05
+#
+#     return cleaner_mask
 
-    dx = np.gradient(x)
-    dy = np.gradient(y)
-    ddx = np.gradient(dx)
-    ddy = np.gradient(dy)
 
-    curvature = np.abs(np.gradient(dx * ddy - dy * ddx)) / (dx ** 2 + dy ** 2) ** 1.5
-    curvature[ignored_region] = 0.
-    cleaner_mask = curvature < 0.05
-
-    return cleaner_mask
-
-
-def detect_layer_start(prev: Curve, new: Curve):
+def detect_layer_start(prev: Curve, new: Curve) -> int:
     # define layer region: where previous topmost points (r, g) deviate from new topmost (x, y)
     # ~( x = r ^ y = g )\
     r, g = prev.get_unpacked_xy()
@@ -269,8 +269,7 @@ def calculate_layer_points(previous_topmost: Curve, smoothing_threshold=30) -> C
     return new_curve
 
 
-
-def interpolate_layer_region_constant_arclength(curve: Curve, arclength = 5) -> Curve:
+def interpolate_layer_region_constant_arclength(curve: Curve, arclength=5) -> Curve:
     pts = curve.get_layer_points().copy()
 
     # Compute the cumulative arc length
@@ -296,7 +295,7 @@ def interpolate_layer_region_constant_arclength(curve: Curve, arclength = 5) -> 
 
 def calculate_layup(angles: List[float], liner: Curve) -> CurvesBunch:
     # data initialization
-    curves = CurvesBunch([liner, ])  # initialize container
+    curves = CurvesBunch(liner)  # initialize container
     global R
     R = liner.x.max()
     topmost_curve = liner
@@ -375,11 +374,12 @@ def initialize_plots(curve: Curve) -> None:
     ax2.set_xlabel('axial coordinate (mm)')
     ax2.set_ylabel('thickness(mm)')
 
-
+MINIMUM_THICKNESS_THRESHOLD = 0.2
+r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
 if __name__ == "__main__":
-    MINIMUM_THICKNESS_THRESHOLD = 0.2
+
     # Initialize global variables
-    r_0 = m_R = m_0 = r_b = r_2b = n_R = alpha_0 = angle_deg = R = t_p = 0.
+
     f1 = ax1 = f2 = ax2 = f3 = ax3 = None
     main()
 
